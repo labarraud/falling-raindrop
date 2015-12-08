@@ -2,7 +2,7 @@
 #define MATRIX_CXX
 
 #include "Matrix.hxx"
-
+//test
 
 Matrix::Matrix()
 	:	N(0)
