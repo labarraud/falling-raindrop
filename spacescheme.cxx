@@ -2,8 +2,9 @@
 #include "spacescheme.hxx"
 
 
-void DecentrerDC :: AddFunction(double alpha, const Vector<Vector<double>>& u, double t, Vector<Vector<double>>& y)
+void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double>>& u, double t, Vector<Vector<double>>& y)
 {
+// LIMIT CONDITION NO DEFINE !!
 
     for (int i=0; i<N; i++)
     {
@@ -11,24 +12,24 @@ void DecentrerDC :: AddFunction(double alpha, const Vector<Vector<double>>& u, d
 	{
 	  if (VX(i)(j)>0 && VY(i)(j)>0)
 	    {
-	      y(i,j) +=alpha*(VX(i)(j)*(u(i)(j)-u(i-1)(j))/Delta_x +  VY(i)(j)*(u(i)(j)-u(i)(j-1))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
+	      y(i)(j) +=alpha*(VX(i)(j)*(u(i)(j)-u(i-1)(j))/Delta_x +  VY(i)(j)*(u(i)(j)-u(i)(j-1))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
 	    }
 	  
 	  
 	  else (VX(i)(j)<0 && VY(i)(j)>0)
 		{
-		  y(i,j) += alpha*(VX(i)(j)*(u(i+1)(j)-u(i)(j))/Delta_x +  VY(i)(j)*(u(i)(j)-u(i)(j-1))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
+		  y(i)(j) += alpha*(VX(i)(j)*(u(i+1)(j)-u(i)(j))/Delta_x +  VY(i)(j)*(u(i)(j)-u(i)(j-1))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
 		}
 	
 	  
 	  else (VX(i)(j)>0 && VY(i)(j)<0)
 		{
-		  y(i,j) += alpha*(VX(i)(j)*(u(i)(j)-u(i-1)(j))/Delta_x +  VY(i)(j)*(u(i)(j+1)-u(i)(j))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
+		  y(i)(j) += alpha*(VX(i)(j)*(u(i)(j)-u(i-1)(j))/Delta_x +  VY(i)(j)*(u(i)(j+1)-u(i)(j))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
 		}
 
 	  else (VX(i)(j)<0 && VY(i)(j)<0)
 		{
-		  y(i,j) += alpha*(VX(i)(j)*(u(i+1)(j)-u(i)(j))/Delta_x +  VY(i)(j)*(u(i)(j+1)-u(i)(j))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
+		  y(i)(j) += alpha*(VX(i)(j)*(u(i+1)(j)-u(i)(j))/Delta_x +  VY(i)(j)*(u(i)(j+1)-u(i)(j))/Delta_y - D*( (u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/((Delta_x)^2) +  (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/((Delta_y)^2)));
 	    }
 	}
     }

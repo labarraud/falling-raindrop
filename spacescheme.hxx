@@ -2,7 +2,8 @@
 
 
 
-class DecentrerDC : public DiffusionConvectionProblem
+class UpwindDCtest1 : public DiffusionConvectionProblem
+
 {
 public : 
 
