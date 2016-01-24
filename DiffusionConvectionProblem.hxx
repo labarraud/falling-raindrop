@@ -8,8 +8,9 @@ class DiffusionConvectionProblem : public VirtualOdeSystem
 
 protected:
 	Vector<double> step_x, step_y;
-	Matrix VX,VY;
-	double D,delta_x,delta_t,delta_t;
+	Velocity V;
+	int Nx,Ny,Nt;
+	double L,H,D,Delta_x,Delta_t,Delta_t;
 
 
 public:
