@@ -16,7 +16,6 @@ protected:
 public:
 //DiffusionConvectionProblem();
 	void Init(double delta_x, delta_t,double D);
-	void ChampsCirculaire(double center, double intensite);
 	void AddFunction(double alpha, const Matrix& rho, double t, Matrix& y);
 	void WriteGnuPlot(Matrix M,const string& nom);
 
