@@ -6,7 +6,7 @@ class Velocity
 
 {
 private:
-	Vector<Vector<double>> VX,VY;
+	Vector<Vector<double> > VX,VY;
 	int Nx,Ny;
 	double L,H,Delta_x,Delta_y;
 

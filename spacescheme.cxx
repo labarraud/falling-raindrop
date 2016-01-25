@@ -15,35 +15,35 @@ void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u
 	  if (VX(i)(j)>0 && VY(i)(j)>0)
 	    {
 	      v[0] = u(i)(j);
-	      v[1] = u(i)(j-1%Ny);
-	      v[2] = u(i-1%Nx)(j);
-	      v[3] = u(i-1%Nx)(j-1%Ny);
+	      v[1] = u(i)((j-1)%Ny);
+	      v[2] = u((i-1%)Nx)(j);
+	      v[3] = u((i-1)%Nx)((j-1)%Ny);
 	    }
 	  
 	  
 	  else (VX(i)(j)<0 && VY(i)(j)>0)
 		{
 	      v[0] = u(i)(j);
-	      v[1] = u(i)(j+1%Ny);
-	      v[2] = u(i-1%Nx)(j);
-	      v[3] = u(i-1%Nx)(j+1%Ny);
+	      v[1] = u(i)((j+1)%Ny);
+	      v[2] = u((i-1)%Nx)(j);
+	      v[3] = u((i-1)%Nx)((j+1)%Ny);
 		}
 	
 	  
 	  else (VX(i)(j)>0 && VY(i)(j)<0)
 		{
 	      v[0] = u(i)(j);
-	      v[1] = u(i-1%Nx)(j);
-	      v[2] = u(i)(j+1%Ny);
-	      v[3] = u(i+1%Nx)(j-1%Ny);
+	      v[1] = u((i-1)%Nx)(j);
+	      v[2] = u(i)((j+1)%Ny);
+	      v[3] = u((i+1)%Nx)((j-1)%Ny);
 		}
 
 	  else (VX(i)(j)<0 && VY(i)(j)<0)
 		{
 	      v[0] = u(i)(j);
-	      v[1] = u(i)(j+1%Ny);
-	      v[2] = u(i+1%Nx)(j);
-	      v[3] = u(i+1%Nx)(j+1%Ny);
+	      v[1] = u(i)((j+1)%Ny);
+	      v[2] = u((i+1)%Nx)(j);
+	      v[3] = u((i+1)%Nx)((j+1)%Ny);
 	    }
 	  y(i)(j) += (1.-VX(i)(j)*sigma)*(1.-VY(i)(j)*theta)*v[0] + (1.-VX(i)(j)*sigma)*VY(i)(j)*theta*v[1]
 			+ VX(i)(j)*sigma*(1.-VY(i)(j)*theta)*v[2] + VX(i)(j)*sigma*VY(i)(j)*theta*v[3]
