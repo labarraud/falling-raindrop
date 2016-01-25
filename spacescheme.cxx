@@ -2,7 +2,7 @@
 #include "spacescheme.hxx"
 
 
-void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double>>& u, double t, Vector<Vector<double>>& y)
+void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u, double t, Vector<Vector<double> >& y)
 {
 // LIMIT CONDITION NO DEFINE !!
 

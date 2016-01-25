@@ -19,7 +19,7 @@ private:
   // on stocke le pas de temps
   double dt;
   // pour ce schema, on a besoin de ne stocker que deux vecteurs
-  Vector<double> rho, rho_next;
+  Vector< Vector<double> > rho, rho_next;
 
 public:
   LowStorageRungeKuttaIterator();

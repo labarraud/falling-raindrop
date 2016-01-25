@@ -47,7 +47,7 @@ const Vector<Vector<double>>& LowStorageRungeKuttaIterator::GetIterate() const
 
 // fonction pour initialiser le schema en temps
 void LowStorageRungeKuttaIterator
-::SetInitialCondition(double t0, double dt_, Vector<Vector<double>>& rho0, VirtualOdeSystem& sys)
+::SetInitialCondition(double t0, double dt_, Vector<Vector<double> >& rho0, VirtualOdeSystem& sys)
 {
   dt = dt_;
   rho = rho0;
