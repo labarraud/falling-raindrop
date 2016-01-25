@@ -18,19 +18,23 @@
 			this.VY(i).realocate(Ny+1)
 		}
 
-		this.Delta_x=L/(Nx+1);
-		this.Delta_y=H/(Ny+1);
+		this.Delta_x=L/Nx;
+		this.Delta_y=H/Ny;
 
 
 	}
 
 	void Velocity::ChampsCirculaire(double Xcenter,double Ycenter, double intensite)
 	{
+		Vector(double) v;
 		for (int i=0; i<Nx+1;i++)
 		{
 			for (int j=0; j<Ny+1;j++)
 			{
-				this.Vx(i)(j)=;
+				v.y = Xcenter - (i * Delta_y);
+				v.x = Ycenter - (j * Delta_x);
+				VX(i)(j) = intensite*v.y;
+				VY(i)(j) = -intensite*v.x;
 			}
 		}
 	}
