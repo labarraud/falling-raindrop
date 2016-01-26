@@ -1,7 +1,7 @@
 #ifndef DIFFUSION_CONVECTION_PROBLEM_HXX
 
 #include "TimeScheme.hxx"
-
+#include "Velocity"
 
 class DiffusionConvectionProblem : public VirtualOdeSystem
 {
@@ -9,6 +9,7 @@ class DiffusionConvectionProblem : public VirtualOdeSystem
 protected:
 	Vector<double> step_x, step_y;
 	Velocity* V;
+	Particle n;
 	int Nx,Ny,Nt;
 	double L,H,D,Delta_x,Delta_y,Delta_t;
 
