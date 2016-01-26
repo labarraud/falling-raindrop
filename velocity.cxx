@@ -2,7 +2,6 @@
 
 #include "velocity.hxx"
 
-#include <fstream>
 //	Vector<Vector<double>> VX,VY;
 	//int Nx,Ny;
 	//double L,H,Delta_x,Delta_y;
@@ -12,15 +11,21 @@ namespace linalg
 
 inline Velocity::Velocity(int Nx,int Ny,double L,double H)
 	{
+
+		this->Nx=Nx;
+		this->Ny=Ny;
+
 		this->VX.Reallocate(Nx+1);
-		this->VY.Reallocate(Ny+1);
+		this->VY.Reallocate(Nx+1);
 
 		for (int i=0; i<Nx+1;i++)
 		{
-			this->VX(i).Reallocate(Nx+1);
+			this->VX(i).Reallocate(Ny+1);
 			this->VY(i).Reallocate(Ny+1);
 		}
 
+		this->L=L;
+		this->H=H;
 		this->Delta_x=L/Nx;
 		this->Delta_y=H/Ny;
 
@@ -34,8 +39,8 @@ inline void Velocity::ChampsCirculaire(double Xcenter,double Ycenter, double int
 		{
 			for (int j=0; j<Ny+1;j++)
 			{
-				v(1) = Xcenter - (i * Delta_y);
-				v(0) = Ycenter - (j * Delta_x);
+				v(1) = (j * Delta_y)- Ycenter;
+				v(0) = (i * Delta_x)- Xcenter;
 				VX(i)(j) = intensite*v(1);
 				VY(i)(j) = -intensite*v(0);
 			}
@@ -47,14 +52,14 @@ inline void Velocity::ChampsCirculaire(double Xcenter,double Ycenter, double int
 
 inline void Velocity::WriteGnuPlot(const string& nom)
 	{
-		  ofstream file_out(nom.data());
+			ofstream file_out(nom.data());
 		  file_out.precision(15);
 		  double x,y;
-		  for (int i = 0; i < Nx; i++)
+		  for (int i = 0; i < Nx+1; i++)
 				for (int j=0; j<Ny+1;j++)
 				{
-					x=i*Delta_x;
-					y=j*Delta_y;
+					x=i*this->Delta_x;
+					y=j*this->Delta_y;
 					file_out << x << " "<< y << " " << VX(i)(j) << " " << VY(i)(j) << '\n';
 				}
 		  file_out.close();

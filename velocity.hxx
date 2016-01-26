@@ -1,5 +1,15 @@
 #ifndef FILE_VELOCITY_HXX
 
+#include <iostream>
+#include <fstream>
+#include <complex>
+#include <cstdlib>
+#include <stdint.h>
+#include <string>
+#include <cstring>
+#include <exception>
+
+using namespace std;
 
 namespace linalg
 {
