@@ -1,7 +1,7 @@
 #ifndef DIFFUSION_CONVECTION_PROBLEM_CXX
 
 #include "DiffusionConvectionProblem.hxx"
-#include "TimeSchema.hxx"
+#include "TimeScheme.hxx"
 
 /*	Vector<double> step_x, step_y;
 	Velocity V;

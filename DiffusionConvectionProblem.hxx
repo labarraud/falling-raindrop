@@ -1,6 +1,6 @@
 #ifndef DIFFUSION_CONVECTION_PROBLEM_HXX
 
-#include "TimeSchema.hxx"
+#include "TimeScheme.hxx"
 
 
 class DiffusionConvectionProblem : public VirtualOdeSystem
