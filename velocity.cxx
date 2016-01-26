@@ -1,6 +1,6 @@
 #ifndef FILE_VELOCITY_CXX
 
-
+#include "velocity.hxx"
 
 
 //	Vector<Vector<double>> VX,VY;
@@ -42,7 +42,7 @@
 
 
 
-	void WriteGnuPlot(const string& nom)
+	void Velocity::WriteGnuPlot(const string& nom)
 	{
 		  ofstream file_out(nom.data());
 		  file_out.precision(15);
@@ -57,7 +57,17 @@
 		  file_out.close();
 	}
 
-};
+
+	double& Velocity::GetVX(int i, j)
+	{
+		return VX(i,j);
+	}
+
+	double& Velocity::GetVY(int i, j)
+	{
+		return VY(i,j);
+	}
+
 
 #define FILE_VELOCITY_CXX
 #endif
