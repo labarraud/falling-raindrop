@@ -11,7 +11,7 @@ DEBUG_FLAG = -DLINALG_DEBUG -g -std=c++11 -Wall -Woverloaded-virtual
 PROG = run
 
 # fichier source a compiler
-SRC = main.cxx
+SRC = main.cc
 
 # par defaut on compile en optimise
 optim : $(SRC)

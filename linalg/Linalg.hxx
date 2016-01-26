@@ -14,17 +14,5 @@
 
 #include "Allocator.cxx"
 #include "Vector.cxx"
-#include "SparseVector.cxx"
-#include "SparseMatrix.cxx"
-#include "TinyVector.cxx"
-#include "CoCg.cxx"
-#include "CommonOutput.cxx"
 
-#include "SolveMumps.cxx"
 
-namespace linalg
-{
-  // typedef for points in R2 and R3
-  typedef TinyVector<double, 2> R2;
-  typedef TinyVector<double, 3> R3;
-}
