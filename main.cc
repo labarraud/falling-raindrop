@@ -1,8 +1,10 @@
 #include "linalg/Linalg.hxx"
 
+
+#include "velocity.cxx"
+
 using namespace linalg;
 
-#include "velocity.hxx"
 
 int main()
 {

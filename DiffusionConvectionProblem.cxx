@@ -14,7 +14,7 @@
 
 	DiffusionConvectionProblem::~DiffusionConvectionProblem()
 	{
-		if(V != NULL) {
+		if(this->V != NULL) {
 			delete V;
 		}
 	}
