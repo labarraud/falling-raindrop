@@ -21,17 +21,39 @@
 		this->Delta_y=H/Ny;
 		this->Delta_t=tfinal/Nt;
 
+		this->u.Reallocate(Nx+1);
+		this->y.Reallocate(Nx+1);
+
+		for (int i=0; i<Nx+1;i++)
+			this->u(i).Reallocate(Ny+1);
+
+
+				for (int i=0; i<Nx+1;i++)
+				{
+					for (int j=0; j<Ny+1;j++)
+						u(i)(j)=n.Getn(i,j);
+				}
+
+		for (int i=0; i<Nx+1;i++)
+			this->y(i).Reallocate(Ny+1);
+
+			for (int i=0; i<Nx+1;i++)
+			{
+				for (int j=0; j<Ny+1;j++)
+					y(i)(j)=0;
+			}
+
+			this->velocity=V;
+
 
 	}
 
 	DiffusionConvectionProblem::~DiffusionConvectionProblem()
 	{
-		if(this->V != NULL) {
-			delete V;
-		}
+
 	}
 
-	void DiffusionConvectionProblem::Init(int Nx, int Ny,double D)
+	/*void DiffusionConvectionProblem::Init(int Nx, int Ny,double D)
 	{
 		step_x.Reallocate(Nx+1);
 		step_y.Reallocate(Ny+1);
@@ -49,6 +71,7 @@
 			step_y(i) = i*Delta_y;
 		}
 	}
+*/
 
 	void DiffusionConvectionProblem::WriteGnuPlot(const Vector<Vector<double> >& M,const string& nom)
 	{
