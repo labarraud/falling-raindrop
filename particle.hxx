@@ -1,4 +1,4 @@
-#ifndef FILE_VELOCITY_HXX
+#ifndef FILE_PARTICLE_HXX
 
 #include <iostream>
 #include <fstream>
@@ -13,7 +13,7 @@ using namespace std;
 
 namespace linalg
 {
-class Particule
+class Particle
 
 {
 private:
@@ -22,12 +22,12 @@ private:
 	double L,H,Delta_x,Delta_y;
 
 public:
-	Particule(int Nx,int Ny,double L,double H);
+	Particle(int Nx,int Ny,double L,double H);
 	void InitialSquare(double Xcenter,double Ycenter, double intensite);
 	void WriteGnuPlot(const string& nom);
 	double& Getn(int i, int j);
 
 };
 }
-#define FILE_VELOCITY_HXX
+#define FILE_PARTICLE_HXX
 #endif
