@@ -140,5 +140,6 @@ namespace linalg
 
 }
 
+
 #define LINALG_FILE_ALLOCATOR_HXX
 #endif

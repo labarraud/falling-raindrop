@@ -1,5 +1,7 @@
 #ifndef FILE_VELOCITY_HXX
 
+#include"linalg/Vector.hxx"
+
 #include <iostream>
 #include <fstream>
 #include <complex>

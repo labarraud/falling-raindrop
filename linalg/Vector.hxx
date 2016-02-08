@@ -83,5 +83,7 @@ namespace linalg
   
 }
 
+
+
 #define LINALG_FILE_VECTOR_HXX
 #endif
