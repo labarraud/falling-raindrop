@@ -1,16 +1,18 @@
 #ifndef SPACESCHEME_CXX
 #include "spacescheme.hxx"
 
+UpwindDCtest1::UpwindDCtest1(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
+{ }
 
 void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u, double t, Vector<Vector<double> >& y)
 {
-// LIMIT CONDITION NO DEFINE !!
 
 	//alpha = delta_t
 	double v[4], sigma(alpha/Delta_x), theta(alpha/Delta_y), a, b;
-    for (int i=0; i<N; i++)
+    for (int i=0; i<Ny; i++)
     {
-      for (int j=0; j<N; j++)
+      for (int j=0; j<Nx; j++)
 	{
 	  a = velocity.GetVX(i,j);
 	  b = velocity.GetVY(i,j);
@@ -18,43 +20,43 @@ void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u
 	  if (a>0 && b>0)
 	    {
 	      v[0] = u(i)(j);
-	      v[1] = u(i)((j-1)%Ny);
-	      v[2] = u((i-1%)Nx)(j);
-	      v[3] = u((i-1)%Nx)((j-1)%Ny);
+	      v[1] = u(i)((Nx+j-1)%Nx);
+	      v[2] = u((Ny+i-1)%Ny)(j);
+	      v[3] = u((Ny+i-1)%Ny)((Nx+j-1)%Nx);
 	    }
 	  
 	  
-	  else (a<0 && b>0)
+	  else if(a<0 && b>0)
 		{
 	      v[0] = u(i)(j);
-	      v[1] = u(i)((j+1)%Ny);
-	      v[2] = u((i-1)%Nx)(j);
-	      v[3] = u((i-1)%Nx)((j+1)%Ny);
+	      v[1] = u(i)((Nx+j+1)%Nx);
+	      v[2] = u((Ny+i-1)%Ny)(j);
+	      v[3] = u((Ny+i-1)%Ny)((Nx+j+1)%Nx);
 	      a = -a;
 		}
 	
 	  
-	  else (a>0 && b<0)
+	  else if(a>0 && b<0)
 		{
 	      v[0] = u(i)(j);
-	      v[1] = u((i-1)%Nx)(j);
-	      v[2] = u(i)((j+1)%Ny);
-	      v[3] = u((i+1)%Nx)((j-1)%Ny);
+	      v[1] = u((Ny+i-1)%Ny)(j);
+	      v[2] = u(i)((Nx+j+1)%Nx);
+	      v[3] = u((Ny+i+1)%Ny)((Nx+j-1)%Nx);
 	      b = -b;
 		}
 
-	  else (a<0 && b<0)
+	  else// if(a<0 && b<0)
 		{
 	      v[0] = u(i)(j);
-	      v[1] = u(i)((j+1)%Ny);
-	      v[2] = u((i+1)%Nx)(j);
-	      v[3] = u((i+1)%Nx)((j+1)%Ny);
+	      v[1] = u(i)((Nx+j+1)%Nx);
+	      v[2] = u((Ny+i+1)%Ny)(j);
+	      v[3] = u((Ny+i+1)%Ny)((Nx+j+1)%Nx);
 	      a = -a;
 	      b = -b;
 	    }
-	  (i)(j) += (1.-a*sigma)*(1.-b*theta)*v[0] + (1.-a*sigma)*b*theta*v[1]
+	  y(i)(j) += (1.-a*sigma)*(1.-b*theta)*v[0] + (1.-a*sigma)*b*theta*v[1]
 			+ a*sigma*(1.-b*theta)*v[2] + a*sigma*b*theta*v[3]
-			+ alpha*D*((u(i+1)(j)-2*u(i)(j)-u(i-1)(j))/(Delta_x^2) + (u(i)(j+1)-2*u(i)(j)-u(i)(j-1))/(Delta_y^2));
+			+ alpha*D*((u((Ny+i+1)%Ny)(j)-2*u(i)(j)-u((Ny+i-1)%Ny)(j))/(Delta_x*Delta_x) + (u(i)((Nx+j+1)%Nx)-2*u(i)(j)-u(i)((Nx+j-1)%Nx))/(Delta_y*Delta_y));
 	}
     }
 

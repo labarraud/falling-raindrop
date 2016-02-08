@@ -6,8 +6,6 @@
 //	int Nx,Ny;
 //	double L,H,Delta_x,Delta_y;
 
-namespace linalg
-{
 
 inline Particle::Particle(int Nx,int Ny,double L,double H)
 	{
@@ -72,11 +70,18 @@ inline void Particle::WriteGnuPlot(const string& nom)
 	}
 
 
-inline	double& Particle::Getn(int i, int j)
-	{
-		return n(i)(j);
-	}
-};
+
+inline 	Vector<Vector<double> > & Particle::Getn()
+{
+	return n;
+}
+
+
+inline 	void Particle::Setn(const Vector<Vector<double> >& n)
+{
+	this->n=n;
+	
+}
 
 #define FILE_PARTICLE_CXX
 #endif

@@ -11,8 +11,7 @@
 
 using namespace std;
 
-namespace linalg
-{
+
 class Particle
 
 {
@@ -26,8 +25,10 @@ public:
 	void InitialSquare(double Xcenter,double Ycenter, double intensite);
 	void WriteGnuPlot(const string& nom);
 	double& Getn(int i, int j);
+	Vector<Vector<double> > & Getn();
+	void Setn(const Vector<Vector<double> >& n);
 
 };
-}
+
 #define FILE_PARTICLE_HXX
 #endif

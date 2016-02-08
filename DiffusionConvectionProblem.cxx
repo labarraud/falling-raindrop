@@ -3,12 +3,23 @@
 #include "DiffusionConvectionProblem.hxx"
 #include "TimeScheme.hxx"
 
+
+//! Destructeur
+VirtualOdeSystem::~VirtualOdeSystem()
+{
+}
+
+
+
+
 /*	Vector<double> step_x, step_y;
 	Velocity V;
+	Particle particule;
 	int Nx,Ny,Nt;
 	double L,H,D,Delta_x,Delta_y,Delta_t;*/
 
 	DiffusionConvectionProblem::DiffusionConvectionProblem(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+		:	velocity(V), particule(n)
 	{
 
 		this->Nx=Nx;
@@ -20,30 +31,6 @@
 	    this->Delta_x=L/Nx;
 		this->Delta_y=H/Ny;
 		this->Delta_t=tfinal/Nt;
-
-		this->u.Reallocate(Nx+1);
-		this->y.Reallocate(Nx+1);
-
-		for (int i=0; i<Nx+1;i++)
-			this->u(i).Reallocate(Ny+1);
-
-
-				for (int i=0; i<Nx+1;i++)
-				{
-					for (int j=0; j<Ny+1;j++)
-						u(i)(j)=n.Getn(i,j);
-				}
-
-		for (int i=0; i<Nx+1;i++)
-			this->y(i).Reallocate(Ny+1);
-
-			for (int i=0; i<Nx+1;i++)
-			{
-				for (int j=0; j<Ny+1;j++)
-					y(i)(j)=0;
-			}
-
-			this->velocity=V;
 
 
 	}
@@ -79,7 +66,7 @@
 		file_out.precision(15);
 		for(int i(0), j; i < M.GetM(); i++) {
 			for(j = 0; j < M(0).GetM(); ++j) {
-				file_out << step_x(j) << " " << step_y(i) << " " << M(i, j) << '\n';
+				file_out << step_x(j) << " " << step_y(i) << " " << M(i)(j) << '\n';
 			}
 			file_out  << '\n';
 		}
@@ -95,6 +82,12 @@
 	double DiffusionConvectionProblem::GetY(int i) const
 	{
 		return step_y(i);
+	}
+	
+	Particle & DiffusionConvectionProblem::GetP()
+	{
+		return particule;
+		
 	}
 
 #define DIFFUSION_CONVECTION_PROBLEM_CXX

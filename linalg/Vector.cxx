@@ -572,6 +572,12 @@ namespace linalg
       y(i) += alpha*x(i);
   }
 
+	void Add(double alpha, const Vector<Vector<double> >& x, Vector<Vector<double> >& y)
+  {
+    for (int i = 0; i < y.GetM(); i++)
+      Add(alpha, x(i), y(i));
+  }
+
   template<class T, class Allocator>
   ostream& operator<<(ostream& out, const Vector<T, Allocator>& V)
   {

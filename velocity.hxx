@@ -11,8 +11,7 @@
 
 using namespace std;
 
-namespace linalg
-{
+
 class Velocity
 
 {
@@ -27,8 +26,9 @@ public:
 	void WriteGnuPlot(const string& nom);
 	double& GetVX(int i, int j);
 	double& GetVY(int i, int j);
+	double max();
 
 };
-}
+
 #define FILE_VELOCITY_HXX
 #endif

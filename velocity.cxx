@@ -6,8 +6,7 @@
 	//int Nx,Ny;
 	//double L,H,Delta_x,Delta_y;
 
-namespace linalg
-{
+
 
 inline Velocity::Velocity(int Nx,int Ny,double L,double H)
 	{
@@ -75,6 +74,24 @@ inline	double& Velocity::GetVY(int i,int j)
 	{
 		return VY(i)(j);
 	}
+
+
+inline double Velocity::max()
+{
+	double max= VX(0)(0);
+	for(int i =0; i<Nx ; i++)
+	{	
+		for(int j =0; j<Ny ; j++)
+		{
+			if(VX(i)(j) > max) {
+				max = VX(i)(j);
+			}
+			if(VY(i)(j) > max) {
+				max = VY(i)(j);
+			}
+		}	
+	}
+	return max;
 }
 
 #define FILE_VELOCITY_CXX

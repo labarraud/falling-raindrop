@@ -1,14 +1,22 @@
 #ifndef FILE_TIME_SCHEME_HXX
 
-#include "Matrix.cpp"
 
 
-class VirtualOdeSystem
+class VirtualTimeScheme
 {
 public:
-  virtual ~VirtualOdeSystem();
+  virtual ~VirtualTimeScheme();
 
-  virtual void AddFunction(double alpha, const Matrix& rho, double t, Matrix& y) = 0;
+  // fonctions qui retournent l'itere courant rho^n
+  virtual Vector<Vector<double> >& GetIterate() = 0;
+  virtual const Vector<Vector<double> >& GetIterate() const = 0;
+
+  // fonction pour initialiser le schema en temps
+  virtual void SetInitialCondition(double t0, double dt, Vector<Vector<double> >& rho0, VirtualOdeSystem& sys) = 0;
+
+  // fonction principale qui avance le schema en temps
+  virtual void Advance(int n, double tn, VirtualOdeSystem& sys) = 0;
+
 };
 
 
@@ -28,11 +36,11 @@ public:
 
   void Clear();
 
-  virtual Vector<double>& GetIterate();
-  virtual const Vector<double>& GetIterate() const;
+  virtual Vector<Vector<double> >& GetIterate();
+  virtual const Vector<Vector<double> >& GetIterate() const;
 
   // fonction pour initialiser le schema en temps
-  virtual void SetInitialCondition(double t0, double dt_, Vector<double>& rho0, VirtualOdeSystem& sys);
+  virtual void SetInitialCondition(double t0, double dt_, Vector< Vector<double> >& rho0, VirtualOdeSystem& sys);
 
   // fonction principale qui avance le schema en temps
   virtual void Advance(int n, double tn, VirtualOdeSystem& sys);
