@@ -48,6 +48,28 @@ public:
 };
 
 
+//! Exemple de classe derivee de VirtualTimeScheme : Euler explicite
+class ExplicitEulerIterator : public VirtualTimeScheme
+{
+private:
+  // on stocke le pas de temps
+  double dt;
+  // pour le schema d'Euler, on a besoin de ne stocker que deux vecteurs
+  Vector< Vector<double> > rho, rho_next;
+
+public:
+  ExplicitEulerIterator();
+
+  virtual Vector<Vector<double> >& GetIterate();
+  virtual const Vector<Vector<double> >& GetIterate() const;
+
+  // fonction pour initialiser le schema en temps
+  virtual void SetInitialCondition(double t0, double dt_, Vector<Vector<double> >& rho0, VirtualOdeSystem& sys);
+
+  // fonction principale qui avance le schema en temps
+  virtual void Advance(int n, double tn, VirtualOdeSystem& sys);
+
+};
 
 
 #define FILE_TIME_SCHEME_HXX
