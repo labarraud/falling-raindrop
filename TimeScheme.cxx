@@ -10,6 +10,50 @@ VirtualTimeScheme::~VirtualTimeScheme()
 }
 
 
+/*************************
+ * ExplicitEulerIterator *
+ *************************/
+
+//! default constructor
+ExplicitEulerIterator::ExplicitEulerIterator()
+{
+  dt = 0;
+}
+
+
+//! retourne rho^n
+Vector<Vector<double> >& ExplicitEulerIterator::GetIterate()
+{
+  return rho;
+}
+
+//! retourne rho^n
+const Vector<Vector<double> >& ExplicitEulerIterator::GetIterate() const
+{
+  return rho;
+}
+
+
+//! fonction pour initialiser le schema en temps
+void ExplicitEulerIterator::
+SetInitialCondition(double t0, double dt_, Vector<Vector<double> >& rho0, VirtualOdeSystem& sys)
+{
+  // on detruit rho0 quand on en a plus besoin
+  dt = dt_;
+  rho = rho0;
+  rho0.Clear();
+  rho_next = rho;
+}
+
+
+//! fonction principale qui avance le schema en temps
+void ExplicitEulerIterator::Advance(int n, double tn, VirtualOdeSystem& sys)
+{
+  // Euler explicite : rho^n+1 = rho^n + dt f(t^n, rho^n)
+  sys.AddFunction(dt, rho, tn, rho_next);
+  rho = rho_next;
+}
+
 
 /********************************
  * LowStorageRungeKuttaIterator *

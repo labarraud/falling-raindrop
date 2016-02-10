@@ -94,5 +94,31 @@ inline double Velocity::max()
 	return max;
 }
 
+inline void Velocity::ChampsUniformeVx(double intensite)
+{
+			for (int i=0; i<Nx+1;i++)
+			{
+				for (int j=0; j<Ny+1;j++)
+				{
+					VX(i)(j) = intensite;
+					VY(i)(j) = 0;
+				}
+			}
+
+}
+
+inline void Velocity::ChampsUniforme(double intensite)
+{
+			for (int i=0; i<Nx+1;i++)
+			{
+				for (int j=0; j<Ny+1;j++)
+				{
+					VX(i)(j) = intensite;
+					VY(i)(j) = intensite;
+				}
+			}
+
+}
+
 #define FILE_VELOCITY_CXX
 #endif

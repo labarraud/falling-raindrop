@@ -56,7 +56,8 @@ void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u
 	    }
 	  y(i)(j) += (1.-a*sigma)*(1.-b*theta)*v[0] + (1.-a*sigma)*b*theta*v[1]
 			+ a*sigma*(1.-b*theta)*v[2] + a*sigma*b*theta*v[3]
-			+ alpha*D*((u((Ny+i+1)%Ny)(j)-2*u(i)(j)-u((Ny+i-1)%Ny)(j))/(Delta_x*Delta_x) + (u(i)((Nx+j+1)%Nx)-2*u(i)(j)-u(i)((Nx+j-1)%Nx))/(Delta_y*Delta_y));
+				+ alpha*D*((u((Ny+i+1)%Ny)(j)-2*u(i)(j)-u((Ny+i-1)%Ny)(j))/(Delta_x*Delta_x)
+					+ (u(i)((Nx+j+1)%Nx)-2*u(i)(j)-u(i)((Nx+j-1)%Nx))/(Delta_y*Delta_y));
 	}
     }
 

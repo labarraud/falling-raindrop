@@ -18,8 +18,8 @@ int main()
 
 	L=10;
 	H=10;
-	Nx=100;
-	Ny=100;
+	Nx=10;
+	Ny=10;
 	Nt=10;
 
 
@@ -28,20 +28,21 @@ int main()
 	
 	
 	Velocity v(Nx,Ny,L,H);
-	v.ChampsCirculaire(L/2.0,H/2, 0.5);
+	//v.ChampsCirculaire(L/2.0,H/2, 0.5);
+	//v.ChampsUniformeVx(0.5);
+	v.ChampsUniforme(0.5);
 	v.WriteGnuPlot("velocity.dat");
 	// plot "velocity.dat" u 1:2:3:4 w vec
-	cout << "ok cela tourne!";
+	cout << "velocity initialise!";
 	//CFL
-	dt=dx/v.max();
+	dt=0.9*(dx/v.max());
 	
 
 
 
 	Particle n(Nx,Ny,L,H);
-	cout << "ok cela tourne!";
-	n.InitialSquare(2.0,2.0,0.5);
-	cout << "ok cela tourne!";
+	n.InitialSquare(2.0,2.0,0.);
+	cout << "Particule initialise";
 	n.WriteGnuPlot("particleinit.dat");
 
 	UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
