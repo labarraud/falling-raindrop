@@ -26,6 +26,7 @@ public:
 	Velocity(int Nx,int Ny,double L,double H);
 	void ChampsCirculaire(double Xcenter,double Ycenter, double intensite);
 	void ChampsUniformeVx(double intensite);
+	void ChampsUniforme(double intensite);
 	void WriteGnuPlot(const string& nom);
 	double& GetVX(int i, int j);
 	double& GetVY(int i, int j);
