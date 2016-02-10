@@ -36,12 +36,12 @@ inline Particle::Particle(int Nx,int Ny,double L,double H)
 inline void Particle::InitialSquare(double Xcenter,double Ycenter, double intensite)
 	{
 		Vector<double> v(2);
-		for (int i=0; i<Nx+1;i++)
+		for (int i=0; i<Ny+1;i++)
 		{
-			for (int j=0; j<Ny+1;j++)
+			for (int j=0; j<Nx+1;j++)
 			{
-				v(1) = Ycenter - (j * Delta_y);
-				v(0) = Xcenter-(i * Delta_x);
+				v(1) = Ycenter - (i * Delta_y);
+				v(0) = Xcenter-(j * Delta_x);
 
 				if((v(0)*v(0)+v(1)*v(1))<(intensite*intensite))
 						n(i)(j)=1;
@@ -58,9 +58,9 @@ inline void Particle::WriteGnuPlot(const string& nom)
 			ofstream file_out(nom.data());
 		  file_out.precision(15);
 	//	  double x,y;
-		  for (int i = 0; i < Nx+1; i++)
+		  for (int i = 0; i < Ny+1; i++)
 		  {
-				for (int j=0; j<Ny+1;j++)
+				for (int j=0; j<Nx+1;j++)
 				{
 					file_out << n(i)(j)<< " ";
 				}
