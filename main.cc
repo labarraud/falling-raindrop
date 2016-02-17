@@ -57,17 +57,27 @@ int main()
 
 
 	int nDisplay(10);
+	string file = "scriptan.gnuplot";
+	ofstream file_out(file.data());
+	file_out.precision(15);
+string var;
 	for(int i=0; i<Nt ; i++)
 	{
 		tn=i*dt;
 		timescheme.Advance(i, tn, test1);
 		if((i%nDisplay)==0) {
+			var=(i/nDisplay < 10 ? "0" : "");
+			file_out << "set terminal postscript eps enhanced color" << endl;
+			file_out << "set output '" << ("animate/particle" + var + to_string(i/nDisplay) + ".eps'") << endl;
+			file_out << "set pm3d map" << endl;
+			file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;
+
 			n.Setn(timescheme.GetIterate());
 			n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 		}
 
 	}
-	
+	 file_out.close();
 	n.Setn(timescheme.GetIterate());
 	n.WriteGnuPlot("particlefinal.dat");
 
