@@ -78,16 +78,16 @@ inline	double& Velocity::GetVY(int i,int j)
 
 inline double Velocity::max()
 {
-	double max= VX(0)(0);
+	double max= abs(VX(0)(0));
 	for(int i =0; i<Nx ; i++)
 	{	
 		for(int j =0; j<Ny ; j++)
 		{
-			if(VX(i)(j) > max) {
-				max = VX(i)(j);
+			if(abs(VX(i)(j)) > max) {
+				max = abs(VX(i)(j));
 			}
-			if(VY(i)(j) > max) {
-				max = VY(i)(j);
+			if(abs(VY(i)(j)) > max) {
+				max = abs(VY(i)(j));
 			}
 		}	
 	}

@@ -40,10 +40,10 @@ inline void Particle::InitialSquare(double Xcenter,double Ycenter, double intens
 		{
 			for (int j=0; j<Nx+1;j++)
 			{
-				v(1) = Ycenter - (i * Delta_y);
-				v(0) = Xcenter-(j * Delta_x);
+				v(1) = std::abs(Ycenter - (i * Delta_y));
+				v(0) = std::abs(Xcenter-(j * Delta_x));
 
-				if((v(0)*v(0)+v(1)*v(1))<(intensite*intensite))
+				if(std::max(v(0),v(1))<(intensite*intensite))
 						n(i)(j)=1;
 
 			}
