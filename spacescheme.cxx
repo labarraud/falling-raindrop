@@ -39,8 +39,8 @@ void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u
 	  else if(a>=0 && b<=0)
 		{
 	      v[0] = u(i)(j);
-	      v[1] = u(i)((Nx+j+1)%Nx);
-	      v[2] = u((Ny+i-1)%Ny)(j);
+	      v[1] = u((Ny+i+1)%Ny)(j);
+	      v[2] = u(i)((Nx+j-1)%Nx);
 	      v[3] = u((Ny+i+1)%Ny)((Nx+j-1)%Nx);
 	      b = -b;
 		}
