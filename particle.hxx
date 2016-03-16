@@ -27,7 +27,7 @@ public:
 	double& Getn(int i, int j);
 	Vector<Vector<double> > & Getn();
 	void Setn(const Vector<Vector<double> >& n);
-
+	void WriteVtk(const string& nom);
 };
 
 #define FILE_PARTICLE_HXX
