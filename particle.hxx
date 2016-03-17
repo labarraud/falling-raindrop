@@ -1,5 +1,6 @@
 #ifndef FILE_PARTICLE_HXX
 
+#include"Matrix.hxx"
 #include <iostream>
 #include <fstream>
 #include <complex>
@@ -16,17 +17,17 @@ class Particle
 
 {
 private:
-	Vector<Vector<double> > n;
+	Matrix n;
 	int Nx,Ny;
-	double L,H,Delta_x,Delta_y;
+	precision L,H,Delta_x,Delta_y;
 
 public:
-	Particle(int Nx,int Ny,double L,double H);
-	void InitialSquare(double Xcenter,double Ycenter, double intensite);
+	Particle(int Nx,int Ny,precision L,precision H);
+	void InitialSquare(precision Xcenter,precision Ycenter, precision intensite);
 	void WriteGnuPlot(const string& nom);
 	double& Getn(int i, int j);
-	Vector<Vector<double> > & Getn();
-	void Setn(const Vector<Vector<double> >& n);
+	Matrix & Getn();
+	void Setn(const Matrix& n);
 	void WriteVtk(const string& nom);
 };
 

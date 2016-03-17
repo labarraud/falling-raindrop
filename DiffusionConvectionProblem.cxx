@@ -1,7 +1,6 @@
 #ifndef DIFFUSION_CONVECTION_PROBLEM_CXX
 
 #include "DiffusionConvectionProblem.hxx"
-#include "TimeScheme.hxx"
 
 
 //! Destructeur
@@ -60,13 +59,13 @@ VirtualOdeSystem::~VirtualOdeSystem()
 	}
 */
 
-	void DiffusionConvectionProblem::WriteGnuPlot(const Vector<Vector<double> >& M,const string& nom)
+	void DiffusionConvectionProblem::WriteGnuPlot(const Matrix& M,const string& nom)
 	{
 		ofstream file_out(nom.data());
 		file_out.precision(15);
-		for(int i(0), j; i < M.GetM(); i++) {
-			for(j = 0; j < M(0).GetM(); ++j) {
-				file_out << step_x(j) << " " << step_y(i) << " " << M(i)(j) << '\n';
+		for(int i(0), j; i < M.GetN(); i++) {
+			for(j = 0; j < M.GetM(); ++j) {
+				file_out << step_x[(unsigned)j] << " " << step_y[(unsigned)i] << " " << M(i,j) << '\n';
 			}
 			file_out  << '\n';
 		}
@@ -76,12 +75,12 @@ VirtualOdeSystem::~VirtualOdeSystem()
 
 	double DiffusionConvectionProblem::GetX(int i) const
 	{
-		return step_x(i);
+		return step_x[(unsigned)i];
 	}
 
 	double DiffusionConvectionProblem::GetY(int i) const
 	{
-		return step_y(i);
+		return step_y[(unsigned)i];
 	}
 	
 	Particle & DiffusionConvectionProblem::GetP()

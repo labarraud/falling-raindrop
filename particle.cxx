@@ -7,44 +7,40 @@
 //	double L,H,Delta_x,Delta_y;
 
 
-inline Particle::Particle(int Nx,int Ny,double L,double H)
+Particle::Particle(int Nx,int Ny,double L,double H)
 	{
 
 		this->Nx=Nx;
 		this->Ny=Ny;
 
-		this->n.Reallocate(Nx+1);
+		this->n.Reallocate(Nx+1,Ny+1);
 
-		for (int i=0; i<Nx+1;i++)
-			this->n(i).Reallocate(Ny+1);
 
 
 		for (int i=0; i<Nx+1;i++)
 		{
 			for (int j=0; j<Ny+1;j++)
-				n(i)(j)=0;
+				n(i,j)=0;
 		}
 
 		this->L=L;
 		this->H=H;
 		this->Delta_x=L/Nx;
 		this->Delta_y=H/Ny;
-
-
 	}
 
-inline void Particle::InitialSquare(double Xcenter,double Ycenter, double intensite)
+void Particle::InitialSquare(precision Xcenter,precision Ycenter, precision intensite)
 	{
-		Vector<double> v(2);
+		vector<precision> v(2);
 		for (int i=0; i<Ny+1;i++)
 		{
 			for (int j=0; j<Nx+1;j++)
 			{
-				v(1) = std::abs(Ycenter - (i * Delta_y));
-				v(0) = std::abs(Xcenter-(j * Delta_x));
+				v[1] = std::abs(Ycenter - (i * Delta_y));
+				v[0] = std::abs(Xcenter-(j * Delta_x));
 
-				if(std::max(v(0),v(1))<(intensite*intensite))
-						n(i)(j)=1;
+				if(std::max(v[0],v[1])<(intensite*intensite))
+						n(i,j)=1;
 
 			}
 		}
@@ -53,17 +49,17 @@ inline void Particle::InitialSquare(double Xcenter,double Ycenter, double intens
 
 
 
-inline void Particle::WriteGnuPlot(const string& nom)
+void Particle::WriteGnuPlot(const string& nom)
 	{
-			ofstream file_out(nom.data());
-		  file_out.precision(15);
-	//	  double x,y;
-		  for (int i = 0; i < Ny+1; i++)
-		  {
-				for (int j=0; j<Nx+1;j++)
-				{
-					file_out << n(i)(j)<< " ";
-				}
+		ofstream file_out(nom.data());
+		file_out.precision(15);
+	//	double x,y;
+		for (int i = 0; i < Ny+1; i++)
+			{
+			for (int j=0; j<Nx+1;j++)
+			{
+				file_out << n(i,j)<< " ";
+			}
 				file_out << "\n";
 		  }
 		  file_out.close();
@@ -71,13 +67,13 @@ inline void Particle::WriteGnuPlot(const string& nom)
 
 
 
-inline 	Vector<Vector<double> > & Particle::Getn()
+Matrix & Particle::Getn()
 {
 	return n;
 }
 
 
-inline 	void Particle::Setn(const Vector<Vector<double> >& n)
+void Particle::Setn(const Matrix& n)
 {
 	this->n=n;
 	
@@ -98,7 +94,7 @@ void Particle::WriteVtk(const string& nom)
 		  file_out << "LOOKUP_TABLE default\n";
 		  for (int i = 0; i < Ny+1; i++) {
 				for (int j=0; j<Nx+1;j++) {
-					file_out << n(i)(j) << '\n';
+//					file_out << n(i)(j) << '\n';
 				}
 		  }
 		  file_out.close();

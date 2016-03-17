@@ -5,84 +5,157 @@
 //test
 
 Matrix::Matrix()
-	:	N(0)
+	:	N(0),M(0)
 { }
 
 Matrix::Matrix(const Matrix& m)
-	:	N(m.GetM())
+	:	N(m.GetN()),M(m.GetM())
 {
+	val.resize(N);
 	for(int i(0); i < N; ++i) {
-		val(i) = m.val(i);
+		val[(unsigned)i].resize((unsigned)M);
+		for(int j(0); j < M; ++j) {
+			//val[(unsigned)i][(unsigned)j]
+				(*this)(i,j) = m(i,j);
+		}
+	}
+}
+
+Matrix::Matrix(int _N, int _M)
+:	N(_N),M(_M)
+{
+	val.resize(N);
+	for(int i(0); i < N; ++i) {
+		val[(unsigned)i].resize((unsigned)M);
+		for(int j(0); j < M; ++j) {
+				(*this)(i,j) = 0;
+		}
 	}
 }
 
 Matrix::Matrix(int _N)
-	:	N(_N), val(N)
+	:	N(_N),M(_N)
 {
-	for(int i(0); i < N; ++i) {
-		val(i).Reallocate(N);
+	val.resize(N);
+		for(int i(0); i < N; ++i) {
+			val[(unsigned)i].resize((unsigned)N);
+			for(int j(0); j < N; ++j) {
+					(*this)(i,j) = 0;
+			}
 	}
+}
+
+int Matrix::GetN() const
+{
+	return N;
 }
 
 int Matrix::GetM() const
 {
-	return N;
+	return M;
 }	
 
 void Matrix::Zero()
 {
 	for(int i(0); i < N; ++i) {
-		val(i).Zero();
+		for(int j(0); j < M; ++j) {
+				(*this)(i,j) = 0;
+		}
 	}
 }
+
 
 void Matrix::Reallocate(int _N)
 {
 	N = _N;
-	val.Reallocate(N);
+	M = _N;
+	val.resize(N);
 	for(int i(0); i < N; ++i) {
-		val(i).Reallocate(N);
+		val[(unsigned)i].resize((unsigned)N);
 	}
 }
 
-void Matrix::Resize(int _N)
+void Matrix::Reallocate(int _N, int _M)
 {
 	N = _N;
-	val.Resize(N);
+	M = _M;
+	val.resize(N);
 	for(int i(0); i < N; ++i) {
-		val(i).Resize(N);
+		val[(unsigned)i].resize((unsigned)M);
 	}
 }
 
-double& Matrix::operator()(int i, int j)
+void Matrix::Clear()
 {
-	return val(i)(j);
+
+
+	for(int i(0); i < N; ++i) {
+		val[(unsigned)i].clear();
+	}
+	val.clear();
+	N = 0;
+	M = 0;
 }
 
-const double& Matrix::operator()(int i, int j) const
+
+
+precision& Matrix::operator()(int i, int j)
 {
-	return val(i)(j);
+	return val[(unsigned)i][(unsigned)j];
+}
+
+const precision& Matrix::operator()(int i, int j) const
+{
+	return val[(unsigned)i][(unsigned)j];
 }
 
 Matrix& Matrix::operator=(const Matrix& m)
 {
-	N = m.GetM();
+	N = m.GetN();
+	M = m.GetM();
+	this->val.resize(N);
 	for(int i(0); i < N; ++i) {
-		val(i) = m.val(i);
+	  val[(unsigned)i].resize(M);
+	  for (int j(0); j<M; ++j)
+	    (*this)(i,j) = m(i,j);
 	}
 	return *this;
 }
 
+Matrix Matrix::operator+(const Matrix& m)
+{
+	Matrix var(m.GetN(),m.GetM());
+	for(int i(0); i < N; ++i) {
+		for (int j(0); j<M; ++j)
+			var(i,j) = (*this)(i,j) + m(i,j);
+	}
+	return var;
+}
+
 ostream& operator<<(ostream& out, const Matrix& m)
 {
-	int N(m.GetM());
-	for(int i(0), j; i < N; ++i) {
-		for(j = 0; j < N; ++j) {
+	int N(m.GetN());
+	int M(m.GetM());
+	for(int i(0); i < N; ++i) {
+		for(int j = 0; j < M; ++j) {
 			out << m(i,j) << "\t";
 		}
 		out << endl;
 	}
 	return out;
 }
+
+Matrix operator*(precision a, const Matrix& m)
+{
+	Matrix var(m.GetM(),m.GetN());
+	int N = m.GetN();
+	int M = m.GetM();
+	for(int i(0); i < N; ++i) {
+		for (int j(0); j<M; ++j)
+			var(i,j) = a*m(i,j);
+		}
+	return var;
+}
+
 
 #endif

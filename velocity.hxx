@@ -1,7 +1,9 @@
 #ifndef FILE_VELOCITY_HXX
 
-#include"linalg/Vector.hxx"
+#include"define.hxx"
+#include"Matrix.hxx"
 
+#include <vector>
 #include <iostream>
 #include <fstream>
 #include <complex>
@@ -18,19 +20,19 @@ class Velocity
 
 {
 private:
-	Vector<Vector<double> > VX,VY;
+	Matrix VX,VY;
 	int Nx,Ny;
-	double L,H,Delta_x,Delta_y;
+	precision L,H,Delta_x,Delta_y;
 
 public:
-	Velocity(int Nx,int Ny,double L,double H);
-	void ChampsCirculaire(double Xcenter,double Ycenter, double intensite);
-	void ChampsUniformeVx(double intensite);
-	void ChampsUniforme(double intensite);
+	Velocity(int Nx,int Ny,precision L,precision H);
+	void ChampsCirculaire(precision Xcenter,precision Ycenter, precision intensite);
+	void ChampsUniformeVx(precision intensite);
+	void ChampsUniforme(precision intensite);
 	void WriteGnuPlot(const string& nom);
-	double& GetVX(int i, int j);
-	double& GetVY(int i, int j);
-	double max();
+	precision& GetVX(int i, int j);
+	precision& GetVY(int i, int j);
+	precision max();
 
 };
 

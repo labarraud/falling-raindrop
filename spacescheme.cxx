@@ -1,18 +1,19 @@
 #ifndef SPACESCHEME_CXX
+
 #include "spacescheme.hxx"
 
-UpwindDCtest1::UpwindDCtest1(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+UpwindDCtest1::UpwindDCtest1(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
-double UpwindDCtest1 :: UpwindY(double dt, double b, int i, int j, const Vector<Vector<double> >& u)
+precision UpwindDCtest1::UpwindY(precision dt, precision b, int i, int j, const Matrix& u)
 {
-	double theta(dt/Delta_y);
+	precision theta(dt/Delta_y);
 	int sign_b((b < 0) ? -1 : 1);
-	return (u(i)(j) - b*theta*sign_b*(u(i)(j)-u((Ny+i-sign_b)%Ny)(j)));
+	return (u(i,j) - b*theta*sign_b*(u(i,j)-u((Ny+i-sign_b)%Ny,j)));
 }
 
-double UpwindDCtest1 :: SplittingX(double dt, double a, double b, int i, int j, const Vector<Vector<double> >& u)
+precision UpwindDCtest1 :: SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u)
 {
 	double sigma(dt/Delta_x), uij;
 	int sign_a((a < 0) ? -1 : 1);
@@ -20,11 +21,11 @@ double UpwindDCtest1 :: SplittingX(double dt, double a, double b, int i, int j, 
 	return (uij - a*sigma*sign_a*(uij-UpwindY(dt, b, i, (Nx+j-sign_a)%Nx, u)));
 }
 
-void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u, double t, Vector<Vector<double> >& y)
+void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
 {
 
 	//alpha = delta_t
-	double /*v[4], sigma(alpha/Delta_x), theta(alpha/Delta_y), */a, b;
+	precision /*v[4], sigma(alpha/Delta_x), theta(alpha/Delta_y), */a, b;
     for (int i=0; i<Ny; i++)
     {
       for (int j=0; j<Nx; j++)
@@ -32,7 +33,7 @@ void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u
 	  a = velocity.GetVX(i,j);
 	  b = velocity.GetVY(i,j);
 
-	  y(i)(j) += SplittingX(alpha, a, b, i, j, u) - u(i)(j);
+	  y(i,j) += SplittingX(alpha, a, b, i, j, u) - u(i,j);
 /*
 	  if (a>=0 && b>=0)
 	    {
@@ -84,19 +85,18 @@ void UpwindDCtest1 :: AddFunction(double alpha, const Vector<Vector<double> >& u
 //---------------------------------------------------------------------
 // Order 2
 //---------------------------------------------------------------------
-
-UpwindDCOrder2::UpwindDCOrder2(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+UpwindDCOrder2::UpwindDCOrder2(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
-double UpwindDCOrder2::UpwindY(double dt, double b, int i, int j, const Vector<Vector<double> >& u)
+precision UpwindDCOrder2::UpwindY(precision dt, precision b, int i, int j, const Matrix& u)
 {
-	double theta(dt/Delta_y);
+	precision theta(dt/Delta_y);
 	int sign_b((b < 0) ? -1 : 1);
-	return (u(i)(j) - b*theta*sign_b*(3.0*u(i)(j)-4.0*u((Ny+i-sign_b)%Ny)(j)+u((Ny+i-2*sign_b)%Ny)(j))/2.0);
+	return (u(i,j) - b*theta*sign_b*(3.0*u(i,j)-4.0*u((Ny+i-sign_b)%Ny,j)+u((Ny+i-2*sign_b)%Ny,j))/2.0);
 }
 
-double UpwindDCOrder2::SplittingX(double dt, double a, double b, int i, int j, const Vector<Vector<double> >& u)
+precision UpwindDCOrder2::SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u)
 {
 	double sigma(dt/Delta_x), uij;
 	int sign_a((a < 0) ? -1 : 1);
@@ -104,13 +104,13 @@ double UpwindDCOrder2::SplittingX(double dt, double a, double b, int i, int j, c
 	return (uij - a*sigma*sign_a*(3.0*uij-4.0*UpwindY(dt, b, i, (Nx+j-sign_a)%Nx, u)+UpwindY(dt, b, i, (Nx+j-2*sign_a)%Nx, u))/2.0);
 }
 
-void UpwindDCOrder2::AddFunction(double alpha, const Vector<Vector<double> >& u, double t, Vector<Vector<double> >& y)
+void UpwindDCOrder2::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
 {
 
 	//alpha = delta_t
     for (int i=0; i<Ny; i++) {
     	for (int j=0; j<Nx; j++) {
-			y(i)(j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i)(j);
+			y(i,j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i,j);
 		}
     }
 }
@@ -123,14 +123,14 @@ UpwindDCOrder3::UpwindDCOrder3(int Nx,int Ny,int Nt,double L,double H,double tfi
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
-double UpwindDCOrder3::UpwindY(double dt, double b, int i, int j, const Vector<Vector<double> >& u)
+precision UpwindDCOrder3::UpwindY(double dt, double b, int i, int j, const Matrix& u)
 {
-	double theta(dt/Delta_y);
+	precision theta(dt/Delta_y);
 	int sign_b((b < 0) ? -1 : 1);
-	return (u(i)(j) - b*theta*sign_b*(2.0*u((Ny+i+sign_b)%Ny)(j)+3.0*u(i)(j)-6.0*u((Ny+i-sign_b)%Ny)(j)+u((Ny+i-2*sign_b)%Ny)(j))/6.0);
+	return (u(i,j) - b*theta*sign_b*(2.0*u((Ny+i+sign_b)%Ny,j)+3.0*u(i,j)-6.0*u((Ny+i-sign_b)%Ny,j)+u((Ny+i-2*sign_b)%Ny,j))/6.0);
 }
 
-double UpwindDCOrder3::SplittingX(double dt, double a, double b, int i, int j, const Vector<Vector<double> >& u)
+precision UpwindDCOrder3::SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u)
 {
 	double sigma(dt/Delta_x), uij;
 	int sign_a((a < 0) ? -1 : 1);
@@ -138,13 +138,13 @@ double UpwindDCOrder3::SplittingX(double dt, double a, double b, int i, int j, c
 	return (uij - a*sigma*sign_a*(2.0*UpwindY(dt, b, i, (Nx+j+sign_a)%Nx, u)+3.0*uij-6.0*UpwindY(dt, b, i, (Nx+j-sign_a)%Nx, u)+UpwindY(dt, b, i, (Nx+j-2*sign_a)%Nx, u))/6.0);
 }
 
-void UpwindDCOrder3::AddFunction(double alpha, const Vector<Vector<double> >& u, double t, Vector<Vector<double> >& y)
+void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
 {
 
 	//alpha = delta_t
     for (int i=0; i<Ny; i++) {
     	for (int j=0; j<Nx; j++) {
-			y(i)(j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i)(j);
+			y(i,j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i,j);
 		}
     }
 }

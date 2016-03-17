@@ -1,18 +1,18 @@
-#include "linalg/Linalg.hxx"
+#include <string>
 
-using namespace linalg;
-
-#include "velocity.cxx"
-#include "particle.cxx"
-#include "DiffusionConvectionProblem.cxx"
-#include "spacescheme.cxx"
-#include "TimeScheme.cxx"
+#include "Matrix.hxx"
+#include "velocity.hxx"
+#include "particle.hxx"
+#include "DiffusionConvectionProblem.hxx"
+#include "spacescheme.hxx"
+#include "TimeScheme.hxx"
 
 
 
 
 int main()
 {
+
 	double dx,dy,dt,L,H,tn,tfinal;
 	int Nx,Ny,Nt;
 
@@ -35,10 +35,10 @@ int main()
 	// plot "velocity.dat" u 1:2:3:4 w vec
 	cout << "velocity initialise!" << endl;
 	//CFL
-	dt=(dx/v.max());
+	dt=(max(dx,dy)/v.max());
+	tfinal=Nt*dt;
 	cout << "Vmax = " << v.max() << endl;
 	
-
 
 
 	Particle n(Nx,Ny,L,H);
