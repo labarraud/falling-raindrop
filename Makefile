@@ -28,11 +28,9 @@ optim :	$(OBJECTS)
 
 $(BIN): $(OBJECTS)
 	$(LINKER) $@ $(LFLAGS) $(OBJECTS)
-	@echo "Linking complete!"
 
 $(OBJECTS): $(LIBDIR)/%.o : $(SRCDIR)/%.cxx
 	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiled "$<" successfully!"
 
 # Nettoyage des objets => Tout sera recompiler !
 clean:
