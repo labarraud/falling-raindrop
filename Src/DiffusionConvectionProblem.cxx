@@ -1,6 +1,6 @@
 #ifndef DIFFUSION_CONVECTION_PROBLEM_CXX
 
-#include "DiffusionConvectionProblem.hxx"
+#include "../Include/DiffusionConvectionProblem.hxx"
 
 
 //! Destructeur

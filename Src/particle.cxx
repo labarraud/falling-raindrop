@@ -1,6 +1,6 @@
 #ifndef FILE_PARTICLE_CXX
 
-#include "particle.hxx"
+#include "../Include/particle.hxx"
 
 //	Vector<Vector<double> > n;
 //	int Nx,Ny;

@@ -1,40 +1,46 @@
 # Compilateur utilise
 CC = g++
-
+ 
+# Les différents répertoires contenant respectivement les fichiers : Sources *.cxx, Headers *.hxx, Objets *.o, l'exécutable
+SRCDIR=Src
+HEADDIR=Include
+LIBDIR=Object
+ 
 # options en mode optimise
 OPTIM_FLAG = -O3 -std=c++11 -Wall -Woverloaded-virtual
 
-# options en mode debug
-DEBUG_FLAG = -DLINALG_DEBUG -g -std=c++11 -Wall -Woverloaded-virtual
+LINKER   = g++ -o
 
-# executable produit
-PROG = run
+CFLAGS   = -std=c++11 -Wall -I.
 
-# fichier source a compiler
-SRC = TimeScheme.o spacescheme.o DiffusionConvectionProblem.o particle.o velocity.o Matrix.o main.o
+LFLAGS   = -Wall -I. -lm
+# L'exécutable
+BIN=run
+SOURCES  := $(wildcard $(SRCDIR)/*.cxx)
+INCLUDES := $(wildcard $(HEADDIR)/*.hxx)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.cxx=$(LIBDIR)/%.o)
 
+rm       = rm -f
 
-all:$(PROG)
+optim :	$(OBJECTS)
+	$(LINKER) $@ $(OPTIM_FLAG) $(OBJECTS)
+	@echo "Linking complete!"
 
-# par defaut on compile en optimise
-$(PROG):$(SRC)
-	$(CC) $(SRC) $(OPTIM_FLAG) -o $(PROG)
+$(BIN): $(OBJECTS)
+	$(LINKER) $@ $(LFLAGS) $(OBJECTS)
+	@echo "Linking complete!"
 
-%.o:%.cxx
-	$(CC) $(DEBUG_FLAG) -c $<
+$(OBJECTS): $(LIBDIR)/%.o : $(SRCDIR)/%.cxx
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled "$<" successfully!"
 
-main.o:main.cc
-	$(CC) $(DEBUG_FLAG) -c main.cc
-
-
-optim : $(SRC)
-	$(CC) $(SRC) $(OPTIM_FLAG) -o test.x
-	mv test.x $(PROG)
-	
-debug : $(SRC)
-	$(CC) $(SRC) $(DEBUG_FLAG) -o test.x
-	mv test.x $(PROG)
-	
+# Nettoyage des objets => Tout sera recompiler !
 clean:
-	rm -f *.o
-	rm run
+	rm $(LIBDIR)/*.o
+
+# Nettoyage complet => clean + effacement du l'exécutable
+Clean: clean
+	rm $(BIN)
+
+
+

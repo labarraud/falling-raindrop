@@ -1,7 +1,7 @@
 #ifndef MATRIX_CXX
 #define MATRIX_CXX
 
-#include "Matrix.hxx"
+#include "../Include/Matrix.hxx"
 //test
 
 Matrix::Matrix()

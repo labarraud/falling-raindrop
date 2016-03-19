@@ -2,7 +2,7 @@
 #ifndef TIME_SCHEME_CXX
 #define TIME_SCHEME_CXX
 
-#include "TimeScheme.hxx"
+#include "../Include/TimeScheme.hxx"
 
 
 //! Destructeur

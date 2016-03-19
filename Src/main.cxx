@@ -1,11 +1,11 @@
 #include <string>
 
-#include "Matrix.hxx"
-#include "velocity.hxx"
-#include "particle.hxx"
-#include "DiffusionConvectionProblem.hxx"
-#include "spacescheme.hxx"
-#include "TimeScheme.hxx"
+#include "../Include/Matrix.hxx"
+#include "../Include/velocity.hxx"
+#include "../Include/particle.hxx"
+#include "../Include/DiffusionConvectionProblem.hxx"
+#include "../Include/spacescheme.hxx"
+#include "../Include/TimeScheme.hxx"
 
 
 
