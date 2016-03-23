@@ -2,6 +2,10 @@
 
 #include "Matrix.hxx"
 #include "DiffusionConvectionProblem.hxx"
+#include <string>
+#include <cstring>
+
+
 
 class VirtualTimeScheme
 {
@@ -71,6 +75,9 @@ public:
   virtual void Advance(int n, double tn, VirtualOdeSystem& sys);
 
 };
+
+
+
 
 
 #define FILE_TIME_SCHEME_HXX

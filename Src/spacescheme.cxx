@@ -149,5 +149,6 @@ void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, 
     }
 }
 
+
 #define SPACESCHEME_CXX
 #endif

@@ -135,5 +135,27 @@ void LowStorageRungeKuttaIterator::Advance(int n, double tn, VirtualOdeSystem& s
   rho_next = rho;
 }
 
+void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy,precision clf ,precision tmaxdemi,precision omega,VirtualOdeSystem& ode, VirtualTimeScheme& time, const string& fileout)
+{
+	precision dx,dy,dt,L,H;
+	int Nx,Ny;
+	L=H=10;
+
+	for(precision dxy=mindxy; dxy<maxdxy ; dxy=dxy+hdxy)
+	{
+		Nx=Nx=floor(L/dxy);
+		dx=dy=dxy;
+		Velocity v(Nx,Ny,L,H);
+		v.ChampsCirculaire(L/2.0,H/2.0, omega);
+		dt=(max(dx,dy)/v.max());
+		for(precision t=0; t<2*tmaxdemi; t=t+dt)
+		{
+
+
+		}
+
+	}
+}
+
 
 #endif
