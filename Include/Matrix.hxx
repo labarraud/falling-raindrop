@@ -26,6 +26,8 @@ class Matrix
 		const precision& operator()(int i, int j) const;
 		Matrix& operator=(const Matrix& m);
 		Matrix operator+(const Matrix&);
+		precision distnorme2(const Matrix&);
+
 	protected:
 		int N,M;
 		vector<vector<precision> > val;

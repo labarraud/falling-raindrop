@@ -26,7 +26,7 @@ public:
 	void InitialSquare(precision Xcenter,precision Ycenter, precision intensite);
 	void WriteGnuPlot(const string& nom);
 	double& Getn(int i, int j);
-	Matrix & Getn();
+	Matrix& Getn();
 	void Setn(const Matrix& n);
 	void WriteVtk(const string& nom);
 };

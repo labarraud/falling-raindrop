@@ -34,6 +34,21 @@ VirtualOdeSystem::~VirtualOdeSystem()
 
 	}
 
+	void DiffusionConvectionProblem::SetInitialCondition(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+	{
+			this->Nx=Nx;
+			this->Ny=Ny;
+			this->L=L;
+	    	this->H=H;
+	    	this->D=0;
+	    	this->tfinal=H;
+		    this->Delta_x=L/Nx;
+			this->Delta_y=H/Ny;
+			this->Delta_t=tfinal/Nt;
+			this->velocity=V;
+			this->particule=n;
+	}
+
 	DiffusionConvectionProblem::~DiffusionConvectionProblem()
 	{
 
@@ -87,6 +102,13 @@ VirtualOdeSystem::~VirtualOdeSystem()
 	{
 		return particule;
 		
+	}
+
+	Velocity & DiffusionConvectionProblem::GetV()
+
+	{
+			return Velocity;
+
 	}
 
 #define DIFFUSION_CONVECTION_PROBLEM_CXX

@@ -76,7 +76,9 @@ public:
 
 };
 
-
+void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
+		,precision cfl ,precision tmaxdemi,precision omega,DiffusionConvectionProblem& ode,
+		VirtualTimeScheme& time, const string& fileout);
 
 
 

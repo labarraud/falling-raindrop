@@ -135,11 +135,19 @@ void LowStorageRungeKuttaIterator::Advance(int n, double tn, VirtualOdeSystem& s
   rho_next = rho;
 }
 
-void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy,precision clf ,precision tmaxdemi,precision omega,VirtualOdeSystem& ode, VirtualTimeScheme& time, const string& fileout)
+void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
+		,precision cfl ,precision tmaxdemi,precision omega,DiffusionConvectionProblem& ode,
+		VirtualTimeScheme& time, const string& fileout)
 {
-	precision dx,dy,dt,L,H;
-	int Nx,Ny;
+	precision dx,dy,dt,L,H,tfinal,error;
+	int Nx,Ny,Nt;
 	L=H=10;
+	tfinal=2*tmaxdemi;
+
+
+	ofstream file_out(fileout.data());
+	file_out.precision(15);
+
 
 	for(precision dxy=mindxy; dxy<maxdxy ; dxy=dxy+hdxy)
 	{
@@ -147,14 +155,38 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy,preci
 		dx=dy=dxy;
 		Velocity v(Nx,Ny,L,H);
 		v.ChampsCirculaire(L/2.0,H/2.0, omega);
-		dt=(max(dx,dy)/v.max());
-		for(precision t=0; t<2*tmaxdemi; t=t+dt)
+		Particle n(Nx,Ny,L,H);
+		n.InitialSquare(L/3.0,H/3.0,0.5);
+		Matrix init(n.Getn());
+
+
+		dt=((max(dx,dy)*cfl)/v.max());
+
+		Nt=floor(tfinal/dt);
+
+		ode.SetInitialCondition(Nx,Ny,Nt,L,H,tfinal,v,n);
+		time.SetInitialCondition(0,dt,n.Getn(),ode);
+
+		for(precision t=0; t<tmaxdemi; t=t+dt)
 		{
-
-
+			time.Advance(floor(tfinal/t), t, ode);
 		}
 
+		ode.GetV().ChampsCirculaire(L/2.0,H/2.0, -omega);
+
+		for(precision t=tmaxdemi; t<2*tmaxdemi; t=t+dt)
+		{
+			time.Advance(floor(tfinal/t), t, ode);
+		}
+
+		error = init.distnorme2(time.GetIterate());
+		file_out << dxy << error << endl;
+
 	}
+
+	file_out.close();
+
+
 }
 
 
