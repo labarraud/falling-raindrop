@@ -20,7 +20,7 @@ int main()
 	H=20;
 	Nx=100;
 	Ny=100;
-	Nt=1000;
+	Nt=100;
 
 
 	dx=L/Nx;
@@ -47,6 +47,8 @@ int main()
 	n.WriteGnuPlot("particleinit.dat");
 
 	UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+	//UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+	//UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 
 
 	//LowStorageRungeKuttaIterator timescheme;
@@ -57,29 +59,31 @@ int main()
 
 
 	int nDisplay(5);
-	string file = "scriptan.gnuplot";
+	/*string file = "scriptan.gnuplot";
 	ofstream file_out(file.data());
 	file_out.precision(15);
-	string var,var2;
+	string var,var2;*/
 	for(int i=0; i<Nt ; i++)
 	{
 		tn=i*dt;
 		timescheme.Advance(i, tn, test1);
 		if((i%nDisplay)==0) {
-			var=(i/nDisplay < 10 ? "0" : "");
+			/*var=(i/nDisplay < 10 ? "0" : "");
 			var2=(i/nDisplay < 100 ? "0" : "");
 			file_out << "set terminal postscript eps enhanced color" << endl;
 			file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
 			file_out << "set pm3d map" << endl;
-			file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;
+			file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;*/
 
 			n.Setn(timescheme.GetIterate());
-			n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
+			//n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
+
+			n.WriteVtk("vtk/particle" + to_string(i/nDisplay) + ".vtk");
 		}
 
 	}
 
-	
+	/*
 	Velocity v2(Nx,Ny,L,H);
 	v2.ChampsCirculaire(L/2.0,H/2, -5.0);
 	//v.ChampsUniformeVx(-1.0);
@@ -120,7 +124,7 @@ int main()
 
 	}
 
-	 file_out.close();
+	 file_out.close();*/
 	n.Setn(timescheme.GetIterate());
 	n.WriteGnuPlot("particlefinal.dat");
 

@@ -23,11 +23,11 @@ OBJECTS  := $(SOURCES:$(SRCDIR)/%.cxx=$(LIBDIR)/%.o)
 rm       = rm -f
 
 optim :	$(OBJECTS)
-	$(LINKER) $@ $(OPTIM_FLAG) $(OBJECTS)
-	@echo "Linking complete!"
+	$(LINKER) $(BIN) $(OPTIM_FLAG) $(OBJECTS)
+	@echo "Linking optimum complete!"
 
 $(BIN): $(OBJECTS)
-	$(LINKER) $@ $(LFLAGS) $(OBJECTS)
+	$(LINKER) $(BIN) $(LFLAGS) $(OBJECTS)
 
 $(OBJECTS): $(LIBDIR)/%.o : $(SRCDIR)/%.cxx
 	$(CC) $(CFLAGS) -c $< -o $@
