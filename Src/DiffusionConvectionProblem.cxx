@@ -17,6 +17,8 @@ VirtualOdeSystem::~VirtualOdeSystem()
 	int Nx,Ny,Nt;
 	double L,H,D,Delta_x,Delta_y,Delta_t;*/
 
+DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
+
 	DiffusionConvectionProblem::DiffusionConvectionProblem(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
 		:	velocity(V), particule(n)
 	{
@@ -107,7 +109,7 @@ VirtualOdeSystem::~VirtualOdeSystem()
 	Velocity & DiffusionConvectionProblem::GetV()
 
 	{
-			return Velocity;
+			return velocity;
 
 	}
 

@@ -79,7 +79,7 @@ void Matrix::Reallocate(int _N, int _M)
 {
 	N = _N;
 	M = _M;
-	val.resize(N);
+	val.resize((unsigned)N);
 	for(int i(0); i < N; ++i) {
 		val[(unsigned)i].resize((unsigned)M);
 	}
@@ -163,7 +163,7 @@ precision Matrix::distnorme2(const Matrix& m)
 	for(int i(0); i < N; ++i)
 	{
 			for (int j(0); j<M; ++j)
-				var=((*this)(i,j)-m(i,j))*((*this)(i,j)-m(i,j));
+				var=var +((*this)(i,j)-m(i,j))*((*this)(i,j)-m(i,j));
 	}
 	return var/(N*M);
 }

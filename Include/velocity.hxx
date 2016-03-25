@@ -25,6 +25,7 @@ private:
 	precision L,H,Delta_x,Delta_y;
 
 public:
+	Velocity();
 	Velocity(int Nx,int Ny,precision L,precision H);
 	void ChampsCirculaire(precision Xcenter,precision Ycenter, precision intensite);
 	void ChampsUniformeVx(precision intensite);

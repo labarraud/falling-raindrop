@@ -6,7 +6,7 @@
 //	int Nx,Ny;
 //	double L,H,Delta_x,Delta_y;
 
-
+Particle::Particle(){}
 Particle::Particle(int Nx,int Ny,double L,double H)
 	{
 

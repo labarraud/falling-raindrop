@@ -151,7 +151,8 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 
 	for(precision dxy=mindxy; dxy<maxdxy ; dxy=dxy+hdxy)
 	{
-		Nx=Nx=floor(L/dxy);
+		cout << "dxy" << dxy << endl;
+		Nx=Ny=floor(L/dxy);
 		dx=dy=dxy;
 		Velocity v(Nx,Ny,L,H);
 		v.ChampsCirculaire(L/2.0,H/2.0, omega);
@@ -167,20 +168,29 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		ode.SetInitialCondition(Nx,Ny,Nt,L,H,tfinal,v,n);
 		time.SetInitialCondition(0,dt,n.Getn(),ode);
 
-		for(precision t=0; t<tmaxdemi; t=t+dt)
+		cout << "dt" << dt << endl;
+		cout << "Nt" << Nt << endl;
+
+
+		//for(precision t=0; t<tmaxdemi; t=t+dt)
+		for(int i=0; i<10; i++)
 		{
-			time.Advance(floor(tfinal/t), t, ode);
+			time.Advance(i, dt, ode);
 		}
 
 		ode.GetV().ChampsCirculaire(L/2.0,H/2.0, -omega);
 
-		for(precision t=tmaxdemi; t<2*tmaxdemi; t=t+dt)
+		//for(precision t=tmaxdemi; t<2*tmaxdemi; t=t+dt)
+		for(int i=0; i<10; i++)
 		{
-			time.Advance(floor(tfinal/t), t, ode);
+			time.Advance(i, dt, ode);
+
 		}
 
+
 		error = init.distnorme2(time.GetIterate());
-		file_out << dxy << error << endl;
+		file_out << dxy << " " << error << endl;
+		cout << dxy << " " << error << endl;
 
 	}
 

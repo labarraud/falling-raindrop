@@ -7,7 +7,7 @@
 	//double L,H,Delta_x,Delta_y;
 
 
-
+Velocity::Velocity(){}
 Velocity::Velocity(int Nx,int Ny,double L,double H)
 	{
 

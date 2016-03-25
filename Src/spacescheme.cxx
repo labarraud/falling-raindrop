@@ -2,6 +2,8 @@
 
 #include "../Include/spacescheme.hxx"
 
+UpwindDCtest1::UpwindDCtest1() {}
+
 UpwindDCtest1::UpwindDCtest1(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }

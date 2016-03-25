@@ -11,7 +11,7 @@ class UpwindDCtest1 : public DiffusionConvectionProblem
 
 {
 public : 
-
+	UpwindDCtest1();
 	UpwindDCtest1(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n);
 	precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 	precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);

@@ -36,6 +36,7 @@ protected:
 
 
 public:
+	DiffusionConvectionProblem();
 	DiffusionConvectionProblem(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n);
 	void SetInitialCondition(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n);
 	virtual ~DiffusionConvectionProblem();
