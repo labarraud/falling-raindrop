@@ -46,7 +46,36 @@ void Particle::InitialSquare(precision Xcenter,precision Ycenter, precision inte
 		}
 	}
 
+void Particle::InitialGauss(precision Xcenter,precision Ycenter, precision intensite)
+	{
+		vector<precision> v(2);
+		for (int i=0; i<Ny+1;i++)
+		{
+			for (int j=0; j<Nx+1;j++)
+			{
 
+				if(std::max(v[0],v[1])<(intensite*intensite))
+						n(i,j)=std::exp(-(Ycenter - (i * Delta_y))*(Ycenter - (i * Delta_y))-(Xcenter-(j * Delta_x))*(Xcenter-(j * Delta_x)));
+
+			}
+		}
+	}
+
+void Particle::InitialCircle(precision Xcenter,precision Ycenter, precision intensite)
+	{
+		precision var;
+		for (int i=0; i<Ny+1;i++)
+		{
+			for (int j=0; j<Nx+1;j++)
+			{
+				var=(Xcenter-(j * Delta_x))*(Xcenter-(j * Delta_x))+(Ycenter - (i * Delta_y))*(Ycenter - (i * Delta_y));
+
+				if(var<(intensite*intensite))
+						n(i,j)=1;
+
+			}
+		}
+	}
 
 
 void Particle::WriteGnuPlot(const string& nom)

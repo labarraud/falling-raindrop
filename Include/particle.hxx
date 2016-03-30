@@ -25,6 +25,8 @@ public:
 	Particle();
 	Particle(int Nx,int Ny,precision L,precision H);
 	void InitialSquare(precision Xcenter,precision Ycenter, precision intensite);
+	void InitialCircle(precision Xcenter,precision Ycenter, precision intensite);
+	void InitialGauss(precision Xcenter,precision Ycenter, precision intensite);
 	void WriteGnuPlot(const string& nom);
 	double& Getn(int i, int j);
 	Matrix& Getn();

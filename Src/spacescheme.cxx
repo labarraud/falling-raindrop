@@ -169,13 +169,15 @@ void LaxWendroff::AddFunction(precision alpha, const Matrix& u, precision t, Mat
     	for (int j=0; j<Nx; j++) {
     		a = velocity.GetVX(i,j);
     		b = velocity.GetVY(i,j);
-			y(i,j) += -0.5*sigma*a*(u((Ny+i+1)%Ny,j)-u((Ny+i-1)%Ny,j))
-					-0.5*theta*b*(u(i,(Nx+j+1)%Nx)-u(i,(Nx+j-1)%Nx))
-					+ 0.5*sigma*sigma*a*a*(u((Ny+i+1)%Ny,j)+u((Ny+i-1)%Ny,j)-2.0*u(i,j))
-					+ 0.5*theta*theta*b*b*(u(i,(Nx+j+1)%Nx)-u(i,(Nx+j-1)%Nx)-2.0*u(i,j))
+			y(i,j) += -0.5*sigma*b*(u((Ny+i+1)%Ny,j)-u((Ny+i-1)%Ny,j))
+					- 0.5*theta*a*(u(i,(Nx+j+1)%Nx)-u(i,(Nx+j-1)%Nx))
+					+ 0.5*sigma*sigma*b*b*(u((Ny+i+1)%Ny,j)+u((Ny+i-1)%Ny,j)-2.0*u(i,j))
+					+ 0.5*theta*theta*a*a*(u(i,(Nx+j+1)%Nx)+u(i,(Nx+j-1)%Nx)-2.0*u(i,j))
 					+ 0.25*sigma*theta*a*b*((u((Ny+i+1)%Ny,(Nx+j+1)%Nx)-u((Ny+i-1)%Ny,(Nx+j+1)%Nx))-(u((Ny+i+1)%Ny,(Nx+j-1)%Nx)-u((Ny+i-1)%Ny,(Nx+j-1)%Nx)));
-		}
+
+    	}
     }
+	//cout << "norme de y = " << y.norme2() << endl;
 }
 
 #define SPACESCHEME_CXX

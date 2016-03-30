@@ -5,6 +5,7 @@
 #include "define.hxx"
 #include <vector>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ class Matrix
 		void Reallocate(int _N);
 		void Reallocate(int _N,int _M);
 		void Clear();
+		precision norme2();
 		precision& operator()(int i, int j);
 		const precision& operator()(int i, int j) const;
 		Matrix& operator=(const Matrix& m);

@@ -157,6 +157,17 @@ Matrix operator*(precision a, const Matrix& m)
 	return var;
 }
 
+precision Matrix::norme2()
+{
+	precision var=0;
+	for(int i(0); i < N; ++i)
+	{
+			for (int j(0); j<M; ++j)
+				var=var+(*this)(i,j)*(*this)(i,j);
+	}
+	return sqrt(var);
+}
+
 precision Matrix::distnorme2(const Matrix& m)
 {
 	precision var=0;
@@ -167,6 +178,8 @@ precision Matrix::distnorme2(const Matrix& m)
 	}
 	return var/(N*M);
 }
+
+
 
 
 #endif
