@@ -152,5 +152,31 @@ void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, 
 }
 
 
+//---------------------------------------------------------------------
+// LaxWendroff
+//---------------------------------------------------------------------
+
+LaxWendroff::LaxWendroff(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
+{ }
+
+void LaxWendroff::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+{
+
+	//alpha = delta_t
+	precision sigma(alpha/Delta_x), theta(alpha/Delta_y), a, b;
+    for (int i=0; i<Ny; i++) {
+    	for (int j=0; j<Nx; j++) {
+    		a = velocity.GetVX(i,j);
+    		b = velocity.GetVY(i,j);
+			y(i,j) += -0.5*sigma*a*(u((Ny+i+1)%Ny,j)-u((Ny+i-1)%Ny,j))
+					-0.5*theta*b*(u(i,(Nx+j+1)%Nx)-u(i,(Nx+j-1)%Nx))
+					+ 0.5*sigma*sigma*a*a*(u((Ny+i+1)%Ny,j)+u((Ny+i-1)%Ny,j)-2.0*u(i,j))
+					+ 0.5*theta*theta*b*b*(u(i,(Nx+j+1)%Nx)-u(i,(Nx+j-1)%Nx)-2.0*u(i,j))
+					+ 0.25*sigma*theta*a*b*((u((Ny+i+1)%Ny,(Nx+j+1)%Nx)-u((Ny+i-1)%Ny,(Nx+j+1)%Nx))-(u((Ny+i+1)%Ny,(Nx+j-1)%Nx)-u((Ny+i-1)%Ny,(Nx+j-1)%Nx)));
+		}
+    }
+}
+
 #define SPACESCHEME_CXX
 #endif

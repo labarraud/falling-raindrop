@@ -38,6 +38,14 @@ public :
 	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
 };
 
+class LaxWendroff : public DiffusionConvectionProblem
+
+{
+public :
+
+	LaxWendroff(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n);
+	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+};
 
 
 #define SPACESCHEME_HXX

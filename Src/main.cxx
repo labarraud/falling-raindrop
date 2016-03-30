@@ -12,12 +12,12 @@
 
 int main()
 {
-	/*
+
   //-----------experimental order -------------
 
-	precision mindxy,hdxy,maxdxy,cfl,tmaxdemi,omega;
-	DiffusionConvectionProblem* ode = new UpwindDCtest1();
-	VirtualTimeScheme* time = new LowStorageRungeKuttaIterator();
+	/*precision mindxy,hdxy,maxdxy,cfl,tmaxdemi,omega;
+	UpwindDCtest1 ode;
+	LowStorageRungeKuttaIterator time;
 
 	mindxy=0.0015;
 	hdxy=0.005;
@@ -26,31 +26,31 @@ int main()
 	tmaxdemi=1;
 	omega=5.0;
 
-	error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, *ode, *time, "error_upwind1.dat");
+	error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode, time, "error_upwind1.dat");
 */
-	double dx,dy,dt,L,H,tn,tfinal;
+	precision dx,dy,dt,L,H,tn,tfinal,cfl;
 		int Nx,Ny,Nt;
 
-		L=20;
-		H=20;
-		Nx=100;
-		Ny=100;
-		Nt=100;
-
+		L=10;
+		H=10;
+		Nx=200;
+		Ny=200;
+		Nt=200;
+		cfl=0.1;
 
 		dx=L/Nx;
 		dy=H/Ny;
 
 
 		Velocity v(Nx,Ny,L,H);
-		v.ChampsCirculaire(L/2.0,H/2, 5.0);
-		//v.ChampsUniformeVx(-1.0);
+		//v.ChampsCirculaire(L/2.0,H/2, 5.0);
+		v.ChampsUniformeVx(1.0);
 		//v.ChampsUniforme(-0.5);
 		v.WriteGnuPlot("velocity.dat");
 		// plot "velocity.dat" u 1:2:3:4 w vec
 		cout << "velocity initialise!" << endl;
 		//CFL
-		dt=(max(dx,dy)/v.max());
+		dt=((max(dx,dy)*max(dx,dy)*cfl)/v.max());
 		tfinal=Nt*dt;
 		cout << "Vmax = " << v.max() << endl;
 
@@ -61,9 +61,10 @@ int main()
 		cout << "Particule initialise" << endl;
 		n.WriteGnuPlot("particleinit.dat");
 
-		UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
-		//UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+		//UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+		UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 		//UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+		//LaxWendroff test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 
 
 		//LowStorageRungeKuttaIterator timescheme;
