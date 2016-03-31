@@ -29,6 +29,7 @@ class Matrix
 		Matrix& operator=(const Matrix& m);
 		Matrix operator+(const Matrix&);
 		precision distnorme2(const Matrix&);
+		void GradConj(const Matrix& A, Matrix F, Matrix X)
 
 	protected:
 		int N,M;
