@@ -14,7 +14,7 @@ int main()
 {
 
 /*
- * coucou jafar
+ * coucou
   //-----------experimental order -------------
 
 	precision mindxy,hdxy,maxdxy,cfl,tmaxdemi,omega;
