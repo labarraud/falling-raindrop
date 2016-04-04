@@ -151,6 +151,41 @@ void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, 
     }
 }
 
+//---------------------------------------------------------------------
+// Order 4
+//---------------------------------------------------------------------
+
+UpwindDCOrder4::UpwindDCOrder4(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,precision _D,Particle& n)
+	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n), D(_D)
+{ }
+
+precision UpwindDCOrder4::UpwindY(double dt, double b, int i, int j, const Matrix& u)
+{
+	precision theta(dt/Delta_y);
+	int sign_b((b < 0) ? -1 : 1);
+	return (u(i,j) - b*theta*sign_b*(3.0*u((Ny+i+sign_b)%Ny,j)+10.0*u(i,j)-18.0*u((Ny+i-sign_b)%Ny,j)+6.0*u((Ny+i-2*sign_b)%Ny,j)-u((Ny+i-3*sign_b)%Ny,j))/12.0);
+}
+
+precision UpwindDCOrder4::SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u)
+{
+	double sigma(dt/Delta_x), uij;
+	int sign_a((a < 0) ? -1 : 1);
+	uij = UpwindY(dt, b, i, j, u);
+	return (uij - a*sigma*sign_a*(3.0*UpwindY(dt, b, i, (Nx+j+sign_a)%Nx, u)+10.0*uij-18.0*UpwindY(dt, b, i, (Nx+j-sign_a)%Nx, u)+6.0*UpwindY(dt, b, i, (Nx+j-2*sign_a)%Nx, u)-UpwindY(dt, b, i, (Nx+j-3*sign_a)%Nx, u))/12.0);
+}
+
+void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+{
+
+	//alpha = delta_t
+    for (int i=0; i<Ny; i++) {
+    	for (int j=0; j<Nx; j++) {
+			y(i,j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i,j)
+						+ alpha*D*(16.0*u((Ny+i+1)%Ny,j)-u((Ny+i+2)%Ny,j)-30.0*u(i,j)-u((Ny+i-2)%Ny,j)+16.0*u((Ny+i-1)%Ny,j))/(Delta_x*Delta_x)
+						+ alpha*D*(16.0*u(i,(Nx+j+1)%Nx)-u(i,(Nx+j+2)%Nx)-30.0*u(i,j)-u(i,(Nx+j-2)%Nx)+16.0*u(i,(Nx+j-1)%Nx))/(Delta_y*Delta_y);
+		}
+   }
+}
 
 //---------------------------------------------------------------------
 // LaxWendroff

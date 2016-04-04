@@ -30,29 +30,31 @@ int main()
 
 	error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode, time, "error_upwind1.dat");
 */
-	precision dx,dy,dt,L,H,tn,tfinal,cfl;
+	precision dx,dy,dt,L,H,tn,tfinal,cfl, D;
 		int Nx,Ny,Nt;
 
-		L=10;
-		H=10;
-		Nx=100;
-		Ny=100;
+		L=5;
+		H=5;
+		Nx=200;
+		Ny=200;
 		Nt=20000;
 		cfl=0.4;
 
 		dx=L/Nx;
 		dy=H/Ny;
+		D = 0.0018;
 
 
 		Velocity v(Nx,Ny,L,H);
 		v.ChampsCirculaire(L/2.0,H/2, 5.0);
-		//v.ChampsUniformeVx(1.0);
+		//v.ChampsUniformeVx(50.0);
 		//v.ChampsUniforme(-0.5);
 		v.WriteGnuPlot("velocity.dat");
 		// plot "velocity.dat" u 1:2:3:4 w vec
 		cout << "velocity initialise!" << endl;
 		//CFL
 		dt=((max(dx,dy)*max(dx,dy)*cfl)/v.max());
+		//dt=((max(dx,dy)*max(dx,dy)*cfl)/D);
 		tfinal=Nt*dt;
 		cout << "Vmax = " << v.max() << endl;
 
@@ -60,14 +62,15 @@ int main()
 
 		Particle n(Nx,Ny,L,H);
 		//n.InitialSquare(L/3.0,H/3.0,0.5);
-		n.InitialCircle(L/3.0,H/3.0,0.5);
+		n.InitialCircle(L/3.0,H/3.0,0.25);
 		//n.InitialGauss(L/3.0,H/3.0,0.5);
 		cout << "Particule initialise" << endl;
 		n.WriteGnuPlot("particleinit.dat");
 
 		//UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 		//UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
-		UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+		//UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+		UpwindDCOrder4 test1(Nx,Ny,Nt,L,H,tfinal,v,D,n);
 		//LaxWendroff test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 
 

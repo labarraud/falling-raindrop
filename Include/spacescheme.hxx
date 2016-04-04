@@ -38,6 +38,19 @@ public :
 	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
 };
 
+class UpwindDCOrder4 : public DiffusionConvectionProblem
+
+{
+protected:
+	precision D;
+public :
+
+	UpwindDCOrder4(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,precision _D,Particle& n);
+		precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
+		precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
+	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+};
+
 class LaxWendroff : public DiffusionConvectionProblem
 
 {
