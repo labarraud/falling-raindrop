@@ -179,7 +179,8 @@ precision Matrix::distnorme2(const Matrix& m)
 	return var/(N*M);
 }
 
-
+void Matrix::GradConj(const Matrix& A, Matrix P, Matrix X)
+{
 
 
 #endif
