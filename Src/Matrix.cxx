@@ -179,8 +179,94 @@ precision Matrix::distnorme2(const Matrix& m)
 	return var/(N*M);
 }
 
-void Matrix::GradConj(const Matrix& A, Matrix P, Matrix X)
+void Matrix::GradConj(precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b)
 {
+	unsigned int l(N*M);
+	int iter;
+	vector<precision> r(l), d(l), w(l);
+	precision alpha, beta, nr;
 
+	x.resize(l);
+	for(unsigned int i(0); i < l; ++i) {
+		x[i] = 0.0;
+	}
+	ProdVec(x,r);
+	for(unsigned int i(0); i < l; ++i) {
+		r[i] -= b[i];
+	}
+	d=r;
+	iter = 1;
+	nr = VecNorme(r);
+
+	while(nr > epsilon && iter < Nmax) {
+		ProdVec(d,w);
+
+		alpha = DotProduct(d,r)/DotProduct(d,w);
+
+		for(unsigned int i(0); i < l; ++i) {
+			x[i] -= alpha*d[i];
+		}
+
+		nr = VecNorme(r);
+		beta = 1.0/(nr*nr);
+		for(unsigned int i(0); i < l; ++i) {
+			r[i] -= alpha*w[i];
+		}
+		nr = VecNorme(r);
+		beta = beta*nr*nr;
+		for(unsigned int i(0); i < l; ++i) {
+			d[i] = r[i]+beta*d[i];
+		}
+	}
+}
+
+void Matrix::Mat2Vec(vector<precision>& out) const
+{
+	out.resize(N*M);
+	for(int i(0),j; i < N; ++i) {
+		for(j = 0; j < M; ++j) {
+			out[unsigned(i*M+j)]=(*this)(i,j);
+		}
+	}
+}
+
+void Matrix::Vec2Mat(const vector<precision>& in, int N, int M)
+{
+	Reallocate(N, M);
+	for(int i(0),j; i < N; ++i) {
+		for(j = 0; j < M; ++j) {
+			(*this)(i,j)=in[unsigned(i*M+j)];
+		}
+	}
+}
+
+void Matrix::ProdVec(const vector<precision>& v, vector<precision>& out) const
+{
+	out.resize(v.size());
+	for(int i(0),j; i < N; ++i) {
+		out[unsigned(i)]=0.0;
+		for(j = 0; j < M; ++j) {
+			out[unsigned(i)]+=(*this)(i,j)*v[unsigned(j)];
+		}
+	}
+}
+
+precision VecNorme(const vector<precision>& v)
+{
+	precision S(0.0);
+	for(unsigned int i(0),l(v.size()); i < l; ++i) {
+		S += v[i]*v[i];
+	}
+	return sqrt(S);
+}
+
+precision DotProduct(const vector<precision>& v1, const vector<precision>& v2)
+{
+	precision S(0.0);
+	for(unsigned int i(0),l(v1.size()); i < l; ++i) {
+		S += v1[i]*v2[i];
+	}
+	return S;
+}
 
 #endif
