@@ -60,7 +60,7 @@ int main()
 
 
 
-		Particle n(Nx,Ny,L,H);
+		Density n(Nx,Ny,L,H);
 		//n.InitialSquare(L/3.0,H/3.0,0.5);
 		n.InitialCircle(L/3.0,H/3.0,0.25);
 		//n.InitialGauss(L/3.0,H/3.0,0.5);
@@ -76,7 +76,7 @@ int main()
 
 		LowStorageRungeKuttaIterator timescheme;
 		//ExplicitEulerIterator timescheme;
-		timescheme.SetInitialCondition(0,dt,test1.GetP().Getn(),test1);
+		timescheme.SetInitialCondition(0,dt,test1.GetP(),test1);
 
 
 
@@ -98,10 +98,9 @@ int main()
 				file_out << "set pm3d map" << endl;
 				file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;*/
 
-				n.Setn(timescheme.GetIterate());
-				//n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
+				//static_cast<const Density&>(timescheme.GetIterate()).WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 
-				n.WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
+				static_cast<const Density&>(timescheme.GetIterate()).WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
 			}
 
 		}
@@ -138,7 +137,7 @@ int main()
 			}
 		}
 		 file_out.close();*/
-		n.Setn(timescheme.GetIterate());
+		//n.Setn(timescheme.GetIterate());
 		n.WriteGnuPlot("particlefinal.dat");
 
 		return 0;

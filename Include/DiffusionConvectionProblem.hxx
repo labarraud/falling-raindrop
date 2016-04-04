@@ -17,7 +17,7 @@ class VirtualOdeSystem
 public:
   virtual ~VirtualOdeSystem();
 
-  virtual void SetInitialCondition(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n)=0;
+  virtual void SetInitialCondition(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n)=0;
 
   // fonction pour calculer y = y + alpha f(t, rho)
   virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y) = 0;
@@ -30,22 +30,22 @@ class DiffusionConvectionProblem : public VirtualOdeSystem
 protected:
 	vector<precision> step_x, step_y;
 	Velocity velocity;
-	Particle particule;
+	Density density;
 	int Nx,Ny,Nt;
 	double L,H,tfinal,D,Delta_x,Delta_y,Delta_t;
 
 
 public:
 	DiffusionConvectionProblem();
-	DiffusionConvectionProblem(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n);
-	void SetInitialCondition(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n);
+	DiffusionConvectionProblem(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
+	void SetInitialCondition(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 	virtual ~DiffusionConvectionProblem();
 	//void Init(int Nx, int Ny,double D);
 	virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y) = 0;
 	void WriteGnuPlot(const Matrix& M,const string& nom);
 	double GetX(int i) const;
 	double GetY(int i) const;
-	Particle& GetP();
+	Density& GetP();
 	Velocity & GetV();
 
 };

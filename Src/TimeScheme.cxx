@@ -156,9 +156,9 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		dx=dy=dxy;
 		Velocity v(Nx,Ny,L,H);
 		v.ChampsCirculaire(L/2.0,H/2.0, omega);
-		Particle n(Nx,Ny,L,H);
+		Density n(Nx,Ny,L,H);
 		n.InitialCircle(L/3.0,H/3.0,0.5);
-		Matrix init(n.Getn());
+		Matrix init(n);
 
 
 		dt=((max(dx,dy)*cfl)/v.max());
@@ -166,7 +166,7 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		Nt=floor(tfinal/dt);
 
 		ode.SetInitialCondition(Nx,Ny,Nt,L,H,tfinal,v,n);
-		time.SetInitialCondition(0,dt,n.Getn(),ode);
+		time.SetInitialCondition(0,dt,n,ode);
 
 		cout << "dt" << dt << endl;
 		cout << "Nt" << Nt << endl;

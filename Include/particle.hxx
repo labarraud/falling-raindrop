@@ -13,25 +13,20 @@
 using namespace std;
 
 
-class Particle
+class Density : public Matrix
 
 {
 private:
-	Matrix n;
-	int Nx,Ny;
 	precision L,H,Delta_x,Delta_y;
 
 public:
-	Particle();
-	Particle(int Nx,int Ny,precision L,precision H);
+	Density();
+	Density(int Nx,int Ny,precision L,precision H);
 	void InitialSquare(precision Xcenter,precision Ycenter, precision intensite);
 	void InitialCircle(precision Xcenter,precision Ycenter, precision intensite);
 	void InitialGauss(precision Xcenter,precision Ycenter, precision intensite);
-	void WriteGnuPlot(const string& nom);
-	double& Getn(int i, int j);
-	Matrix& Getn();
-	void Setn(const Matrix& n);
-	void WriteVtk(const string& nom);
+	void WriteGnuPlot(const string& nom) const;
+	void WriteVtk(const string& nom) const;
 };
 
 #define FILE_PARTICLE_HXX

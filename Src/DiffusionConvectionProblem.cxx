@@ -13,14 +13,14 @@ VirtualOdeSystem::~VirtualOdeSystem()
 
 /*	Vector<double> step_x, step_y;
 	Velocity V;
-	Particle particule;
+	Density density;
 	int Nx,Ny,Nt;
 	double L,H,D,Delta_x,Delta_y,Delta_t;*/
 
 DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 
-	DiffusionConvectionProblem::DiffusionConvectionProblem(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
-		:	velocity(V), particule(n)
+	DiffusionConvectionProblem::DiffusionConvectionProblem(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Density& n)
+		:	velocity(V), density(n)
 	{
 
 		this->Nx=Nx;
@@ -36,7 +36,7 @@ DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 
 	}
 
-	void DiffusionConvectionProblem::SetInitialCondition(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+	void DiffusionConvectionProblem::SetInitialCondition(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Density& n)
 	{
 			this->Nx=Nx;
 			this->Ny=Ny;
@@ -48,7 +48,7 @@ DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 			this->Delta_y=H/Ny;
 			this->Delta_t=tfinal/Nt;
 			this->velocity=V;
-			this->particule=n;
+			this->density=n;
 	}
 
 	DiffusionConvectionProblem::~DiffusionConvectionProblem()
@@ -100,9 +100,9 @@ DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 		return step_y[(unsigned)i];
 	}
 	
-	Particle & DiffusionConvectionProblem::GetP()
+	Density & DiffusionConvectionProblem::GetP()
 	{
-		return particule;
+		return density;
 		
 	}
 

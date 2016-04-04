@@ -4,7 +4,7 @@
 
 UpwindDCtest1::UpwindDCtest1() {}
 
-UpwindDCtest1::UpwindDCtest1(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n)
+UpwindDCtest1::UpwindDCtest1(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
@@ -87,7 +87,7 @@ void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t,
 //---------------------------------------------------------------------
 // Order 2
 //---------------------------------------------------------------------
-UpwindDCOrder2::UpwindDCOrder2(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Particle& n)
+UpwindDCOrder2::UpwindDCOrder2(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
@@ -121,7 +121,7 @@ void UpwindDCOrder2::AddFunction(precision alpha, const Matrix& u, precision t, 
 // Order 3
 //---------------------------------------------------------------------
 
-UpwindDCOrder3::UpwindDCOrder3(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+UpwindDCOrder3::UpwindDCOrder3(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
@@ -155,7 +155,7 @@ void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, 
 // Order 4
 //---------------------------------------------------------------------
 
-UpwindDCOrder4::UpwindDCOrder4(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,precision _D,Particle& n)
+UpwindDCOrder4::UpwindDCOrder4(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,precision _D,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n), D(_D)
 { }
 
@@ -191,7 +191,7 @@ void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, 
 // LaxWendroff
 //---------------------------------------------------------------------
 
-LaxWendroff::LaxWendroff(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Particle& n)
+LaxWendroff::LaxWendroff(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
