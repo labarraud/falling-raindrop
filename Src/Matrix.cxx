@@ -200,59 +200,6 @@ void Matrix::Vec2Mat(const vector<precision>& in, int N, int M)
 }
 
 
-
-void GradConj(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b)
-{
-	unsigned int l(N*M);
-	int iter;
-	vector<precision> r(l), d(l), w(l);
-	precision alpha, beta, nr;
-
-	x.resize(l);
-	for(unsigned int i(0); i < l; ++i) {
-		x[i] = 0.0;
-	}
-	ProdVec(dx, dy, N, M, x,r);
-	for(unsigned int i(0); i < l; ++i) {
-		r[i] -= b[i];
-	}
-	d=r;
-	iter = 1;
-	nr = VecNorme(r);
-
-	while(nr > epsilon && iter < Nmax) {
-		ProdVec(dx, dy, N, M, d,w);
-
-		alpha = DotProduct(d,r)/DotProduct(d,w);
-
-		for(unsigned int i(0); i < l; ++i) {
-			x[i] -= alpha*d[i];
-		}
-
-		nr = VecNorme(r);
-		beta = 1.0/(nr*nr);
-		for(unsigned int i(0); i < l; ++i) {
-			r[i] -= alpha*w[i];
-		}
-		nr = VecNorme(r);
-		beta = beta*nr*nr;
-		for(unsigned int i(0); i < l; ++i) {
-			d[i] = r[i]+beta*d[i];
-		}
-	}
-}
-
-void ProdVec(precision dx, precision dy, int N, int M, const vector<precision>& v, vector<precision>& out) const
-{
-	out.resize(v.size());
-	for(int i(0),j; i < N; ++i) {
-		out[unsigned(i)]=0.0;
-		for(j = 0; j < M; ++j) {
-			out[unsigned(i)]+=(*this)(i,j)*v[unsigned(j)];
-		}
-	}
-}
-
 precision VecNorme(const vector<precision>& v)
 {
 	precision S(0.0);
@@ -269,6 +216,15 @@ precision DotProduct(const vector<precision>& v1, const vector<precision>& v2)
 		S += v1[i]*v2[i];
 	}
 	return S;
+}
+
+/**
+ * Bijection coordonnées matrice de taille N*M : (i,j) vers coordonnées vecteur
+ * (stockage ligne par ligne de la matrice)
+ */
+unsigned int Bij(int i, int j, int M)
+{
+	return unsigned(M*i+j);
 }
 
 #endif
