@@ -179,47 +179,6 @@ precision Matrix::distnorme2(const Matrix& m)
 	return var/(N*M);
 }
 
-void Matrix::GradConj(precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b)
-{
-	unsigned int l(N*M);
-	int iter;
-	vector<precision> r(l), d(l), w(l);
-	precision alpha, beta, nr;
-
-	x.resize(l);
-	for(unsigned int i(0); i < l; ++i) {
-		x[i] = 0.0;
-	}
-	ProdVec(x,r);
-	for(unsigned int i(0); i < l; ++i) {
-		r[i] -= b[i];
-	}
-	d=r;
-	iter = 1;
-	nr = VecNorme(r);
-
-	while(nr > epsilon && iter < Nmax) {
-		ProdVec(d,w);
-
-		alpha = DotProduct(d,r)/DotProduct(d,w);
-
-		for(unsigned int i(0); i < l; ++i) {
-			x[i] -= alpha*d[i];
-		}
-
-		nr = VecNorme(r);
-		beta = 1.0/(nr*nr);
-		for(unsigned int i(0); i < l; ++i) {
-			r[i] -= alpha*w[i];
-		}
-		nr = VecNorme(r);
-		beta = beta*nr*nr;
-		for(unsigned int i(0); i < l; ++i) {
-			d[i] = r[i]+beta*d[i];
-		}
-	}
-}
-
 void Matrix::Mat2Vec(vector<precision>& out) const
 {
 	out.resize(N*M);
@@ -240,7 +199,50 @@ void Matrix::Vec2Mat(const vector<precision>& in, int N, int M)
 	}
 }
 
-void Matrix::ProdVec(const vector<precision>& v, vector<precision>& out) const
+
+
+void GradConj(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b)
+{
+	unsigned int l(N*M);
+	int iter;
+	vector<precision> r(l), d(l), w(l);
+	precision alpha, beta, nr;
+
+	x.resize(l);
+	for(unsigned int i(0); i < l; ++i) {
+		x[i] = 0.0;
+	}
+	ProdVec(dx, dy, N, M, x,r);
+	for(unsigned int i(0); i < l; ++i) {
+		r[i] -= b[i];
+	}
+	d=r;
+	iter = 1;
+	nr = VecNorme(r);
+
+	while(nr > epsilon && iter < Nmax) {
+		ProdVec(dx, dy, N, M, d,w);
+
+		alpha = DotProduct(d,r)/DotProduct(d,w);
+
+		for(unsigned int i(0); i < l; ++i) {
+			x[i] -= alpha*d[i];
+		}
+
+		nr = VecNorme(r);
+		beta = 1.0/(nr*nr);
+		for(unsigned int i(0); i < l; ++i) {
+			r[i] -= alpha*w[i];
+		}
+		nr = VecNorme(r);
+		beta = beta*nr*nr;
+		for(unsigned int i(0); i < l; ++i) {
+			d[i] = r[i]+beta*d[i];
+		}
+	}
+}
+
+void ProdVec(precision dx, precision dy, int N, int M, const vector<precision>& v, vector<precision>& out) const
 {
 	out.resize(v.size());
 	for(int i(0),j; i < N; ++i) {

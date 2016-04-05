@@ -23,5 +23,6 @@ void NavierStokes::WriteVtk(const string& nom) const
 void SolveLaplacian(const Matrix& b)
 {
 // construire A
-	// gradient conjugué...
+	// gradient conjugué... -> Ap = b+F
+	//F conditions aux bords
 }

@@ -29,10 +29,8 @@ class Matrix
 		Matrix& operator=(const Matrix& m);
 		Matrix operator+(const Matrix&);
 		precision distnorme2(const Matrix&);
-		void GradConj(precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b);
 		void Mat2Vec(vector<precision>& out) const;
 		void Vec2Mat(const vector<precision>& in, int N, int M);
-		void ProdVec(const vector<precision>& v, vector<precision>& out) const;
 
 	protected:
 		int N,M;
@@ -41,6 +39,8 @@ class Matrix
 
 ostream& operator<<(ostream& out, const Matrix& m);
 Matrix operator*(precision,const Matrix&);
+void GradConj(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b);
+void ProdVec(precision dx, precision dy, int N, int M, const vector<precision>& v, vector<precision>& out) const;
 precision VecNorme(const vector<precision>& v);
 precision DotProduct(const vector<precision>& v1, const vector<precision>& v2);
 
