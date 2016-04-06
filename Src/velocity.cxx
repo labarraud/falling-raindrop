@@ -70,6 +70,17 @@ precision& Velocity::GetVY(int i,int j)
 	}
 
 
+precision Velocity::GetVX(int i, int j) const
+	{
+		return VX(i,j);
+	}
+
+precision Velocity::GetVY(int i,int j) const
+	{
+		return VY(i,j);
+	}
+
+
 precision Velocity::max()
 {
 	double max= abs(VX(0,0));

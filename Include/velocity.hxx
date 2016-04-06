@@ -33,6 +33,8 @@ public:
 	void WriteGnuPlot(const string& nom);
 	precision& GetVX(int i, int j);
 	precision& GetVY(int i, int j);
+	precision GetVX(int i, int j) const;
+	precision GetVY(int i, int j) const;
 	precision max();
 
 };

@@ -30,7 +30,7 @@ class Matrix
 		Matrix operator+(const Matrix&);
 		precision distnorme2(const Matrix&);
 		void Mat2Vec(vector<precision>& out) const;
-		void Vec2Mat(const vector<precision>& in, int N, int M);
+		void Vec2Mat(const vector<precision>& in);
 
 	protected:
 		int N,M;

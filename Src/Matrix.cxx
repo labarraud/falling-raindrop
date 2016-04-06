@@ -189,9 +189,8 @@ void Matrix::Mat2Vec(vector<precision>& out) const
 	}
 }
 
-void Matrix::Vec2Mat(const vector<precision>& in, int N, int M)
+void Matrix::Vec2Mat(const vector<precision>& in)
 {
-	Reallocate(N, M);
 	for(int i(0),j; i < N; ++i) {
 		for(j = 0; j < M; ++j) {
 			(*this)(i,j)=in[unsigned(i*M+j)];
