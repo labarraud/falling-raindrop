@@ -161,34 +161,35 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		Matrix init(n);
 
 
-		dt=((max(dx,dy)*cfl)/v.max());
+		ode.SetInitialCondition(Nx,Ny,Nt,L,H,tfinal,v,n);
+
+		time.SetInitialCondition(0,ode.computedt(cfl),n,ode);
+
+		dt=ode.computedt(cfl);
 
 		Nt=floor(tfinal/dt);
-
-		ode.SetInitialCondition(Nx,Ny,Nt,L,H,tfinal,v,n);
-		time.SetInitialCondition(0,dt,n,ode);
 
 		cout << "dt" << dt << endl;
 		cout << "Nt" << Nt << endl;
 
 
 		//for(precision t=0; t<tmaxdemi; t=t+dt)
-		for(int i=0; i<10; i++)
+		for(int i=0; i<20; i++)
 		{
+			cout << "iterpositive : " << i << endl;
 			time.Advance(i, dt, ode);
 		}
 
 		ode.GetV().ChampsCirculaire(L/2.0,H/2.0, -omega);
 
 		//for(precision t=tmaxdemi; t<2*tmaxdemi; t=t+dt)
-		for(int i=0; i<10; i++)
+		for(int i=0; i<20; i++)
 		{
+			cout << "iternégative : " << i << endl;
 			time.Advance(i, dt, ode);
 
 		}
-
-
-		error = init.distnorme2(time.GetIterate());
+		error = init.distnorme2(time.GetIterate())/init.norme2();
 		file_out << dxy << " " << error << endl;
 		cout << dxy << " " << error << endl;
 

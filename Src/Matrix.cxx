@@ -176,7 +176,7 @@ precision Matrix::distnorme2(const Matrix& m)
 			for (int j(0); j<M; ++j)
 				var=var +((*this)(i,j)-m(i,j))*((*this)(i,j)-m(i,j));
 	}
-	return var/(N*M);
+	return sqrt(var);
 }
 
 void Matrix::Mat2Vec(vector<precision>& out) const

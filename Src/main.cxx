@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 
 #include "../Include/Matrix.hxx"
 #include "../Include/velocity.hxx"
@@ -12,23 +13,32 @@
 
 int main()
 {
-
 /*
- * coucou
-  //-----------experimental order -------------
+	  //-----------experimental order -------------
 
-	precision mindxy,hdxy,maxdxy,cfl,tmaxdemi,omega;
-	UpwindDCtest1 ode;
-	LowStorageRungeKuttaIterator time;
+		precision mindxy,hdxy,maxdxy,cfl,tmaxdemi,omega;
 
-	mindxy=0.0015;
-	hdxy=0.005;
-	maxdxy=0.09;
-	cfl=1;
-	tmaxdemi=1;
-	omega=5.0;
+		UpwindDCtest1 ode1;
+		UpwindDCOrder2 ode2;
+		UpwindDCOrder3 ode3;
+		UpwindDCOrder4 ode4;
+		LaxWendroff odeW;
 
-	error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode, time, "error_upwind1.dat");
+		LowStorageRungeKuttaIterator time;
+
+		mindxy=0.01;
+		hdxy=0.01;
+		maxdxy=0.1;
+		cfl=0.1;
+		tmaxdemi=1;
+		omega=5.0;
+
+		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode1, time, "error_upwind1.dat");
+		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode2, time, "error_upwind2.dat");
+		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode3, time, "error_upwind3.dat");
+		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, odeW, time, "error_wendroff.dat");
+		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode4, time, "error_upwind4.dat");
+
 */
 	precision dx,dy,dt,L,H,tn,tfinal,cfl, D;
 		int Nx,Ny,Nt;
@@ -82,9 +92,9 @@ int main()
 
 
 		int nDisplay(100);
-		/*string file = "scriptan.gnuplot";
-		ofstream file_out(file.data());
-		file_out.precision(15);*/
+		//string file = "scriptan.gnuplot";
+		//ofstream file_out(file.data());
+		//file_out.precision(15);
 		string var,var2;
 		for(int i=0; i<Nt ; i++)
 		{
@@ -93,14 +103,14 @@ int main()
 			if((i%nDisplay)==0) {
 				var=(i/nDisplay < 10 ? "0" : "");
 				var2=(i/nDisplay < 100 ? "0" : "");
-				/*file_out << "set terminal postscript eps enhanced color" << endl;
-				file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
-				file_out << "set pm3d map" << endl;
-				file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;*/
+				//file_out << "set terminal postscript eps enhanced color" << endl;
+				//file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
+				//file_out << "set pm3d map" << endl;
+				//file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;
 
 				//static_cast<const Density&>(timescheme.GetIterate()).WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 
-				static_cast<const Density&>(timescheme.GetIterate()).WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
+				(static_cast<const Density&>(timescheme.GetIterate())).WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
 			}
 
 		}
@@ -138,7 +148,7 @@ int main()
 		}
 		 file_out.close();*/
 		//n.Setn(timescheme.GetIterate());
-		n.WriteGnuPlot("particlefinal.dat");
+		//n.WriteGnuPlot("particlefinal.dat");
 
 		return 0;
 }

@@ -84,9 +84,20 @@ void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t,
 
 }
 
+
+
+
+precision UpwindDCtest1::computedt(precision cfl){
+
+	return ((max(Delta_x,Delta_y)*cfl)/velocity.max());
+}
+
+
 //---------------------------------------------------------------------
 // Order 2
 //---------------------------------------------------------------------
+UpwindDCOrder2::UpwindDCOrder2() {}
+
 UpwindDCOrder2::UpwindDCOrder2(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
@@ -117,10 +128,17 @@ void UpwindDCOrder2::AddFunction(precision alpha, const Matrix& u, precision t, 
     }
 }
 
+
+precision UpwindDCOrder2::computedt(precision cfl){
+
+	return ((max(Delta_x,Delta_y)*max(Delta_x,Delta_y)*cfl)/velocity.max());
+}
+
+
 //---------------------------------------------------------------------
 // Order 3
 //---------------------------------------------------------------------
-
+UpwindDCOrder3::UpwindDCOrder3() { }
 UpwindDCOrder3::UpwindDCOrder3(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
@@ -151,10 +169,15 @@ void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, 
     }
 }
 
+precision UpwindDCOrder3::computedt(precision cfl){
+
+	return ((max(Delta_x,Delta_y)*max(Delta_x,Delta_y)*max(Delta_x,Delta_y)*cfl)/velocity.max());
+}
+
 //---------------------------------------------------------------------
 // Order 4
 //---------------------------------------------------------------------
-
+UpwindDCOrder4::UpwindDCOrder4() { }
 UpwindDCOrder4::UpwindDCOrder4(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,precision _D,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n), D(_D)
 { }
@@ -187,9 +210,15 @@ void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, 
    }
 }
 
+precision UpwindDCOrder4::computedt(precision cfl){
+
+	return (max(Delta_x,Delta_y)*(max(Delta_x,Delta_y)*max(Delta_x,Delta_y)*max(Delta_x,Delta_y)*cfl)/velocity.max());
+}
+
 //---------------------------------------------------------------------
 // LaxWendroff
 //---------------------------------------------------------------------
+LaxWendroff::LaxWendroff(){ }
 
 LaxWendroff::LaxWendroff(int Nx,int Ny,int Nt,double L,double H,double tfinal,Velocity& V,Density& n)
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
@@ -213,6 +242,11 @@ void LaxWendroff::AddFunction(precision alpha, const Matrix& u, precision t, Mat
     	}
     }
 	//cout << "norme de y = " << y.norme2() << endl;
+}
+
+precision LaxWendroff::computedt(precision cfl){
+
+	return ((max(Delta_x,Delta_y)*max(Delta_x,Delta_y)*cfl)/velocity.max());
 }
 
 #define SPACESCHEME_CXX

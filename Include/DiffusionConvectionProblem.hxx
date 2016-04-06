@@ -47,7 +47,7 @@ public:
 	double GetY(int i) const;
 	Density& GetP();
 	Velocity & GetV();
-
+	virtual precision computedt(precision cfl)=0;
 };
 
 

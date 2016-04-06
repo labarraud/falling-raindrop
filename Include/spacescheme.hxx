@@ -16,26 +16,30 @@ public :
 	precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 	precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
   void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	precision computedt(precision cfl);
 };
 
 class UpwindDCOrder2 : public DiffusionConvectionProblem
 {
 public :
-
+	UpwindDCOrder2();
 	UpwindDCOrder2(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 	precision UpwindY(precision dt, precision b, int i, int j, const Matrix& u);
 	precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
-	void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);};
+	void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	precision computedt(precision cfl);
+};
 
 class UpwindDCOrder3 : public DiffusionConvectionProblem
 
 {
 public :
-
+	UpwindDCOrder3();
 	UpwindDCOrder3(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 		precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 		precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
 	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	 	precision computedt(precision cfl);
 };
 
 class UpwindDCOrder4 : public DiffusionConvectionProblem
@@ -44,20 +48,22 @@ class UpwindDCOrder4 : public DiffusionConvectionProblem
 protected:
 	precision D;
 public :
-
+	UpwindDCOrder4();
 	UpwindDCOrder4(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,precision _D,Density& n);
 		precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 		precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
 	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	 	precision computedt(precision cfl);
 };
 
 class LaxWendroff : public DiffusionConvectionProblem
 
 {
 public :
-
+	LaxWendroff();
 	LaxWendroff(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	 	precision computedt(precision cfl);
 };
 
 
