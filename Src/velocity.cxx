@@ -59,6 +59,26 @@ void Velocity::WriteGnuPlot(const string& nom)
 	}
 
 
+Matrix& Velocity::GetAllVX()
+{
+	return VX;
+}
+
+Matrix& Velocity::GetAllVY()
+{
+	return VY;
+}
+
+void Velocity::SetAllVX(const Matrix& _VX)
+{
+	VX = _VX;
+}
+
+void Velocity::SetAllVY(const Matrix& _VY)
+{
+	VY = _VY;
+}
+
 precision& Velocity::GetVX(int i, int j)
 	{
 		return VX(i,j);

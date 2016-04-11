@@ -32,7 +32,7 @@ protected:
 	Velocity velocity;
 	Density density;
 	int Nx,Ny,Nt;
-	double L,H,tfinal,D,Delta_x,Delta_y,Delta_t;
+	double L,H,tfinal,D,dx,dy,dt;
 
 
 public:

@@ -47,7 +47,7 @@ int main()
 		H=5;
 		Nx=200;
 		Ny=200;
-		Nt=20000;
+		Nt=5000;
 		cfl=0.4;
 
 		dx=L/Nx;

@@ -7,67 +7,216 @@
 
 #include "../Include/NavierStokes.hxx"
 
+NavierStokes::NavierStokes()
+{ }
 
-NavierStokes::NavierStokes(const Velocity& _v, const Matrix& _rho, const Matrix& _p, int Nx, int Ny, precision _L, precision _H, precision _dt)
+NavierStokes::NavierStokes(int _Nx,int _Ny,int _Nt,precision _L,precision _H,precision tfinal,Velocity& _v,const Matrix& _p,Density& _rho)
 {
-	Init(_v, _rho, _p, Nx, Ny, L, H, dt);
+	SetInitialCondition(_Nx,_Ny,_Nt,_L,_H,tfinal,_v,_p,_rho);
 }
 
-void NavierStokes::Init(const Velocity& _v, const Matrix& _rho, const Matrix& _p, int Nx, int Ny, precision _L, precision _H, precision _dt)
+void NavierStokes::SetInitialCondition(int _Nx,int _Ny,int _Nt,precision _L,precision _H,precision tfinal,Velocity& _v,const Matrix& _p,Density& _rho)
 {
 	v = _v;
-	p = _p;
 	rho = _rho;
 	L = _L;
 	H = _H;
-	dx = L / Nx;
-	dy = H / Ny;
-	dt = _dt;
+	Nx = _Nx;
+	Ny = _Ny;
+	Nt = _Nt;
+	dx = L / _Nx;
+	dy = H / _Ny;
+	dt = tfinal/Nt;
+	_p.Mat2Vec(p);
 	nu = 1.007e-6; // viscosité cinématique de l'eau à 20°C
+	g = 9.81;
 	int N(Ny+1), M(Nx+1), l(N*M);
+	p.resize(l);
 	cond_bord_p.resize(l);
+	cond_bord_div_v.resize(l);
+	cond_bord_gradx_p.resize(l);
+	cond_bord_grady_p.resize(l);
 	sec_membre_p.resize(l);
-	for(int i(0); i < N; ++i) {
-		for(int j(1); j < M; ++j) {
-			cond_bord_p[Bij(i,j,M)] = 0.0;
-		}
-		// Condition bords haut et bas
-		cond_bord_p[Bij(i,0,M)] = 0.0;
-		cond_bord_p[Bij(i,Ny,M)] = 0.0;
-	}
-	for(int j(0); j < M; ++j) {
-		// Condition bords gauche et droite
-		cond_bord_p[Bij(0,j,M)] = 0.0;
-		cond_bord_p[Bij(Nx,j,M)] = 0.0;
-	}
+	sec_membre_vx.resize(l);
+	sec_membre_vy.resize(l);
+	timescheme_x.SetInitialCondition(0,dt,v.GetAllVY(),*this);
+	timescheme_y.SetInitialCondition(0,dt,v.GetAllVX(),*this);
 }
 
 
 void NavierStokes::WriteVtk(const string& nom) const
 {
-
+	int N(Ny+1), M(Nx+1);
+	ofstream file_out(nom.data());
+	file_out << "# vtk DataFile Version 2.0\n";
+	file_out << "Titre\n";
+	file_out << "ASCII\n";
+	file_out << "DATASET STRUCTURED_POINTS\n";
+	file_out << "DIMENSIONS " << M << " " << N << " 1\n";
+	file_out << "ORIGIN 0.0 0.0 0.0\n";
+	file_out << "SPACING " << dx << " " << dy << " 0.0\n";
+	file_out << "POINT_DATA " << (M*N) << " \n";
+	file_out << "SCALARS velocityX float\n";
+	file_out << "LOOKUP_TABLE default";
+	for (int i = 0; i < N; i++) {
+		for (int j=0; j<M;j++) {
+			if((j%10)==0) {
+				file_out << '\n';
+			}
+			file_out << v.GetVX(i,j) << ' ';
+		}
+	}
+	file_out << "SCALARS velocityY float\n";
+	file_out << "LOOKUP_TABLE default";
+	for (int i = 0; i < N; i++) {
+		for (int j=0; j<M;j++) {
+			if((j%10)==0) {
+				file_out << '\n';
+			}
+			file_out << v.GetVY(i,j) << ' ';
+		}
+	}
+	file_out << "SCALARS pressure float\n";
+	file_out << "LOOKUP_TABLE default";
+	for (int i = 0; i < N; i++) {
+		for (int j=0; j<M;j++) {
+			if((j%10)==0) {
+				file_out << '\n';
+			}
+			file_out << p[Bij(i,j,M)] << ' ';
+		}
+	}
+	file_out.close();
 }
 
 void NavierStokes::SolveLaplacianP()
 {
-// construire A
-	// gradient conjugué... -> Ap = b+F
 	int N(Ny+1), M(Nx+1), l(N*M);
-	vector<precision> div(l), x;
+	vector<precision> div(l);
 	Div4thOrder(v, dx, dy, N, M, div);
 	for(int i(0); i < N; ++i) {
 		for(int j(0); j < M; ++j) {
-			sec_membre_p[Bij(i,j,M)] = rho(i,j)*div[Bij(i,j,M)]/dt + cond_bord_p[Bij(i,j,M)];
+			sec_membre_p[Bij(i,j,M)] = rho(i,j)*(div[Bij(i,j,M)]+cond_bord_div_v[Bij(i,j,M)])/dt + cond_bord_p[Bij(i,j,M)];
 		}
 	}
-	GradConjLaplacian(dx, dy, N, M, 1e-6, N*M+1, x, sec_membre_p); // pression sous forme de vecteur dans x
-	p.Vec2Mat(x); // on transforme x en la matrice p
+	GradConjLaplacian(dx, dy, N, M, 1e-6, N*M+1, p, sec_membre_p); // pression sous forme de vecteur
+}
+
+precision NavierStokes::UpwindY(double dt, double b, int i, int j, const Matrix& u)
+{
+	precision theta(dt/dy);
+	int sign_b((b < 0) ? -1 : 1);
+	return (u(i,j)-b*theta*sign_b*(3.0*uij(i+sign_b,j,u)+10.0*u(i,j)-18.0*uij(i-sign_b,j,u)+6.0*uij(i-2*sign_b,j,u)-uij(i-3*sign_b,j,u))/12.0);
+}
+
+precision NavierStokes::SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u)
+{
+	double sigma(dt/dx), ut;
+	int sign_a((a < 0) ? -1 : 1);
+	ut = UpwindY(dt, b, i, j, u);
+	return (ut-a*sigma*sign_a*(3.0*UpwindY(dt,b,i,j+sign_a,u)+10.0*ut-18.0*UpwindY(dt,b,i,j-sign_a,u)+6.0*UpwindY(dt,b,i,j-2*sign_a,u)-UpwindY(dt,b,i,j-3*sign_a,u))/12.0);
+}
+
+void NavierStokes::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+{
+
+	//alpha = delta_t
+	int N(Ny+1), M(Nx+1);
+    for (int i=0; i<N; i++) {
+    	for (int j=0; j<M; j++) {
+			y(i,j) += SplittingX(alpha, v.GetVX(i,j), v.GetVY(i,j), i, j, u) - u(i,j)
+						+ alpha*nu*(16.0*uij(i+1,j, u)-uij(i+2,j, u)-30.0*u(i,j)-uij(i-2,j, u)+16.0*uij(i-1,j, u))/(dx*dx)
+						+ alpha*nu*(16.0*uij(i,j+1, u)-uij(i,j+2, u)-30.0*u(i,j)-uij(i,j-2, u)+16.0*uij(i,j-1, u))/(dy*dy);
+		}
+   }
 }
 
 void NavierStokes::Advance(int n, double tn)
 {
+	int N(Ny+1), M(Nx+1);
+	precision a1(12.0*dx*dx), b1(12.0*dy*dy), a2(12.0*dx), b2(12.0*dy);
+	// Actualisation des conditions aux bords (pour les conditions symétriques)
+	for(int i(0); i < N; ++i) {
+		for(int j(0); j < M; ++j) {
+			cond_bord_p[Bij(i,j,M)] = 0.0; // initialisation
+			cond_bord_div_v[Bij(i,j,M)] = 0.0;
+			cond_bord_gradx_p[Bij(i,j,M)] = 0.0;
+			cond_bord_grady_p[Bij(i,j,M)] = 0.0;
+		}
+		// Condition bords gauche et droite
+		cond_bord_p[Bij(i,0,M)] = -15.0*p_bord_gauche(i,0)/a1;
+		cond_bord_p[Bij(i,1,M)] = p_bord_gauche(i,1)/a1;
+		cond_bord_p[Bij(i,Nx-1,M)] = p_bord_droit(i,Nx-1)/a1;
+		cond_bord_p[Bij(i,Nx,M)] = -15.0*p_bord_droit(i,Nx)/a1;
+
+		cond_bord_gradx_p[Bij(i,0,M)] = 7.0*p_bord_gauche(i,0)/a2;
+		cond_bord_gradx_p[Bij(i,1,M)] = -p_bord_gauche(i,1)/a2;
+		cond_bord_gradx_p[Bij(i,Nx-1,M)] = p_bord_droit(i,Nx-1)/a2;
+		cond_bord_gradx_p[Bij(i,Nx,M)] = -7.0*p_bord_droit(i,Nx)/a2;
+
+		cond_bord_div_v[Bij(i,0,M)] = 7.0*v_bord_gauche(i,0,v.GetAllVX())/a2;
+		cond_bord_div_v[Bij(i,1,M)] = -v_bord_gauche(i,1,v.GetAllVX())/a2;
+		cond_bord_div_v[Bij(i,Nx-1,M)] = v_bord_droit(i,Nx-1,v.GetAllVX())/a2;
+		cond_bord_div_v[Bij(i,Nx,M)] = -7.0*v_bord_droit(i,Nx,v.GetAllVX())/a2;
+	}
+	for(int j(0); j < M; ++j) {
+		// Condition bords haut et bas
+		cond_bord_p[Bij(0,j,M)] = -15.0*p_bord_haut(0,j)/b1;
+		cond_bord_p[Bij(1,j,M)] = p_bord_haut(1,j)/b1;
+		cond_bord_p[Bij(Ny-1,j,M)] = p_bord_bas(Ny-1,j)/b1;
+		cond_bord_p[Bij(Ny,j,M)] = -15.0*p_bord_bas(Ny,j)/b1;
+
+		cond_bord_grady_p[Bij(0,j,M)] = 7.0*p_bord_haut(0,j)/b2;
+		cond_bord_grady_p[Bij(1,j,M)] = -p_bord_haut(1,j)/b2;
+		cond_bord_grady_p[Bij(Ny-1,j,M)] = p_bord_bas(Ny-1,j)/b2;
+		cond_bord_grady_p[Bij(Ny,j,M)] = -7.0*p_bord_bas(Ny,j)/b2;
+
+		cond_bord_div_v[Bij(0,j,M)] = 7.0*v_bord_haut(0,j,v.GetAllVY())/b2;
+		cond_bord_div_v[Bij(1,j,M)] = -v_bord_haut(1,j,v.GetAllVY())/b2;
+		cond_bord_div_v[Bij(Ny-1,j,M)] = v_bord_bas(Ny-1,j,v.GetAllVY())/b2;
+		cond_bord_div_v[Bij(Ny,j,M)] = -7.0*v_bord_bas(Ny,j,v.GetAllVY())/b2;
+	}
+	vector<precision> gradpx, gradpy;
+
 	SolveLaplacianP();
+	Gradx4thOrder(dx, N, M, p, gradpx);
+	Grady4thOrder(dy, N, M, p, gradpy);
+	for(int i(0); i < N; ++i) {
+		for(int j(0); j < M; ++j) {
+			sec_membre_vx[Bij(i,j,M)] = -(dt*(gradpx[Bij(i,j,M)]+cond_bord_gradx_p[Bij(i,j,M)]))/rho(i,j);
+			sec_membre_vy[Bij(i,j,M)] = -(dt*(gradpy[Bij(i,j,M)]+cond_bord_grady_p[Bij(i,j,M)]))/rho(i,j);//-dt*g;
+		}
+	}
+	timescheme_x.Advance(n, tn, *this);
+	timescheme_y.Advance(n, tn, *this);
+	v.SetAllVX(timescheme_x.GetIterate());
+	v.SetAllVY(timescheme_y.GetIterate());
 }
+
+precision NavierStokes::uij(int i, int j, const Matrix& u)
+{
+	if(i < 0) {
+		return v_bord_haut(i,j,u);
+	} else if(i > Ny) {
+		return v_bord_bas(i,j,u);
+	} else if(j < 0) {
+		return v_bord_gauche(i,j,u);
+	} else if(j > Nx) {
+		return v_bord_droit(i,j,u);
+	} else {
+		return u(i,j);
+	}
+}
+
+precision NavierStokes::p_bord_droit(int i, int j) const { return 0.0; }
+precision NavierStokes::p_bord_gauche(int i, int j) const { return 0.0; }
+precision NavierStokes::p_bord_haut(int i, int j) const { return 0.0; }
+precision NavierStokes::p_bord_bas(int i, int j) const { return 0.0; }
+precision NavierStokes::v_bord_droit(int i, int j, const Matrix& u) const { return 0.0; }
+precision NavierStokes::v_bord_gauche(int i, int j, const Matrix& u) const { return 0.0; }
+precision NavierStokes::v_bord_haut(int i, int j, const Matrix& u) const { return 0.0; }
+precision NavierStokes::v_bord_bas(int i, int j, const Matrix& u) const { return 0.0; }
+
 
 
 void GradConjLaplacian(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b)
@@ -200,7 +349,7 @@ void Laplacian4thOrder(precision dx, precision dy, int N, int M, const vector<pr
 
 void Div4thOrder(const Velocity& v, precision dx, precision dy, int N, int M, vector<precision>& out)
 {
-	precision a(12.0*dx*dx), b(12.0*dy*dy);
+	precision a(12.0*dx), b(12.0*dy);
 
 
 	// 1er bloc
@@ -267,7 +416,7 @@ void Div4thOrder(const Velocity& v, precision dx, precision dy, int N, int M, ve
 
 	// Dernier bloc
 	out[Bij(N-1,0,M)] = (8.0*v.GetVX(N-1,1)-v.GetVX(N-1,2))/a
-					+ (+v.GetVY(N-3,0)-8.0*v.GetVY(N-2,0))/b;
+					+ (v.GetVY(N-3,0)-8.0*v.GetVY(N-2,0))/b;
 	out[Bij(N-1,1,M)] = (8.0*v.GetVX(N-1,2)-v.GetVX(N-1,3)-8.0*v.GetVX(N-1,0))/a
 					+ (v.GetVY(N-3,1)-8.0*v.GetVY(N-2,1))/b;
 	for(int j(2); j < M-2; ++j) {
@@ -281,4 +430,35 @@ void Div4thOrder(const Velocity& v, precision dx, precision dy, int N, int M, ve
 
 }
 
+void Gradx4thOrder(precision dx, int N, int M, const vector<precision>& v, vector<precision>& out)
+{
+	precision a(12.0*dx);
+
+	for(int i(0); i < N-2; ++i) {
+		out[Bij(i,0,M)] = (8.0*v[Bij(i,1,M)]-v[Bij(i,2,M)])/a;
+		out[Bij(i,1,M)] = (8.0*v[Bij(i,2,M)]-v[Bij(i,3,M)]-8.0*v[Bij(i,0,M)])/a;
+		for(int j(2); j < M-2; ++j) {
+			out[Bij(i,j,M)] = (8.0*v[Bij(i,j+1,M)]-v[Bij(i,j+2,M)]+v[Bij(i,j-2,M)]-8.0*v[Bij(i,j-1,M)])/a;
+		}
+		out[Bij(i,M-2,M)] = (8.0*v[Bij(i,M-1,M)]+v[Bij(i,M-4,M)]-8.0*v[Bij(i,M-3,M)])/a;
+		out[Bij(i,M-1,M)] = (v[Bij(i,M-3,M)]-8.0*v[Bij(i,M-2,M)])/a;
+	}
+}
+
+
+
+void Grady4thOrder(precision dy, int N, int M, const vector<precision>& v, vector<precision>& out)
+{
+	precision b(12.0*dy);
+
+	for(int j(0); j < M-2; ++j) {
+		out[Bij(0,j,M)] = (8.0*v[Bij(1,j,M)]-v[Bij(2,j,M)])/b;
+		out[Bij(1,j,M)] = (8.0*v[Bij(2,j,M)]-v[Bij(3,j,M)]-8.0*v[Bij(0,j,M)])/b;
+		for(int i(2); i < N-2; ++i) {
+			out[Bij(i,j,M)] = (8.0*v[Bij(i+1,j,M)]-v[Bij(i+2,j,M)]+v[Bij(i-2,j,M)]-8.0*v[Bij(i-1,j,M)])/b;
+		}
+		out[Bij(N-2,j,M)] = (8.0*v[Bij(N-1,j,M)]+v[Bij(N-4,j,M)]-8.0*v[Bij(N-3,j,M)])/b;
+		out[Bij(N-1,j,M)] = (v[Bij(N-3,j,M)]-8.0*v[Bij(N-2,j,M)])/b;
+	}
+}
 

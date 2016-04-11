@@ -95,7 +95,6 @@ void LowStorageRungeKuttaIterator
 {
   dt = dt_;
   rho = rho0;
-  rho0.Clear();
   rho_next = rho;
 }
 

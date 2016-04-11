@@ -31,6 +31,10 @@ public:
 	void ChampsUniformeVx(precision intensite);
 	void ChampsUniforme(precision intensite);
 	void WriteGnuPlot(const string& nom);
+	Matrix& GetAllVX();
+	Matrix& GetAllVY();
+	void SetAllVX(const Matrix& _VX);
+	void SetAllVY(const Matrix& _VY);
 	precision& GetVX(int i, int j);
 	precision& GetVY(int i, int j);
 	precision GetVX(int i, int j) const;

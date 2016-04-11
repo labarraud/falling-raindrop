@@ -46,7 +46,6 @@ class UpwindDCOrder4 : public DiffusionConvectionProblem
 
 {
 protected:
-	precision D;
 public :
 	UpwindDCOrder4();
 	UpwindDCOrder4(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,precision _D,Density& n);

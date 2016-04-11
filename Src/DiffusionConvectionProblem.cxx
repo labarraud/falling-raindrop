@@ -15,7 +15,7 @@ VirtualOdeSystem::~VirtualOdeSystem()
 	Velocity V;
 	Density density;
 	int Nx,Ny,Nt;
-	double L,H,D,Delta_x,Delta_y,Delta_t;*/
+	double L,H,D,dx,dy,dt;*/
 
 DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 
@@ -29,9 +29,9 @@ DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
     	this->H=H;
     	this->D=0;
     	this->tfinal=H;
-	    this->Delta_x=L/Nx;
-		this->Delta_y=H/Ny;
-		this->Delta_t=tfinal/Nt;
+	    this->dx=L/Nx;
+		this->dy=H/Ny;
+		this->dt=tfinal/Nt;
 
 
 	}
@@ -44,9 +44,9 @@ DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 	    	this->H=H;
 	    	this->D=0;
 	    	this->tfinal=H;
-		    this->Delta_x=L/Nx;
-			this->Delta_y=H/Ny;
-			this->Delta_t=tfinal/Nt;
+		    this->dx=L/Nx;
+			this->dy=H/Ny;
+			this->dt=tfinal/Nt;
 			this->velocity=V;
 			this->density=n;
 	}
@@ -60,18 +60,18 @@ DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 	{
 		step_x.Reallocate(Nx+1);
 		step_y.Reallocate(Ny+1);
-		Delta_x = D/Nx;
-		Delta_y = D/Ny;
+		dx = D/Nx;
+		dy = D/Ny;
 		L = H = this.D = D;
 		if(V != NULL) {
 			delete V;
 		}
 		V = new Velocity(Nx, Ny, L, H);
 		for(int i(0); i < Nx+1; ++i) {
-			step_x(i) = i*Delta_x;
+			step_x(i) = i*dx;
 		}
 		for(int i(0); i < Ny+1; ++i) {
-			step_y(i) = i*Delta_y;
+			step_y(i) = i*dy;
 		}
 	}
 */
