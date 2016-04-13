@@ -14,7 +14,6 @@ using namespace std;
 
 
 class Density : public Matrix
-
 {
 private:
 	precision L,H,Delta_x,Delta_y;
@@ -25,8 +24,6 @@ public:
 	void InitialSquare(precision Xcenter,precision Ycenter, precision intensite);
 	void InitialCircle(precision Xcenter,precision Ycenter, precision intensite);
 	void InitialGauss(precision Xcenter,precision Ycenter, precision intensite);
-	void WriteGnuPlot(const string& nom) const;
-	void WriteVtk(const string& nom) const;
 };
 
 #define FILE_PARTICLE_HXX

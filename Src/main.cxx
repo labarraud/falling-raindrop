@@ -47,7 +47,7 @@ int main()
 		H=5;
 		Nx=200;
 		Ny=200;
-		Nt=5000;
+		Nt=10000;
 		cfl=0.4;
 
 		dx=L/Nx;
@@ -92,9 +92,9 @@ int main()
 
 
 		int nDisplay(100);
-		//string file = "scriptan.gnuplot";
-		//ofstream file_out(file.data());
-		//file_out.precision(15);
+//		string file = "scriptan.gnuplot";
+//		ofstream file_out(file.data());
+//		file_out.precision(15);
 		string var,var2;
 		for(int i=0; i<Nt ; i++)
 		{
@@ -103,14 +103,14 @@ int main()
 			if((i%nDisplay)==0) {
 				var=(i/nDisplay < 10 ? "0" : "");
 				var2=(i/nDisplay < 100 ? "0" : "");
-				//file_out << "set terminal postscript eps enhanced color" << endl;
-				//file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
-				//file_out << "set pm3d map" << endl;
-				//file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;
+//				file_out << "set terminal postscript eps enhanced color" << endl;
+//				file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
+//				file_out << "set pm3d map" << endl;
+//				file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;
+//
+//				(static_cast<const Density&>(timescheme.GetIterate())).WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 
-				//static_cast<const Density&>(timescheme.GetIterate()).WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
-
-				(static_cast<const Density&>(timescheme.GetIterate())).WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
+				timescheme.GetIterate().WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
 			}
 
 		}
@@ -145,10 +145,10 @@ int main()
 				n.Setn(timescheme2.GetIterate());
 				n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 			}
-		}
-		 file_out.close();*/
+		}*/
+//		 file_out.close();
 		//n.Setn(timescheme.GetIterate());
-		//n.WriteGnuPlot("particlefinal.dat");
+		n.WriteGnuPlot("particlefinal.dat");
 
 		return 0;
 }

@@ -67,7 +67,6 @@ LowStorageRungeKuttaIterator::LowStorageRungeKuttaIterator()
   dt = 0;
 }
 
-
 //! libere la memoire utilisee
 void LowStorageRungeKuttaIterator::Clear()
 {

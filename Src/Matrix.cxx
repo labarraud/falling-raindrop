@@ -179,6 +179,49 @@ precision Matrix::distnorme2(const Matrix& m)
 	return sqrt(var);
 }
 
+void Matrix::WriteGnuPlot(const string& nom) const
+	{
+		ofstream file_out(nom.data());
+		file_out.precision(15);
+	//	double x,y;
+		for (int i = 0; i < N; i++)
+			{
+			for (int j=0; j<M;j++)
+			{
+				file_out << (*this)(i,j)<< " ";
+			}
+				file_out << "\n";
+		  }
+		  file_out.close();
+	}
+
+
+
+
+void Matrix::WriteVtk(const string& nom, precision dx, precision dy) const
+	{
+		  ofstream file_out(nom.data());
+		  file_out << "# vtk DataFile Version 2.0\n";
+		  file_out << "Titre\n";
+		  file_out << "ASCII\n";
+		  file_out << "DATASET STRUCTURED_POINTS\n";
+		  file_out << "DIMENSIONS " << M << " " << N << " 1\n";
+		  file_out << "ORIGIN 0.0 0.0 0.0\n";
+		  file_out << "SPACING " << dx << " " << dy << " 0.0\n";
+		  file_out << "POINT_DATA " << (M*N) << " \n";
+		  file_out << "SCALARS rho float\n";
+		  file_out << "LOOKUP_TABLE default";
+		  for (int i = 0; i < N; i++) {
+			for (int j=0; j<M;j++) {
+			  	if((j%10)==0) {
+			  		file_out << '\n';
+			  	}
+				file_out << (*this)(i,j) << ' ';
+			}
+		  }
+		  file_out.close();
+	}
+
 void Matrix::Mat2Vec(vector<precision>& out) const
 {
 	out.resize(N*M);

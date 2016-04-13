@@ -6,6 +6,8 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -31,6 +33,8 @@ class Matrix
 		precision distnorme2(const Matrix&);
 		void Mat2Vec(vector<precision>& out) const;
 		void Vec2Mat(const vector<precision>& in);
+		void WriteGnuPlot(const string& nom) const;
+		void WriteVtk(const string& nom, precision dx, precision dy) const;
 
 	protected:
 		int N,M;
