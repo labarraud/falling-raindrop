@@ -21,8 +21,9 @@ class NavierStokes : public VirtualOdeSystem
 {
 public:
 	NavierStokes();
-	NavierStokes(int _Nx,int _Ny,int _Nt,precision _L,precision _H,precision tfinal,Velocity& _v,const Matrix& _p,Density& _rho);
-	virtual void SetInitialCondition(int _Nx,int _Ny,int _Nt,precision _L,precision _H,precision tfinal,Velocity& _v,const Matrix& _p,Density& _rho);
+	NavierStokes(int _Nx,int _Ny,int _Nt,precision _L,precision _H,precision tfinal,Velocity& _v,Density& _rho,const Matrix& _p);
+	void SetPressure(const Matrix& _p);
+	virtual void SetInitialCondition(int _Nx,int _Ny,int _Nt,precision _L,precision _H,precision tfinal,Velocity& _v,Density& _rho);
 	void WriteVtk(const string& nom) const;
 	void SolveLaplacianP();
 	void Advance(int n, double tn);
@@ -34,10 +35,14 @@ public:
 	precision p_bord_gauche(int i,int j) const;
 	precision p_bord_haut(int i,int j) const;
 	precision p_bord_bas(int i,int j) const;
-	precision v_bord_droit(int i,int j, const Matrix& u) const;
-	precision v_bord_gauche(int i,int j, const Matrix& u) const;
-	precision v_bord_haut(int i,int j, const Matrix& u) const;
-	precision v_bord_bas(int i,int j, const Matrix& u) const;
+	precision vx_bord_droit(int i,int j, const Matrix& u) const;
+	precision vx_bord_gauche(int i,int j, const Matrix& u) const;
+	precision vx_bord_haut(int i,int j, const Matrix& u) const;
+	precision vx_bord_bas(int i,int j, const Matrix& u) const;
+	precision vy_bord_droit(int i,int j, const Matrix& u) const;
+	precision vy_bord_gauche(int i,int j, const Matrix& u) const;
+	precision vy_bord_haut(int i,int j, const Matrix& u) const;
+	precision vy_bord_bas(int i,int j, const Matrix& u) const;
 private:
 	Velocity v;
 	Density rho; // masse volumique
@@ -52,6 +57,7 @@ private:
 	int Nx, Ny, Nt;
 	precision L,H,dx,dy,dt,nu,g;
 	LowStorageRungeKuttaIterator timescheme_x, timescheme_y;
+	bool vx;
 };
 
 void GradConjLaplacian(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b);

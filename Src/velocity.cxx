@@ -14,8 +14,8 @@ Velocity::Velocity(int Nx,int Ny,double L,double H)
 		this->Nx=Nx;
 		this->Ny=Ny;
 
-		this->VX.Reallocate(Nx+1,Ny+1);
-		this->VY.Reallocate(Nx+1,Ny+1);
+		this->VX.Reallocate(Ny+1,Nx+1);
+		this->VY.Reallocate(Ny+1,Nx+1);
 
 		this->L=L;
 		this->H=H;
@@ -104,9 +104,9 @@ precision Velocity::GetVY(int i,int j) const
 precision Velocity::max()
 {
 	double max= abs(VX(0,0));
-	for(int i =0; i<Nx ; i++)
+	for(int i =0; i<Ny+1 ; i++)
 	{	
-		for(int j =0; j<Ny ; j++)
+		for(int j =0; j<Nx+1 ; j++)
 		{
 			if(abs(VX(i,j)) > max) {
 				max = abs(VX(i,j));

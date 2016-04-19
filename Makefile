@@ -9,6 +9,9 @@ LIBDIR=Object
 # options en mode optimise
 OPTIM_FLAG = -O3 -std=c++11 -Wall -Woverloaded-virtual
 
+# options en mode debug
+DEBUG_FLAG = -g -std=c++11 -Wall -Woverloaded-virtual
+
 LINKER   = g++ -o
 
 CFLAGS   = -std=c++11 -Wall -I.
@@ -25,6 +28,10 @@ rm       = rm -f
 optim :	$(OBJECTS)
 	$(LINKER) $(BIN) $(OPTIM_FLAG) $(OBJECTS)
 	@echo "Linking optimum complete!"
+
+debug : $(OBJECTS)
+	$(LINKER) $(BIN) $(DEBUG_FLAG) $(OBJECTS)
+	@echo "Linking debug complete!"
 
 $(BIN): $(OBJECTS)
 	$(LINKER) $(BIN) $(LFLAGS) $(OBJECTS)

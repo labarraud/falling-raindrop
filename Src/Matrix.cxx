@@ -101,11 +101,17 @@ void Matrix::Clear()
 
 precision& Matrix::operator()(int i, int j)
 {
+	if(i>=N || j>= M) {
+		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
+	}
 	return val[(unsigned)i][(unsigned)j];
 }
 
 const precision& Matrix::operator()(int i, int j) const
 {
+	if(i>=N || j>= M) {
+		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
+	}
 	return val[(unsigned)i][(unsigned)j];
 }
 
@@ -147,9 +153,9 @@ ostream& operator<<(ostream& out, const Matrix& m)
 
 Matrix operator*(precision a, const Matrix& m)
 {
-	Matrix var(m.GetM(),m.GetN());
 	int N = m.GetN();
 	int M = m.GetM();
+	Matrix var(N,M);
 	for(int i(0); i < N; ++i) {
 		for (int j(0); j<M; ++j)
 			var(i,j) = a*m(i,j);

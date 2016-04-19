@@ -7,6 +7,7 @@
 #include "../Include/DiffusionConvectionProblem.hxx"
 #include "../Include/spacescheme.hxx"
 #include "../Include/TimeScheme.hxx"
+#include "../Include/NavierStokes.hxx"
 
 
 
@@ -43,11 +44,11 @@ int main()
 	precision dx,dy,dt,L,H,tn,tfinal,cfl, D;
 		int Nx,Ny,Nt;
 
-		L=5;
-		H=5;
-		Nx=200;
-		Ny=200;
-		Nt=10000;
+		L=10;
+		H=0.5;
+		Nx=1000;
+		Ny=50;
+		Nt=40000;
 		cfl=0.4;
 
 		dx=L/Nx;
@@ -56,15 +57,16 @@ int main()
 
 
 		Velocity v(Nx,Ny,L,H);
-		v.ChampsCirculaire(L/2.0,H/2, 5.0);
-		//v.ChampsUniformeVx(50.0);
+		//v.ChampsCirculaire(L/2.0,H/2, 10.0);
+		//v.ChampsUniformeVx(10.0);
 		//v.ChampsUniforme(-0.5);
-		v.WriteGnuPlot("velocity.dat");
+		//v.WriteGnuPlot("velocity.dat");
 		// plot "velocity.dat" u 1:2:3:4 w vec
 		cout << "velocity initialise!" << endl;
 		//CFL
-		dt=((max(dx,dy)*max(dx,dy)*cfl)/v.max());
-		//dt=((max(dx,dy)*max(dx,dy)*cfl)/D);
+		//dt=((max(dx,dy)*max(dx,dy)*cfl)/v.max());
+		dt=(max(dx,dy)*max(dx,dy)*cfl)*2.0; // vmax = 1
+		cout << "dt = " << dt << endl;
 		tfinal=Nt*dt;
 		cout << "Vmax = " << v.max() << endl;
 
@@ -72,23 +74,34 @@ int main()
 
 		Density n(Nx,Ny,L,H);
 		//n.InitialSquare(L/3.0,H/3.0,0.5);
-		n.InitialCircle(L/3.0,H/3.0,0.25);
-		//n.InitialGauss(L/3.0,H/3.0,0.5);
-		cout << "Particule initialise" << endl;
-		n.WriteGnuPlot("particleinit.dat");
+		//n.InitialCircle(L/3.0,H/3.0,0.25);
+		//n.InitialGauss(L/4.0,H/2.0,0.001);
+		//cout << "Particule initialise" << endl;
+		//n.WriteGnuPlot("particleinit.dat");
 
 		//UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 		//UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 		//UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
-		UpwindDCOrder4 test1(Nx,Ny,Nt,L,H,tfinal,v,D,n);
+		//UpwindDCOrder4 test1(Nx,Ny,Nt,L,H,tfinal,v,D,n);
 		//LaxWendroff test1(Nx,Ny,Nt,L,H,tfinal,v,n);
 
 
-		LowStorageRungeKuttaIterator timescheme;
+		//LowStorageRungeKuttaIterator timescheme;
 		//ExplicitEulerIterator timescheme;
-		timescheme.SetInitialCondition(0,dt,test1.GetP(),test1);
+		//timescheme.SetInitialCondition(0,dt,test1.GetP(),test1);
 
 
+		Matrix zero(Ny+1,Nx+1), p;
+		for(int i(0); i < Ny+1; ++i) {
+			for(int j(0); j < Nx+1; ++j) {
+				zero(i,j) = 0.0;
+				n(i,j) = 1500.0;
+			}
+		}
+		p = zero;
+		v.SetAllVX(zero);
+		v.SetAllVY(zero);
+		NavierStokes ns(Nx,Ny,Nt,L,H,tfinal,v,n,p);
 
 
 		int nDisplay(100);
@@ -99,7 +112,8 @@ int main()
 		for(int i=0; i<Nt ; i++)
 		{
 			tn=i*dt;
-			timescheme.Advance(i, tn, test1);
+			//timescheme.Advance(i, tn, test1);
+			ns.Advance(i, tn);
 			if((i%nDisplay)==0) {
 				var=(i/nDisplay < 10 ? "0" : "");
 				var2=(i/nDisplay < 100 ? "0" : "");
@@ -110,7 +124,9 @@ int main()
 //
 //				(static_cast<const Density&>(timescheme.GetIterate())).WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 
-				timescheme.GetIterate().WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
+				//timescheme.GetIterate().WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
+
+				ns.WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
 			}
 
 		}
@@ -148,7 +164,9 @@ int main()
 		}*/
 //		 file_out.close();
 		//n.Setn(timescheme.GetIterate());
-		n.WriteGnuPlot("particlefinal.dat");
+		//n.WriteGnuPlot("particlefinal.dat");
 
+
+		cout << "Fin programme" << endl;
 		return 0;
 }
