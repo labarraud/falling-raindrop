@@ -90,12 +90,12 @@ int main()
 		//ExplicitEulerIterator timescheme;
 		//timescheme.SetInitialCondition(0,dt,test1.GetP(),test1);
 
-
+		precision rho_sea(1032.0), rho_fresh(1000.0);
 		Matrix zero(Ny+1,Nx+1), p;
 		for(int i(0); i < Ny+1; ++i) {
 			for(int j(0); j < Nx+1; ++j) {
 				zero(i,j) = 0.0;
-				n(i,j) = 1500.0;
+				n(i,j) = rho_sea;
 			}
 		}
 		p = zero;
