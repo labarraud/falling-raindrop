@@ -12,6 +12,13 @@
 using namespace std;
 
 
+enum BoundaryCondition
+{
+	periodic,
+    dirichlet,
+    neumann,
+};
+
 class Matrix
 {
 	public:
@@ -25,6 +32,7 @@ class Matrix
 		void Reallocate(int _N);
 		void Reallocate(int _N,int _M);
 		void Clear();
+		void SetBoundaryCondition(BoundaryCondition bcX0,precision X0,BoundaryCondition bcXn,precision Xn, BoundaryCondition bcY0, precision Y0,BoundaryCondition bcYn, precision Yn);
 		precision norme2();
 		precision& operator()(int i, int j);
 		const precision& operator()(int i, int j) const;
@@ -39,6 +47,9 @@ class Matrix
 	protected:
 		int N,M;
 		vector<vector<precision> > val;
+		precision X0,Xn,Y0,Yn;
+		BoundaryCondition bcX0,bcXn,bcY0,bcYn;
+
 };
 
 ostream& operator<<(ostream& out, const Matrix& m);

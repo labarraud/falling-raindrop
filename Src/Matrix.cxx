@@ -5,7 +5,7 @@
 //test
 
 Matrix::Matrix()
-	:	N(0),M(0)
+	:	N(0),M(0),X0(0),Xn(0),Y0(0),Yn(0),bcX0(periodic),bcXn(periodic),bcY0(periodic),bcYn(periodic)
 { }
 
 Matrix::Matrix(const Matrix& m)
@@ -19,10 +19,20 @@ Matrix::Matrix(const Matrix& m)
 				(*this)(i,j) = m(i,j);
 		}
 	}
+
+	this->X0=m.X0;
+	this->Xn=m.Xn;
+	this->Y0=m.Y0;
+	this->Yn=m.Yn;
+
+	this->bcX0=m.bcX0;
+	this->bcXn=m.bcXn;
+	this->bcY0=m.bcY0;
+	this->bcYn=m.bcYn;
 }
 
 Matrix::Matrix(int _N, int _M)
-:	N(_N),M(_M)
+:	N(_N),M(_M),X0(0),Xn(0),Y0(0),Yn(0),bcX0(periodic),bcXn(periodic),bcY0(periodic),bcYn(periodic)
 {
 	val.resize(N);
 	for(int i(0); i < N; ++i) {
@@ -34,7 +44,7 @@ Matrix::Matrix(int _N, int _M)
 }
 
 Matrix::Matrix(int _N)
-	:	N(_N),M(_N)
+	:	N(_N),M(_N),X0(0),Xn(0),Y0(0),Yn(0),bcX0(periodic),bcXn(periodic),bcY0(periodic),bcYn(periodic)
 {
 	val.resize(N);
 		for(int i(0); i < N; ++i) {
@@ -43,6 +53,7 @@ Matrix::Matrix(int _N)
 					(*this)(i,j) = 0;
 			}
 	}
+
 }
 
 int Matrix::GetN() const
@@ -64,6 +75,19 @@ void Matrix::Zero()
 	}
 }
 
+void Matrix::SetBoundaryCondition(BoundaryCondition bcXO,precision X0,BoundaryCondition bcXn,precision Xn, BoundaryCondition bcYO, precision Y0,BoundaryCondition bcYn, precision Yn)
+{
+	this->X0=X0;
+	this->Xn=Xn;
+	this->Y0=Y0;
+	this->Yn=Yn;
+
+	this->bcX0=bcX0;
+	this->bcXn=bcXn;
+	this->bcY0=bcY0;
+	this->bcYn=bcYn;
+
+}
 
 void Matrix::Reallocate(int _N)
 {
@@ -101,14 +125,21 @@ void Matrix::Clear()
 
 precision& Matrix::operator()(int i, int j)
 {
+
 	if(i>=N || j>= M) {
 		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
 	}
 	return val[(unsigned)i][(unsigned)j];
+
+
 }
 
 const precision& Matrix::operator()(int i, int j) const
 {
+
+
+
+
 	if(i>=N || j>= M) {
 		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
 	}
