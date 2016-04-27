@@ -1,6 +1,9 @@
 #ifndef MATRIX_CXX
 #define MATRIX_CXX
 
+#include <iostream>
+#include <string>
+#include <cmath>
 #include "../Include/Matrix.hxx"
 //test
 
@@ -11,7 +14,7 @@ Matrix::Matrix()
 Matrix::Matrix(const Matrix& m)
 	:	N(m.GetN()),M(m.GetM())
 {
-	val.resize(N);
+	val.resize((unsigned)N);
 	for(int i(0); i < N; ++i) {
 		val[(unsigned)i].resize((unsigned)M);
 		for(int j(0); j < M; ++j) {
@@ -34,7 +37,7 @@ Matrix::Matrix(const Matrix& m)
 Matrix::Matrix(int _N, int _M)
 :	N(_N),M(_M),X0(0),Xn(0),Y0(0),Yn(0),bcX0(periodic),bcXn(periodic),bcY0(periodic),bcYn(periodic)
 {
-	val.resize(N);
+	val.resize((unsigned)N);
 	for(int i(0); i < N; ++i) {
 		val[(unsigned)i].resize((unsigned)M);
 		for(int j(0); j < M; ++j) {
@@ -126,24 +129,127 @@ void Matrix::Clear()
 precision& Matrix::operator()(int i, int j)
 {
 
-	if(i>=N || j>= M) {
+	if(i>N || j>M) {
 		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
 	}
 	return val[(unsigned)i][(unsigned)j];
-
 
 }
 
-const precision& Matrix::operator()(int i, int j) const
+
+
+const precision Matrix::bottom(int i, int j) const
+{
+	int ivar=i, jvar=j;
+	switch (this->bcY0)
+	{
+		case periodic:
+			ivar=N+i;
+			if (j<0)
+				jvar=M+j;
+			else if (j>N)
+				jvar=j%M;
+			return val[(unsigned)ivar][(unsigned)jvar];
+			break;
+		case dirichlet:
+			return this->Y0;
+			break;
+		case neumann:
+			cout << "neumann bottom not define"<< endl;
+			return 0;
+			break;
+	}
+	return 0;
+}
+
+const precision Matrix::top(int i, int j) const
+{
+	int ivar=i, jvar=j;
+
+	switch (this->bcYn)
+	{
+		case periodic:
+			ivar=i%N;
+			if (j<0)
+				jvar=M+j;
+			else if (j>N)
+				jvar=j%M;
+			return val[(unsigned)ivar][(unsigned)jvar];
+			break;
+		case dirichlet:
+			return this->Yn;
+			break;
+		case neumann:
+			cout << "neumann top not define"<< endl;
+			return 0;
+			break;
+	}
+	return 0;
+}
+
+
+const precision Matrix::left(int i, int j) const
+{
+	int ivar, jvar;
+
+	switch (this->bcX0)
+	{
+		case periodic:
+			ivar=i;
+			jvar=M+j;
+			return val[(unsigned)ivar][(unsigned)jvar];
+			break;
+		case dirichlet:
+			return this->X0;
+			break;
+		case neumann:
+			cout << "neumann left not define"<< endl;
+			return 0;
+			break;
+	}
+	return 0;
+}
+
+const precision Matrix::right(int i, int j) const
+{
+	int ivar, jvar;
+
+	switch (this->bcXn)
+	{
+		case periodic:
+			ivar=i;
+			jvar=j%M;
+			return val[(unsigned)ivar][(unsigned)jvar];
+			break;
+		case dirichlet:
+			return this->Xn;
+			break;
+		case neumann:
+			cout << "neumann right not define"<< endl;
+			return 0;
+			break;
+	}
+	return 0;
+}
+
+
+const precision Matrix::operator()(int i, int j) const
 {
 
+		if(i < 0) {
+			return bottom(i,j);
+		} else if(i >= N) {
+			return top(i,j);
+		} else if(j < 0) {
+			return left(i,j);
+		} else if(j >= M) {
+			return right(i,j);
+		} else {
+			return val[(unsigned)i][(unsigned)j];
+		}
 
 
 
-	if(i>=N || j>= M) {
-		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
-	}
-	return val[(unsigned)i][(unsigned)j];
 }
 
 Matrix& Matrix::operator=(const Matrix& m)

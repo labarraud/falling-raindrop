@@ -35,7 +35,11 @@ class Matrix
 		void SetBoundaryCondition(BoundaryCondition bcX0,precision X0,BoundaryCondition bcXn,precision Xn, BoundaryCondition bcY0, precision Y0,BoundaryCondition bcYn, precision Yn);
 		precision norme2();
 		precision& operator()(int i, int j);
-		const precision& operator()(int i, int j) const;
+		const precision operator()(int i, int j) const;
+		const precision bottom(int i, int j) const;
+		const precision top(int i, int j) const;
+		const precision right(int i, int j) const;
+		const precision left(int i, int j) const;
 		Matrix& operator=(const Matrix& m);
 		Matrix operator+(const Matrix&);
 		precision distnorme2(const Matrix&);

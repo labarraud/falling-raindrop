@@ -11,7 +11,7 @@ Density::Density()
 {}
 
 Density::Density(int Nx,int Ny,double L,double H)
-	:	Matrix(Ny+1, Nx+1)
+	:	Matrix(Ny, Nx)
 	{
 		this->L=L;
 		this->H=H;
