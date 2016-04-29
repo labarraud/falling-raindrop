@@ -132,6 +132,19 @@ void Velocity::ChampsUniformeVx(double intensite)
 
 }
 
+void Velocity::ChampsUniformeVy(double intensite)
+{
+			for (int i=0; i<Ny+1;i++)
+			{
+				for (int j=0; j<Nx+1;j++)
+				{
+					VX(i,j) = 0;
+					VY(i,j) = intensite;
+				}
+			}
+
+}
+
 void Velocity::ChampsUniforme(double intensite)
 {
 			for (int i=0; i<Ny+1;i++)

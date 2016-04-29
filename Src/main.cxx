@@ -1,5 +1,4 @@
 #include <string>
-#include <iostream>
 
 #include "../Include/Matrix.hxx"
 #include "../Include/velocity.hxx"
@@ -9,164 +8,188 @@
 #include "../Include/TimeScheme.hxx"
 #include "../Include/NavierStokes.hxx"
 
+void testrotateDC()
+{
+
+	precision dx,dy,dt,L,H,tn,tfinal,cfl;
+	int Nx,Ny,Nt;
+
+	L=10;
+	H=10;
+	Nx=100;
+	Ny=100;
+	Nt=20000;
+	cfl=	0.4;
+
+	dx=L/Nx;
+	dy=H/Ny;
+
+
+	Velocity v(Nx,Ny,L,H);
+	//v.ChampsCirculaire(L/2.0,H/2, 5.0);
+	v.ChampsUniformeVx(-1.0);
+	//v.ChampsUniforme(-0.5);
+	v.WriteGnuPlot("velocity.dat");
+	// plot "velocity.dat" u 1:2:3:4 w vec
+		cout << "velocity initialise!" << endl;
+	//CFL
+			dt=((max(dx,dy)*max(dx,dy)*cfl)/v.max());
+			tfinal=Nt*dt;
+			cout << "Vmax = " << v.max() << endl;
+
+
+
+			Density n(Nx,Ny,L,H);
+			//n.InitialSquare(L/3.0,H/3.0,0.5);
+			n.InitialCircle(L/3.0,H/3.0,0.5);
+			//n.InitialGauss(L/3.0,H/3.0,0.5);
+			cout << "Particule initialise" << endl;
+			n.WriteGnuPlot("particleinit.dat");
+
+			//UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+			//UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+			//UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+			LaxWendroff test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+
+
+			LowStorageRungeKuttaIterator timescheme;
+			//ExplicitEulerIterator timescheme;
+			timescheme.SetInitialCondition(0,dt,test1.GetP(),test1);
+
+
+
+
+			int nDisplay(100);
+			/*string file = "scriptan.gnuplot";
+			ofstream file_out(file.data());
+			file_out.precision(15);*/
+			string var,var2;
+			for(int i=0; i<Nt ; i++)
+			{
+				tn=i*dt;
+				timescheme.Advance(i, tn, test1);
+				if((i%nDisplay)==0) {
+					var=(i/nDisplay < 10 ? "0" : "");
+					var2=(i/nDisplay < 100 ? "0" : "");
+					/*file_out << "set terminal postscript eps enhanced color" << endl;
+					file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
+					file_out << "set pm3d map" << endl;
+					file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;*/
+
+
+					//n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
+
+					timescheme.GetIterate().WriteVtk("vtk" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
+				}
+
+			}
+		}
+
+
+
+void testrotatedirDC()
+{
+	precision dx,dy,dt,L,H,tn,tfinal,cfl;
+	int Nx,Ny,Nt;
+
+	L=10;
+	H=10;
+	Nx=100;
+	Ny=100;
+	Nt=20000;
+	cfl=	0.4;
+
+	dx=L/Nx;
+	dy=H/Ny;
+
+
+	Velocity v(Nx,Ny,L,H);
+	//v.ChampsCirculaire(L/2.0,H/2, 5.0);
+	v.ChampsUniformeVx(-1.0);
+	//v.ChampsUniforme(-0.5);
+	v.WriteGnuPlot("velocity.dat");
+	// plot "velocity.dat" u 1:2:3:4 w vec
+		cout << "velocity initialise!" << endl;
+	//CFL
+			dt=((max(dx,dy)*max(dx,dy)*cfl)/v.max());
+			tfinal=Nt*dt;
+			cout << "Vmax = " << v.max() << endl;
+
+
+
+			Density n(Nx,Ny,L,H);
+			//n.InitialSquare(L/3.0,H/3.0,0.5);
+			n.InitialCircle(L/3.0,H/3.0,0.5);
+			n.SetBoundaryCondition(dirichlet,0,dirichlet,0,periodic,0,periodic,0);
+			//n.InitialGauss(L/3.0,H/3.0,0.5);
+			cout << "Particule initialise" << endl;
+			n.WriteGnuPlot("particleinit.dat");
+
+			UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+			//UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+			//UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+			//LaxWendroff test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+
+
+			LowStorageRungeKuttaIterator timescheme;
+			//ExplicitEulerIterator timescheme;
+			timescheme.SetInitialCondition(0,dt,test1.GetP(),test1);
+
+
+
+
+			int nDisplay(100);
+			/*string file = "scriptan.gnuplot";
+			ofstream file_out(file.data());
+			file_out.precision(15);*/
+			string var,var2;
+			for(int i=0; i<Nt ; i++)
+			{
+				tn=i*dt;
+				timescheme.Advance(i, tn, test1);
+				if((i%nDisplay)==0) {
+					var=(i/nDisplay < 10 ? "0" : "");
+					var2=(i/nDisplay < 100 ? "0" : "");
+					/*file_out << "set terminal postscript eps enhanced color" << endl;
+					file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
+					file_out << "set pm3d map" << endl;
+					file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;*/
+
+
+					//n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
+
+					timescheme.GetIterate().WriteVtk("vtkdirichlet/vtk" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
+				}
+
+			}
+		}
+
+
 
 
 
 int main()
 {
+
 /*
-	  //-----------experimental order -------------
-
-		precision mindxy,hdxy,maxdxy,cfl,tmaxdemi,omega;
-
-		UpwindDCtest1 ode1;
-		UpwindDCOrder2 ode2;
-		UpwindDCOrder3 ode3;
-		UpwindDCOrder4 ode4;
-		LaxWendroff odeW;
-
-		LowStorageRungeKuttaIterator time;
-
-		mindxy=0.01;
-		hdxy=0.01;
-		maxdxy=0.1;
-		cfl=0.1;
-		tmaxdemi=1;
-		omega=5.0;
-
-		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode1, time, "error_upwind1.dat");
-		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode2, time, "error_upwind2.dat");
-		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode3, time, "error_upwind3.dat");
-		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, odeW, time, "error_wendroff.dat");
-		error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode4, time, "error_upwind4.dat");
-
+  //-----------experimental order -------------
+	precision mindxy,hdxy,maxdxy,cfl,tmaxdemi,omega;
+	UpwindDCtest1 ode;
+	LowStorageRungeKuttaIterator time;
+	mindxy=0.0015;
+	hdxy=0.005;
+	maxdxy=0.09;
+	cfl=1;
+	tmaxdemi=1;
+	omega=5.0;
+	error_orderxy_circle(mindxy,hdxy,maxdxy,cfl , tmaxdemi,omega, ode, time, "error_upwind1.dat");
 */
-	precision dx,dy,dt,L,H,tn,tfinal,cfl, D;
-		int Nx,Ny,Nt;
-
-		L=10;
-		H=0.5;
-		Nx=1000;
-		Ny=50;
-		Nt=40000;
-		cfl=0.4;
-
-		dx=L/Nx;
-		dy=H/Ny;
-		D = 0.0018;
-
-
-		Velocity v(Nx,Ny,L,H);
-		//v.ChampsCirculaire(L/2.0,H/2, 10.0);
-		//v.ChampsUniformeVx(10.0);
-		//v.ChampsUniforme(-0.5);
-		//v.WriteGnuPlot("velocity.dat");
-		// plot "velocity.dat" u 1:2:3:4 w vec
-		cout << "velocity initialise!" << endl;
-		//CFL
-		//dt=((max(dx,dy)*max(dx,dy)*cfl)/v.max());
-		dt=(max(dx,dy)*max(dx,dy)*cfl)*2.0; // vmax = 1
-		cout << "dt = " << dt << endl;
-		tfinal=Nt*dt;
-		cout << "Vmax = " << v.max() << endl;
 
 
 
-		Density n(Nx,Ny,L,H);
-		//n.InitialSquare(L/3.0,H/3.0,0.5);
-		//n.InitialCircle(L/3.0,H/3.0,0.25);
-		//n.InitialGauss(L/4.0,H/2.0,0.001);
-		//cout << "Particule initialise" << endl;
-		//n.WriteGnuPlot("particleinit.dat");
-
-		//UpwindDCtest1 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
-		//UpwindDCOrder2 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
-		//UpwindDCOrder3 test1(Nx,Ny,Nt,L,H,tfinal,v,n);
-		//UpwindDCOrder4 test1(Nx,Ny,Nt,L,H,tfinal,v,D,n);
-		//LaxWendroff test1(Nx,Ny,Nt,L,H,tfinal,v,n);
+	testrotateDC();
+	//testrotatedirDC();
 
 
-		//LowStorageRungeKuttaIterator timescheme;
-		//ExplicitEulerIterator timescheme;
-		//timescheme.SetInitialCondition(0,dt,test1.GetP(),test1);
-
-		precision rho_sea(1032.0), rho_fresh(1000.0);
-		Matrix zero(Ny+1,Nx+1), p;
-		for(int i(0); i < Ny+1; ++i) {
-			for(int j(0); j < Nx+1; ++j) {
-				zero(i,j) = 0.0;
-				n(i,j) = rho_sea;
-			}
-		}
-		p = zero;
-		v.SetAllVX(zero);
-		v.SetAllVY(zero);
-		NavierStokes ns(Nx,Ny,Nt,L,H,tfinal,v,n,p);
-
-
-		int nDisplay(100);
-//		string file = "scriptan.gnuplot";
-//		ofstream file_out(file.data());
-//		file_out.precision(15);
-		string var,var2;
-		for(int i=0; i<Nt ; i++)
-		{
-			tn=i*dt;
-			//timescheme.Advance(i, tn, test1);
-			ns.Advance(i, tn);
-			if((i%nDisplay)==0) {
-				var=(i/nDisplay < 10 ? "0" : "");
-				var2=(i/nDisplay < 100 ? "0" : "");
-//				file_out << "set terminal postscript eps enhanced color" << endl;
-//				file_out << "set output '" << ("animate/particle" + var + var2 + to_string(i/nDisplay) + ".eps'") << endl;
-//				file_out << "set pm3d map" << endl;
-//				file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;
-//
-//				(static_cast<const Density&>(timescheme.GetIterate())).WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
-
-				//timescheme.GetIterate().WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
-
-				ns.WriteVtk("vtk/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
-			}
-
-		}
-
-		/*
-		Velocity v2(Nx,Ny,L,H);
-		v2.ChampsCirculaire(L/2.0,H/2, -5.0);
-		//v.ChampsUniformeVx(-1.0);
-		//v.ChampsUniforme(-0.5);
-		v2.WriteGnuPlot("velocity.dat");
-		// plot "velocity.dat" u 1:2:3:4 w vec
-		cout << "velocity initialise!" << endl;
-		//CFL
-		dt=(dx/v.max());
-		cout << "Vmax = " << v2.max() << endl;
-
-		UpwindDCtest1 test2(Nx,Ny,Nt,L,H,tfinal,v2,n);
-		//LowStorageRungeKuttaIterator timescheme;
-		ExplicitEulerIterator timescheme2;
-		timescheme2.SetInitialCondition(0,dt,test2.GetP().Getn(),test2);
-		for(int i=Nt; i<2*Nt ; i++)
-		{
-			tn=i*dt;
-			timescheme2.Advance(i, tn, test2);
-			if((i%nDisplay)==0) {
-				var=(i/nDisplay < 10 ? "0" : "");
-				var2=(i/nDisplay < 100 ? "0" : "");
-				file_out << "set terminal postscript eps enhanced color" << endl;
-				file_out << "set output '" << ("animate/particle" + var + var + to_string(i/nDisplay) + ".eps'") << endl;
-				file_out << "set pm3d map" << endl;
-				file_out << ("splot 'animate/particle" + to_string(i/nDisplay) + ".dat' matrix") << endl  << endl;
-				n.Setn(timescheme2.GetIterate());
-				n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
-			}
-		}*/
-//		 file_out.close();
-		//n.Setn(timescheme.GetIterate());
-		//n.WriteGnuPlot("particlefinal.dat");
-
-
-		cout << "Fin programme" << endl;
 		return 0;
 }

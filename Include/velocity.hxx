@@ -29,6 +29,7 @@ public:
 	Velocity(int Nx,int Ny,precision L,precision H);
 	void ChampsCirculaire(precision Xcenter,precision Ycenter, precision intensite);
 	void ChampsUniformeVx(precision intensite);
+	void ChampsUniformeVy(precision intensite);
 	void ChampsUniforme(precision intensite);
 	void WriteGnuPlot(const string& nom);
 	Matrix& GetAllVX();

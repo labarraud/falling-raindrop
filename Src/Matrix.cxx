@@ -78,7 +78,7 @@ void Matrix::Zero()
 	}
 }
 
-void Matrix::SetBoundaryCondition(BoundaryCondition bcXO,precision X0,BoundaryCondition bcXn,precision Xn, BoundaryCondition bcYO, precision Y0,BoundaryCondition bcYn, precision Yn)
+void Matrix::SetBoundaryCondition(BoundaryCondition bcX0,precision X0,BoundaryCondition bcXn,precision Xn, BoundaryCondition bcY0, precision Y0,BoundaryCondition bcYn, precision Yn)
 {
 	this->X0=X0;
 	this->Xn=Xn;
@@ -91,6 +91,17 @@ void Matrix::SetBoundaryCondition(BoundaryCondition bcXO,precision X0,BoundaryCo
 	this->bcYn=bcYn;
 
 }
+
+BoundaryCondition const Matrix::getbcX0() const { return bcX0; }
+BoundaryCondition const Matrix::getbcXn() const { return bcXn; }
+BoundaryCondition const Matrix::getbcY0() const { return bcY0; }
+BoundaryCondition const Matrix::getbcYn() const { return bcYn; }
+precision const Matrix::getX0() const { return X0; }
+precision const Matrix::getXn() const { return Xn; }
+precision const Matrix::getY0() const { return Y0; }
+precision const Matrix::getYn() const { return Yn; }
+
+
 
 void Matrix::Reallocate(int _N)
 {
@@ -256,6 +267,17 @@ Matrix& Matrix::operator=(const Matrix& m)
 {
 	N = m.GetN();
 	M = m.GetM();
+
+	this->X0=m.X0;
+	this->Xn=m.Xn;
+	this->Y0=m.Y0;
+	this->Yn=m.Yn;
+
+	this->bcX0=m.bcX0;
+	this->bcXn=m.bcXn;
+	this->bcY0=m.bcY0;
+	this->bcYn=m.bcYn;
+	
 	this->val.resize(N);
 	for(int i(0); i < N; ++i) {
 	  val[(unsigned)i].resize(M);
@@ -272,6 +294,16 @@ Matrix Matrix::operator+(const Matrix& m)
 		for (int j(0); j<M; ++j)
 			var(i,j) = (*this)(i,j) + m(i,j);
 	}
+	var.X0=this->X0;
+	var.Xn=this->Xn;
+	var.Y0=this->Y0;
+	var.Yn=this->Yn;
+
+	var.bcX0=this->bcX0;
+	var.bcXn=this->bcXn;
+	var.bcY0=this->bcY0;
+	var.bcYn=this->bcYn;
+
 	return var;
 }
 
@@ -297,7 +329,11 @@ Matrix operator*(precision a, const Matrix& m)
 		for (int j(0); j<M; ++j)
 			var(i,j) = a*m(i,j);
 		}
+
+	var.SetBoundaryCondition(m.getbcX0(),m.getX0(),m.getbcXn(),m.getXn(), m.getbcY0(), m.getY0(),m.getbcYn(), m.getYn());
 	return var;
+
+
 }
 
 precision Matrix::norme2()

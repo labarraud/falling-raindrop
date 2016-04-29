@@ -32,6 +32,14 @@ class Matrix
 		void Reallocate(int _N);
 		void Reallocate(int _N,int _M);
 		void Clear();
+		const BoundaryCondition getbcX0()const;
+		const BoundaryCondition getbcXn()const;
+		const BoundaryCondition getbcY0()const;
+		const BoundaryCondition getbcYn()const;
+		const precision getX0()const;
+		const precision getXn()const;
+		const precision getY0()const;
+		const precision getYn() const;
 		void SetBoundaryCondition(BoundaryCondition bcX0,precision X0,BoundaryCondition bcXn,precision Xn, BoundaryCondition bcY0, precision Y0,BoundaryCondition bcYn, precision Yn);
 		precision norme2();
 		precision& operator()(int i, int j);
