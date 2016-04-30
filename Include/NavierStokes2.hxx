@@ -16,6 +16,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 class NavierStokes2 : public VirtualOdeSystem
 {
