@@ -96,7 +96,7 @@ void NavierStokes2::SolveLaplacianP()
 			sec_membre_p[Bij(i,j,M)] = rho(i,j)*(div[Bij(i,j,M)]+cond_bord_div_v[Bij(i,j,M)])/dt + cond_bord_p[Bij(i,j,M)];
 		}
 	}
-	GradConjLaplacian2(dx, dy, N, M, 1e-4, 20, p, sec_membre_p); // pression sous forme de vecteur
+	GradConjLaplacian2(dx, dy, N, M, 1e-9, l, p, sec_membre_p); // pression sous forme de vecteur
 }
 
 precision NavierStokes2::UpwindY(double dt, double b, int i, int j, const Matrix& u)
@@ -123,7 +123,7 @@ void NavierStokes2::AddFunction(precision alpha, const Matrix& u, precision t, M
 	precision a(dx*dx), b(dy*dy);
     for (int i=0; i<N; i++) {
     	for (int j=0; j<M; j++) {
-    		y(i,j) += SplittingX(alpha, v.GetVX(i,j), v.GetVY(i,j), i, j, u) - u(i,j)
+			y(i,j) += SplittingX(alpha, v.GetVX(i,j), v.GetVY(i,j), i, j, u) - u(i,j)
 						+ alpha*nu*(uij(i,j+1, u)-2.0*u(i,j)+uij(i,j-1, u))/a
 						+ alpha*nu*(uij(i+1,j, u)-2.0*u(i,j)+uij(i-1,j, u))/b
 						+ sec_membre[Bij(i,j,M)];
@@ -135,43 +135,22 @@ void NavierStokes2::Advance(int n, double tn)
 {
 	static bool firstIter(true);
 	int N(Ny+1), M(Nx+1);
-	precision a1(dx*dx), b1(dy*dy), a2(2.0*dx), b2(2.0*dy);
+	precision a1(dx*dx), b1(dy*dy), a2(2.0*dx), b2(2.0*dy), y;
 	// Actualisation des conditions aux bords (pour les conditions symétriques)
 	
-	vector<precision> gradpx(N*M), gradpy(N*M);
+	vector<precision> gradpx(N*M), gradpy(N*M), pgz(N*M);
 
 	if(firstIter) {
-		for(int i(0); i < N; ++i) {
-			for(int j(0); j < M; ++j) {
-				cond_bord_p[Bij(i,j,M)] = 0.0; // initialisation
-				cond_bord_div_v[Bij(i,j,M)] = 0.0;
-				cond_bord_gradx_p[Bij(i,j,M)] = 0.0;
-				cond_bord_grady_p[Bij(i,j,M)] = 0.0;
-			}
-			// Condition bords gauche et droite
-			cond_bord_gradx_p[Bij(i,0,M)] = -p_bord_gauche(i,-1,p)/a2;
-			cond_bord_gradx_p[Bij(i,Nx,M)] = p_bord_droit(i,M,p)/a2;
-		}
-		for(int j(0); j < M; ++j) {
-			// Condition bords haut et bas
-			cond_bord_grady_p[Bij(0,j,M)] = -p_bord_bas(-1,j,p)/b2;
-			cond_bord_grady_p[Bij(Ny,j,M)] = p_bord_haut(N,j,p)/b2;
-		}
 		firstIter = false;
 	} else {
 		for(int i(0); i < N; ++i) {
 			for(int j(0); j < M; ++j) {
 				cond_bord_p[Bij(i,j,M)] = 0.0; // initialisation
 				cond_bord_div_v[Bij(i,j,M)] = 0.0;
-				cond_bord_gradx_p[Bij(i,j,M)] = 0.0;
-				cond_bord_grady_p[Bij(i,j,M)] = 0.0;
 			}
 			// Condition bords gauche et droite
 			cond_bord_p[Bij(i,0,M)] = -p_bord_gauche(i,-1,p)/a1;
 			cond_bord_p[Bij(i,Nx,M)] = -p_bord_droit(i,M,p)/a1;
-
-			cond_bord_gradx_p[Bij(i,0,M)] = -p_bord_gauche(i,-1,p)/a2;
-			cond_bord_gradx_p[Bij(i,Nx,M)] = p_bord_droit(i,M,p)/a2;
 
 			cond_bord_div_v[Bij(i,0,M)] = -v_bord_gauche(i,-1,v.GetAllVX())/a2;
 			cond_bord_div_v[Bij(i,Nx,M)] = v_bord_droit(i,M,v.GetAllVX())/a2;
@@ -181,20 +160,33 @@ void NavierStokes2::Advance(int n, double tn)
 			cond_bord_p[Bij(0,j,M)] += -p_bord_bas(-1,j,p)/b1;
 			cond_bord_p[Bij(Ny,j,M)] += -p_bord_haut(N,j,p)/b1;
 
-			cond_bord_grady_p[Bij(0,j,M)] = -p_bord_bas(-1,j,p)/b2;
-			cond_bord_grady_p[Bij(Ny,j,M)] = p_bord_haut(N,j,p)/b2;
-
 			cond_bord_div_v[Bij(0,j,M)] += -v_bord_bas(-1,j,v.GetAllVY())/b2;
 			cond_bord_div_v[Bij(Ny,j,M)] += v_bord_haut(N,j,v.GetAllVY())/b2;
 		}
 		SolveLaplacianP();
 	}
+	for(int i(0); i < N; ++i) {
+		y = H-i*dy;
+		for(int j(0); j < M; ++j) {
+			cond_bord_gradx_p[Bij(i,j,M)] = 0.0;
+			cond_bord_grady_p[Bij(i,j,M)] = 0.0;
+			pgz[Bij(i,j,M)] = p[Bij(i,j,M)]-rho(i,j)*g*y; // gravité
+		}
+		// Condition bords gauche et droite
+		cond_bord_gradx_p[Bij(i,0,M)] = -p_bord_gauche(i,-1,p)/a2;
+		cond_bord_gradx_p[Bij(i,Nx,M)] = p_bord_droit(i,M,p)/a2;
+	}
+	for(int j(0); j < M; ++j) {
+		// Condition bords haut et bas
+		cond_bord_grady_p[Bij(0,j,M)] = -p_bord_bas(-1,j,pgz)/b2;
+		cond_bord_grady_p[Bij(Ny,j,M)] = p_bord_haut(N,j,pgz)/b2;
+	}
 	Gradx2thOrder(dx, N, M, p, gradpx);
-	Grady2thOrder(dy, N, M, p, gradpy);
+	Grady2thOrder(dy, N, M, pgz, gradpy);
 	for(int i(0); i < N; ++i) {
 		for(int j(0); j < M; ++j) {
 			sec_membre_vx[Bij(i,j,M)] = -(dt*(gradpx[Bij(i,j,M)]+cond_bord_gradx_p[Bij(i,j,M)]))/rho(i,j);
-			sec_membre_vy[Bij(i,j,M)] = -(dt*(gradpy[Bij(i,j,M)]+cond_bord_grady_p[Bij(i,j,M)]))/rho(i,j)-dt*g;
+			sec_membre_vy[Bij(i,j,M)] = -(dt*(gradpy[Bij(i,j,M)]+cond_bord_grady_p[Bij(i,j,M)]))/rho(i,j);
 		}
 	}
 	timescheme_x.Advance(n, tn, *this, sec_membre_vx);
@@ -220,9 +212,9 @@ precision NavierStokes2::uij(int i, int j, const Matrix& u)
 
 precision NavierStokes2::p_bord_droit(int i, int j, const vector<precision>& p) const { // Neumann
 	if(i < 0) {
-		return (p_atm + rho_mer*g*(H-i*dy));
+		return p_bord_bas(i,j,p); // priorité aux bords haut et bas dans les coins
 	} else if(i > Ny) {
-		return (p_atm - rho_mer*g*(i-Ny)*dy);
+		return p_bord_haut(i,j,p);
 	} else {
 		if(j == Nx+1) {
 			return p[Bij(i,Nx-1,Nx+1)];
@@ -234,9 +226,9 @@ precision NavierStokes2::p_bord_droit(int i, int j, const vector<precision>& p) 
 }
 precision NavierStokes2::p_bord_gauche(int i, int j, const vector<precision>& p) const { // Neumann
 	if(i < 0) {
-		return (p_atm + rho_mer*g*(H-i*dy));
+		return p_bord_bas(i,j,p); // priorité aux bords haut et bas dans les coins
 	} else if(i > Ny) {
-		return (p_atm - rho_mer*g*(i-Ny)*dy);
+		return p_bord_haut(i,j,p);
 	} else {
 		if(j == -1) {
 			return p[Bij(i,1,Nx+1)];
@@ -246,8 +238,24 @@ precision NavierStokes2::p_bord_gauche(int i, int j, const vector<precision>& p)
 	}
 	return 0.0;
 }
-precision NavierStokes2::p_bord_haut(int i, int j, const vector<precision>& p) const { return (p_atm - rho_mer*g*(i-Ny)*dy); } // Dirichlet
-precision NavierStokes2::p_bord_bas(int i, int j, const vector<precision>& p) const { return (p_atm + rho_mer*g*(H-i*dy)); } // Dirichlet
+precision NavierStokes2::p_bord_haut(int i, int j, const vector<precision>& p) const// { return (p_atm - rho_mer*g*(i-Ny)*dy); } // Dirichlet
+{ // Neumann
+	if(i == Ny+1) {
+		return p[Bij(Ny-1,(Nx+j)%Nx,Nx+1)];
+	} else if(i == Ny+2) {
+		return p[Bij(Ny,(Nx+j)%Nx,Nx+1)];
+	}
+	return 0.0;
+}
+precision NavierStokes2::p_bord_bas(int i, int j, const vector<precision>& p) const// { return (p_atm + rho_mer*g*(H-i*dy)); } // Dirichlet
+{ // Neumann
+	if(i == -1) {
+		return p[Bij(1,(Nx+j)%Nx,Nx+1)];
+	} else if(i == -2) {
+		return p[Bij(0,(Nx+j)%Nx,Nx+1)];
+	}
+	return 0.0;
+}
 precision NavierStokes2::v_bord_droit(int i, int j, const Matrix& u) const { // Neumann
 	/*if(i >= 0 && i <= Ny) { // dans les coins : v = 0
 		if(j == Nx+1) {
@@ -269,18 +277,19 @@ precision NavierStokes2::v_bord_gauche(int i, int j, const Matrix& u) const { //
 	return 0.0;
 }
 precision NavierStokes2::v_bord_haut(int i, int j, const Matrix& u) const { // Neumann
-	/*if(j >= 0 && j <= Nx) { // dans les coins : v = 0
+	if(j >= 0 && j <= Nx) { // dans les coins : v = 0
 		precision mid(L/2.0), x(j*dx);
-		if(x >= (mid-2.0) && x <= (mid+2.0)) {
-			return 5.0;
+		if(x >= (mid-0.01) && x <= (mid+0.01)) {
+			return 0.0;
 		} else {
-			if(i == Ny+1) {
+			/*if(i == Ny+1) {
 				return u(Ny-1,j);
 			} else if(i == Ny+2) {
 				return u(Ny,j);
-			}
+			}*/
+			return 0.0;
 		}
-	}*/
+	}
 	return 0.0;
 }
 precision NavierStokes2::v_bord_bas(int i, int j, const Matrix& u) const { // Neumann
@@ -324,7 +333,6 @@ void GradConjLaplacian2(precision dx, precision dy, int N, int M, precision epsi
 			x[i] -= alpha*d[i];
 		}
 
-		nr = VecNorme(r);
 		beta = 1.0/(nr*nr);
 		for(unsigned int i(0); i < l; ++i) {
 			r[i] -= alpha*w[i];
@@ -334,8 +342,9 @@ void GradConjLaplacian2(precision dx, precision dy, int N, int M, precision epsi
 		for(unsigned int i(0); i < l; ++i) {
 			d[i] = r[i]+beta*d[i];
 		}
+		++iter;
 	}
-	cout << nr << endl;
+	cout << nr << ";\tnb_iter = " << iter << endl;
 }
 
 /**
@@ -370,7 +379,7 @@ void Laplacian2thOrder(precision dx, precision dy, int N, int M, const vector<pr
 
 	// Dernier bloc
 	out[Bij(N-1,0,M)] = (v[Bij(N-1,1,M)]-2.0*v[Bij(N-1,0,M)])/a
-					+ (16.0*v[Bij(N-2,0,M)]-30.0*v[Bij(N-1,0,M)]-v[Bij(N-3,0,M)])/b;
+					+ (v[Bij(N-2,0,M)]-2.0*v[Bij(N-1,0,M)])/b;
 	for(int j(1); j < M-1; ++j) {
 		out[Bij(N-1,j,M)] = (v[Bij(N-1,j+1,M)]-2.0*v[Bij(N-1,j,M)]+v[Bij(N-1,j-1,M)])/a
 						+ (v[Bij(N-2,j,M)]-2.0*v[Bij(N-1,j,M)])/b;
