@@ -7,14 +7,14 @@ HEADDIR=Include
 LIBDIR=Object
  
 # options en mode optimise
-OPTIM_FLAG = -O3 -std=c++11 -Wall -Woverloaded-virtual
+OPTIM_FLAG = -O3 -std=c++11 -O3
 
 # options en mode debug
 DEBUG_FLAG = -g -std=c++11 -Wall -Woverloaded-virtual
 
 LINKER   = g++ -o
 
-CFLAGS   = -std=c++11 -Wall -I.
+CFLAGS   = -std=c++11
 
 LFLAGS   = -Wall -I. -lm
 # L'exécutable
@@ -34,10 +34,10 @@ debug : $(OBJECTS)
 	@echo "Linking debug complete!"
 
 $(BIN): $(OBJECTS)
-	$(LINKER) $(BIN) $(LFLAGS) $(OBJECTS)
+	$(LINKER) $(BIN) $(OPTIM_FLAG) $(LFLAGS) $(OBJECTS)
 
 $(OBJECTS): $(LIBDIR)/%.o : $(SRCDIR)/%.cxx
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(OPTIM_FLAG) -c $< -o $@
 
 # Nettoyage des objets => Tout sera recompiler !
 clean:

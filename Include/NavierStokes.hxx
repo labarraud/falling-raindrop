@@ -27,22 +27,18 @@ public:
 	void WriteVtk(const string& nom) const;
 	void SolveLaplacianP();
 	void Advance(int n, double tn);
-	virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y);
+	virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y, const vector<precision>& sec_membre);
 	precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 	precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
 	precision uij(int i, int j, const Matrix& u);
-	precision p_bord_droit(int i,int j) const;
-	precision p_bord_gauche(int i,int j) const;
-	precision p_bord_haut(int i,int j) const;
-	precision p_bord_bas(int i,int j) const;
-	precision vx_bord_droit(int i,int j, const Matrix& u) const;
-	precision vx_bord_gauche(int i,int j, const Matrix& u) const;
-	precision vx_bord_haut(int i,int j, const Matrix& u) const;
-	precision vx_bord_bas(int i,int j, const Matrix& u) const;
-	precision vy_bord_droit(int i,int j, const Matrix& u) const;
-	precision vy_bord_gauche(int i,int j, const Matrix& u) const;
-	precision vy_bord_haut(int i,int j, const Matrix& u) const;
-	precision vy_bord_bas(int i,int j, const Matrix& u) const;
+	precision p_bord_droit(int i,int j, const vector<precision>& p) const;
+	precision p_bord_gauche(int i,int j, const vector<precision>& p) const;
+	precision p_bord_haut(int i,int j, const vector<precision>& p) const;
+	precision p_bord_bas(int i,int j, const vector<precision>& p) const;
+	precision v_bord_droit(int i,int j, const Matrix& u) const;
+	precision v_bord_gauche(int i,int j, const Matrix& u) const;
+	precision v_bord_haut(int i,int j, const Matrix& u) const;
+	precision v_bord_bas(int i,int j, const Matrix& u) const;
 private:
 	Velocity v;
 	Density rho; // masse volumique
@@ -55,9 +51,8 @@ private:
 	vector<precision> sec_membre_p;
 	vector<precision> sec_membre_vx, sec_membre_vy;
 	int Nx, Ny, Nt;
-	precision L,H,dx,dy,dt,nu,g;
+	precision L,H,dx,dy,dt,nu,g,rho_mer,p_atm;
 	LowStorageRungeKuttaIterator timescheme_x, timescheme_y;
-	bool vx;
 };
 
 void GradConjLaplacian(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, vector<precision>& x, const vector<precision>& b);

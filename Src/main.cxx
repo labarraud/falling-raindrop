@@ -16,34 +16,35 @@ void testNS2()
 
 		L=0.075; // tailles en m
 		H=0.15;
-		Nx=200;
-		Ny=400;
+		Nx=100;
+		Ny=200;
 		Nt=50000;
-		cfl=0.9;
+		cfl=0.2;
 
-		dx=L/Nx;
-		dy=H/Ny;
+		dx=L/(Nx+1);
+		dy=H/(Ny+1);
 
 
 		Velocity v(Nx,Ny,L,H);
 		v.ChampsCircle(0.025,H-0.003,0.0015,0.0,-5.0);
 		
 		//CFL
-		//dt=((max(dx,dy)*cfl)/v.max());
-		dt = 0.00005;
+		dt=(max(dx,dy)*(max(dx,dy)*cfl))/v.max();
+		//dt = 0.00005;
 		//cout << "dt = " << dt << endl;
 		tfinal=Nt*dt;
 		//cout << "Vmax = " << v.max() << endl;
 
 
 
-		Density n(Nx,Ny,L,H);		
+		Density n(Nx+1,Ny+1,L,H);
 		precision rho_mer(1032.0), p_atm(1015000.0), y, g(9.81);
 		
 		Matrix p(Ny+1,Nx+1);
 		for(int i(0); i < Ny+1; ++i) {
 			y = H-i*dy;
 			for(int j(0); j < Nx+1; ++j) {
+			  cout << i << " " << j << endl;
 				n(i,j) = rho_mer;
 				p(i,j) = p_atm + rho_mer*g*y;
 			}
@@ -82,10 +83,10 @@ void testrotateDC()
 	dx=L/Nx;
 	dy=H/Ny;
 
-
+	vector<precision> nule;
 	Velocity v(Nx,Ny,L,H);
-	//v.ChampsCirculaire(L/2.0,H/2, 5.0);
-	v.ChampsUniformeVx(-1.0);
+	v.ChampsCirculaire(L/2.0,H/2, 5.0);
+	//v.ChampsUniformeVx(-1.0);
 	//v.ChampsUniforme(-0.5);
 	v.WriteGnuPlot("velocity.dat");
 	// plot "velocity.dat" u 1:2:3:4 w vec
@@ -125,7 +126,7 @@ void testrotateDC()
 			for(int i=0; i<Nt ; i++)
 			{
 				tn=i*dt;
-				timescheme.Advance(i, tn, test1);
+				timescheme.Advance(i, tn, test1,nule);
 				if((i%nDisplay)==0) {
 					var=(i/nDisplay < 10 ? "0" : "");
 					var2=(i/nDisplay < 100 ? "0" : "");
@@ -137,7 +138,7 @@ void testrotateDC()
 
 					//n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 
-					timescheme.GetIterate().WriteVtk("vtk" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
+					timescheme.GetIterate().WriteVtk("vtk/vtk" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
 				}
 
 			}
@@ -160,7 +161,7 @@ void testrotatedirDC()
 	dx=L/Nx;
 	dy=H/Ny;
 
-
+vector<precision> nule;
 	Velocity v(Nx,Ny,L,H);
 	//v.ChampsCirculaire(L/2.0,H/2, 5.0);
 	v.ChampsUniformeVx(-1.0);
@@ -204,7 +205,7 @@ void testrotatedirDC()
 			for(int i=0; i<Nt ; i++)
 			{
 				tn=i*dt;
-				timescheme.Advance(i, tn, test1);
+				timescheme.Advance(i, tn, test1,nule);
 				if((i%nDisplay)==0) {
 					var=(i/nDisplay < 10 ? "0" : "");
 					var2=(i/nDisplay < 100 ? "0" : "");
@@ -245,9 +246,9 @@ int main()
 
 
 
-	testrotateDC();
+  //testrotateDC();
 	//testrotatedirDC();
-
+	testNS2();
 
 		return 0;
 }
