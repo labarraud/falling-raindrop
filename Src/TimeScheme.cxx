@@ -48,10 +48,10 @@ SetInitialCondition(double t0, double dt_, Matrix& rho0, VirtualOdeSystem& sys)
 
 
 //! fonction principale qui avance le schema en temps
-void ExplicitEulerIterator::Advance(int n, double tn, VirtualOdeSystem& sys)
+void ExplicitEulerIterator::Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre)
 {
   // Euler explicite : rho^n+1 = rho^n + dt f(t^n, rho^n)
-  sys.AddFunction(dt, rho, tn, rho_next);
+  sys.AddFunction(dt, rho, tn, rho_next, sec_membre);
   rho = rho_next;
 }
 
@@ -99,34 +99,34 @@ void LowStorageRungeKuttaIterator
 
 
 // fonction principale qui avance le schema en temps
-void LowStorageRungeKuttaIterator::Advance(int n, double tn, VirtualOdeSystem& sys)
+void LowStorageRungeKuttaIterator::Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre)
 {
   rho_next.Zero();
-  sys.AddFunction(dt, rho, tn, rho_next);
+  sys.AddFunction(dt, rho, tn, rho_next, sec_membre);
   rho=rho + 1.496590219992291e-01*rho_next;
 //  Add(1.496590219992291e-01, rho_next, rho);
 
 
  rho_next = -4.178904744998519e-01*rho_next;
-  sys.AddFunction(dt, rho, tn+1.496590219992291e-01*dt, rho_next);
+  sys.AddFunction(dt, rho, tn+1.496590219992291e-01*dt, rho_next, sec_membre);
   rho=rho + 3.792103129996273e-01*rho_next;
 //  Add(3.792103129996273e-01, rho_next, rho);
 
 
  rho_next= -1.192151694642677e+00*rho_next;
-  sys.AddFunction(dt, rho, tn+3.704009573642048e-01*dt, rho_next);
+  sys.AddFunction(dt, rho, tn+3.704009573642048e-01*dt, rho_next, sec_membre);
   rho=rho + 8.229550293869817e-01*rho_next;
   //Add(8.229550293869817e-01, rho_next, rho);
 
 
 
   rho_next = -1.697784692471528e+00*rho_next;
-  sys.AddFunction(dt, rho, tn+6.222557631344432e-01*dt, rho_next);
+  sys.AddFunction(dt, rho, tn+6.222557631344432e-01*dt, rho_next, sec_membre);
   rho=rho + 6.994504559491221e-01*rho_next;
  // Add(6.994504559491221e-01, rho_next, rho);
 
   rho_next = -1.514183444257156e+00*rho_next;
-  sys.AddFunction(dt, rho, tn+9.582821306746903e-01*dt, rho_next);
+  sys.AddFunction(dt, rho, tn+9.582821306746903e-01*dt, rho_next, sec_membre);
   rho=rho + 1.530572479681520e-01*rho_next;
   //Add(1.530572479681520e-01, rho_next, rho);
 
@@ -145,6 +145,7 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 
 	ofstream file_out(fileout.data());
 	file_out.precision(15);
+	vector<precision> vec;
 
 
 	for(precision dxy=mindxy; dxy<maxdxy ; dxy=dxy+hdxy)
@@ -175,7 +176,7 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		for(int i=0; i<20; i++)
 		{
 			cout << "iterpositive : " << i << endl;
-			time.Advance(i, dt, ode);
+			time.Advance(i, dt, ode, vec);
 		}
 
 		ode.GetV().ChampsCirculaire(L/2.0,H/2.0, -omega);
@@ -184,7 +185,7 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		for(int i=0; i<20; i++)
 		{
 			cout << "iternégative : " << i << endl;
-			time.Advance(i, dt, ode);
+			time.Advance(i, dt, ode, vec);
 
 		}
 		error = init.distnorme2(time.GetIterate())/init.norme2();
@@ -196,6 +197,61 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 	file_out.close();
 
 
+}
+
+
+
+/********************************
+ * RK2Iterator *
+ ********************************/
+
+
+//! default constructor
+RK2Iterator::RK2Iterator()
+{
+  dt = 0;
+}
+
+//! libere la memoire utilisee
+void RK2Iterator::Clear()
+{
+  rho.Clear();
+  rho_next.Clear();
+}
+
+
+//! retourne l'itere rho^n
+Matrix& RK2Iterator::GetIterate()
+{
+  return rho;
+}
+
+
+const Matrix& RK2Iterator::GetIterate() const
+{
+  return rho;
+}
+
+
+// fonction pour initialiser le schema en temps
+void RK2Iterator
+::SetInitialCondition(double t0, double dt_, Matrix& rho0, VirtualOdeSystem& sys)
+{
+  dt = dt_;
+  rho = rho0;
+  rho_next = rho;
+}
+
+
+// fonction principale qui avance le schema en temps
+void RK2Iterator::Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre)
+{
+	sys.AddFunction(dt, rho, tn, rho_next, sec_membre);
+	rho = rho_next;
+
+	sys.AddFunction(dt, rho, tn+0.5*dt, rho_next, sec_membre);
+	rho = 0.5*(rho+rho_next);
+	rho_next = rho;
 }
 
 
