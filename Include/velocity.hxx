@@ -28,6 +28,7 @@ public:
 	Velocity();
 	Velocity(int Nx,int Ny,precision L,precision H);
 	void ChampsCirculaire(precision Xcenter,precision Ycenter, precision intensite);
+	void ChampsCircle(precision Xcenter,precision Ycenter, precision radius, precision vx, precision vy);
 	void ChampsUniformeVx(precision intensite);
 	void ChampsUniformeVy(precision intensite);
 	void ChampsUniforme(precision intensite);
