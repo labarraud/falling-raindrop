@@ -7,6 +7,7 @@
 #include "../Include/spacescheme.hxx"
 #include "../Include/TimeScheme.hxx"
 #include "../Include/NavierStokes.hxx"
+#include "../Include/NavierStokes2.hxx"
 
 void testNS2()
 {
