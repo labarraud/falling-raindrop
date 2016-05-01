@@ -24,7 +24,7 @@ precision UpwindDCtest1 :: SplittingX(precision dt, precision a, precision b, in
 }
 
 /*
-void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
 {
 
 	//alpha = delta_t
@@ -88,7 +88,7 @@ void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t,
 */
 
 
-void UpwindDCtest1::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+void UpwindDCtest1::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
 {
 
 	//alpha = delta_t
@@ -129,7 +129,7 @@ precision UpwindDCOrder2::SplittingX(precision dt, precision a, precision b, int
 	return (uij - a*sigma*sign_a*(3.0*uij-4.0*UpwindY(dt, b, i, (j-sign_a), u)+UpwindY(dt, b, i, (j-2*sign_a), u))/2.0);
 }
 
-void UpwindDCOrder2::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+void UpwindDCOrder2::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
 {
 
 	//alpha = delta_t
@@ -170,7 +170,7 @@ precision UpwindDCOrder3::SplittingX(precision dt, precision a, precision b, int
 	return (uij - a*sigma*sign_a*(2.0*UpwindY(dt, b, i, (j+sign_a), u)+3.0*uij-6.0*UpwindY(dt, b, i, (j-sign_a), u)+UpwindY(dt, b, i, (j-2*sign_a), u))/6.0);
 }
 
-void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
 {
 
 	//alpha = delta_t
@@ -211,7 +211,7 @@ precision UpwindDCOrder4::SplittingX(precision dt, precision a, precision b, int
 	return (uij - a*sigma*sign_a*(3.0*UpwindY(dt, b, i, (j+sign_a), u)+10.0*uij-18.0*UpwindY(dt, b, i, (j-sign_a), u)+6.0*UpwindY(dt, b, i, (j-2*sign_a), u)-UpwindY(dt, b, i, (j-3*sign_a), u))/12.0);
 }
 
-void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
 {
 
 	//alpha = delta_t
@@ -238,7 +238,7 @@ LaxWendroff::LaxWendroff(int Nx,int Ny,int Nt,double L,double H,double tfinal,Ve
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
-void LaxWendroff::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y)
+void LaxWendroff::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
 {
 
 	//alpha = delta_t
