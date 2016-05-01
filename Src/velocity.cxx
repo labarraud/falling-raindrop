@@ -41,6 +41,26 @@ void Velocity::ChampsCirculaire(double Xcenter,double Ycenter, double intensite)
 	}
 
 
+void Velocity::ChampsCircle(precision Xcenter,precision Ycenter, precision radius, precision vx, precision vy)
+	{
+		precision var;
+		for (int i=0; i<Ny+1;i++)
+		{
+			for (int j=0; j<Nx+1;j++)
+			{
+				var=(Xcenter-(j * Delta_x))*(Xcenter-(j * Delta_x))+(Ycenter - (i * Delta_y))*(Ycenter - (i * Delta_y));
+
+				if(var<(radius*radius)) {
+					VX(i,j) = vx;
+					VY(i,j) = vy;
+				} else {
+					VX(i,j) = 0.0;
+					VY(i,j) = 0.0;
+				}
+
+			}
+		}
+	}
 
 
 void Velocity::WriteGnuPlot(const string& nom)
