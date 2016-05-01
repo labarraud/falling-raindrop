@@ -16,8 +16,8 @@ void testNS2()
 
 		L=0.075; // tailles en m
 		H=0.15;
-		Nx=100;
-		Ny=200;
+		Nx=200;
+		Ny=400;
 		Nt=50000;
 		cfl=0.2;
 
@@ -29,8 +29,8 @@ void testNS2()
 		v.ChampsCircle(0.025,H-0.003,0.0015,0.0,-5.0);
 		
 		//CFL
-		dt=(max(dx,dy)*(max(dx,dy)*cfl))/v.max();
-		//dt = 0.00005;
+		//dt=(max(dx,dy)*(max(dx,dy)*cfl))/v.max();
+		dt = 0.00005;
 		//cout << "dt = " << dt << endl;
 		tfinal=Nt*dt;
 		//cout << "Vmax = " << v.max() << endl;
