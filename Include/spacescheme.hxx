@@ -15,7 +15,7 @@ public :
 	UpwindDCtest1(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 	precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 	precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
-  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre);
 	precision computedt(precision cfl);
 };
 
@@ -26,7 +26,7 @@ public :
 	UpwindDCOrder2(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 	precision UpwindY(precision dt, precision b, int i, int j, const Matrix& u);
 	precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
-	void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre);
 	precision computedt(precision cfl);
 };
 
@@ -38,7 +38,7 @@ public :
 	UpwindDCOrder3(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 		precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 		precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
-	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre);
 	 	precision computedt(precision cfl);
 };
 
@@ -51,7 +51,7 @@ public :
 	UpwindDCOrder4(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,precision _D,Density& n);
 		precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
 		precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
-	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre);
 	 	precision computedt(precision cfl);
 };
 
@@ -61,7 +61,7 @@ class LaxWendroff : public DiffusionConvectionProblem
 public :
 	LaxWendroff();
 	LaxWendroff(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
-	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y);
+	  void AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre);
 	 	precision computedt(precision cfl);
 };
 
