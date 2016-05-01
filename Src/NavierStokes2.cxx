@@ -42,8 +42,8 @@ void NavierStokes2::SetInitialCondition(int _Nx,int _Ny,int _Nt,precision _L,pre
 	sec_membre_p.resize(l);
 	sec_membre_vx.resize(l);
 	sec_membre_vy.resize(l);
-	timescheme_x.SetInitialCondition(0,dt,v.GetAllVY(),*this);
-	timescheme_y.SetInitialCondition(0,dt,v.GetAllVX(),*this);
+	timescheme_x.SetInitialCondition(0,dt,v.GetAllVX(),*this);
+	timescheme_y.SetInitialCondition(0,dt,v.GetAllVY(),*this);
 }
 
 void NavierStokes2::SetPressure(const Matrix& _p)
@@ -238,68 +238,70 @@ precision NavierStokes2::p_bord_gauche(int i, int j, const vector<precision>& p)
 	}
 	return 0.0;
 }
-precision NavierStokes2::p_bord_haut(int i, int j, const vector<precision>& p) const// { return (p_atm - rho_mer*g*(i-Ny)*dy); } // Dirichlet
-{ // Neumann
+precision NavierStokes2::p_bord_haut(int i, int j, const vector<precision>& p) const { return (p_atm - rho_mer*g*(i-Ny)*dy); } // Dirichlet
+/*{ // Neumann
 	if(i == Ny+1) {
 		return p[Bij(Ny-1,(Nx+j)%Nx,Nx+1)];
 	} else if(i == Ny+2) {
 		return p[Bij(Ny,(Nx+j)%Nx,Nx+1)];
 	}
 	return 0.0;
-}
-precision NavierStokes2::p_bord_bas(int i, int j, const vector<precision>& p) const// { return (p_atm + rho_mer*g*(H-i*dy)); } // Dirichlet
-{ // Neumann
+}*/
+precision NavierStokes2::p_bord_bas(int i, int j, const vector<precision>& p) const { return (p_atm + rho_mer*g*(H-i*dy)); } // Dirichlet
+/*{ // Neumann
 	if(i == -1) {
 		return p[Bij(1,(Nx+j)%Nx,Nx+1)];
 	} else if(i == -2) {
 		return p[Bij(0,(Nx+j)%Nx,Nx+1)];
 	}
 	return 0.0;
-}
+}*/
 precision NavierStokes2::v_bord_droit(int i, int j, const Matrix& u) const { // Neumann
-	/*if(i >= 0 && i <= Ny) { // dans les coins : v = 0
+	if(i < 0) {
+		return v_bord_bas(i,j,u); // priorité aux bords haut et bas dans les coins
+	} else if(i > Ny) {
+		return v_bord_haut(i,j,u);
+	} else {
 		if(j == Nx+1) {
 			return u(i,Nx-1);
 		} else if(j == Ny+2) {
 			return u(i,Nx);
 		}
-	}*/
+	}
 	return 0.0;
 }
 precision NavierStokes2::v_bord_gauche(int i, int j, const Matrix& u) const { // Neumann
-	/*if(i >= 0 && i <= Ny) { // dans les coins : v = 0
+	if(i < 0) {
+		return v_bord_bas(i,j,u); // priorité aux bords haut et bas dans les coins
+	} else if(i > Ny) {
+		return v_bord_haut(i,j,u);
+	} else {
 		if(j == -1) {
 			return u(i,1);
 		} else if(j == -2) {
 			return u(i,0);
 		}
-	}*/
+	}
 	return 0.0;
 }
 precision NavierStokes2::v_bord_haut(int i, int j, const Matrix& u) const { // Neumann
 	if(j >= 0 && j <= Nx) { // dans les coins : v = 0
-		precision mid(L/2.0), x(j*dx);
-		if(x >= (mid-0.01) && x <= (mid+0.01)) {
-			return 0.0;
-		} else {
-			/*if(i == Ny+1) {
-				return u(Ny-1,j);
-			} else if(i == Ny+2) {
-				return u(Ny,j);
-			}*/
-			return 0.0;
+		if(i == Ny+1) {
+			return u(Ny-1,j);
+		} else if(i == Ny+2) {
+			return u(Ny,j);
 		}
 	}
 	return 0.0;
 }
 precision NavierStokes2::v_bord_bas(int i, int j, const Matrix& u) const { // Neumann
-	/*if(j >= 0 && j <= Nx) { // dans les coins : v = 0
+	if(j >= 0 && j <= Nx) { // dans les coins : v = 0
 		if(i == -1) {
 			return u(1,j);
 		} else if(i == -2) {
 			return u(0,j);
 		}
-	}*/
+	}
 	return 0.0;
 }
 
@@ -312,10 +314,6 @@ void GradConjLaplacian2(precision dx, precision dy, int N, int M, precision epsi
 	vector<precision> r(l), d(l), w(l);
 	precision alpha, beta, nr;
 
-	x.resize(l);
-	for(unsigned int i(0); i < l; ++i) {
-		x[i] = 0.0;
-	}
 	Laplacian2thOrder(dx, dy, N, M, x,r);
 	for(unsigned int i(0); i < l; ++i) {
 		r[i] -= b[i];
