@@ -147,6 +147,18 @@ precision& Matrix::operator()(int i, int j)
 
 }
 
+precision& Matrix::operator()(int n)
+{
+	int i = n/M;
+	int j = n%N;
+
+	if(i>N || j>M) {
+		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
+	}
+	return val[(unsigned)i][(unsigned)j];
+
+}
+
 
 
 const precision Matrix::bottom(int i, int j) const
@@ -166,8 +178,13 @@ const precision Matrix::bottom(int i, int j) const
 			return this->Y0;
 			break;
 		case neumann:
-			cout << "neumann bottom not define"<< endl;
-			return 0;
+			if(i == -1 && (j<M) && (j>=0)) {
+				return 8.0*((*this)(0,j)-(*this)(2,j))+(*this)(3,j);
+			} else if( i == -2 && (j<M) && (j>=0)) {
+				return 8.0*(*this)(1,j)-(*this)(2,j);
+			} else {
+				return 0.0;
+			}
 			break;
 	}
 	return 0;
@@ -191,7 +208,13 @@ const precision Matrix::top(int i, int j) const
 			return this->Yn;
 			break;
 		case neumann:
-			cout << "neumann top not define"<< endl;
+			if(i == N && (j<M) && (j>=0)) {
+				return 8.0*((*this)(N-1,j)-(*this)(N-3,j))+(*this)(N-4,j);
+			} else if( (j == N+1) && (j<M) && (j>=0)) {
+				return 8.0*(*this)(N-2,j)-(*this)(N-3,j);
+			} else {
+				return 0.0;
+			}
 			return 0;
 			break;
 	}
@@ -214,7 +237,13 @@ const precision Matrix::left(int i, int j) const
 			return this->X0;
 			break;
 		case neumann:
-			cout << "neumann left not define"<< endl;
+			if(j == -1) {
+				return 8.0*((*this)(i,0)-(*this)(i,2))+(*this)(i,3);
+			} else if( j == -2) {
+				return 8.0*(*this)(i,1)-(*this)(i,2);
+			} else {
+				return 0.0;
+			}
 			return 0;
 			break;
 	}
@@ -236,7 +265,13 @@ const precision Matrix::right(int i, int j) const
 			return this->Xn;
 			break;
 		case neumann:
-			cout << "neumann right not define"<< endl;
+			if(j == M) {
+				return 8.0*((*this)(i,M-1)-(*this)(i,M-3))+(*this)(i,M-4);
+			} else if( j == M+1) {
+				return 8.0*(*this)(i,M-2)-(*this)(i,M-3);
+			} else {
+				return 0.0;
+			}
 			return 0;
 			break;
 	}
@@ -261,6 +296,14 @@ const precision Matrix::operator()(int i, int j) const
 
 
 
+}
+
+const precision Matrix::operator()(int n) const
+{
+	int i = n/M;
+	int j = n%N;
+
+	return (*this)(i,j);
 }
 
 Matrix& Matrix::operator=(const Matrix& m)
