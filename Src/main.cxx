@@ -8,6 +8,63 @@
 #include "../Include/TimeScheme.hxx"
 #include "../Include/NavierStokes.hxx"
 
+void testNS2()
+{
+		precision dx,dy,dt,L,H,tn,tfinal,cfl;
+		int Nx,Ny,Nt;
+
+		L=0.075; // tailles en m
+		H=0.15;
+		Nx=200;
+		Ny=400;
+		Nt=50000;
+		cfl=0.9;
+
+		dx=L/Nx;
+		dy=H/Ny;
+
+
+		Velocity v(Nx,Ny,L,H);
+		v.ChampsCircle(0.025,H-0.003,0.0015,0.0,-5.0);
+		
+		//CFL
+		//dt=((max(dx,dy)*cfl)/v.max());
+		dt = 0.00005;
+		//cout << "dt = " << dt << endl;
+		tfinal=Nt*dt;
+		//cout << "Vmax = " << v.max() << endl;
+
+
+
+		Density n(Nx,Ny,L,H);		
+		precision rho_mer(1032.0), p_atm(1015000.0), y, g(9.81);
+		
+		Matrix p(Ny+1,Nx+1);
+		for(int i(0); i < Ny+1; ++i) {
+			y = H-i*dy;
+			for(int j(0); j < Nx+1; ++j) {
+				n(i,j) = rho_mer;
+				p(i,j) = p_atm + rho_mer*g*y;
+			}
+		}
+		NavierStokes2 ns(Nx,Ny,Nt,L,H,tfinal,v,n,p);
+		int nDisplay(10);
+		string var,var2;
+		for(int i=0; i<Nt ; i++)
+		{
+			cout << "iteration " << i << "  -  p residu = ";
+			tn=i*dt;
+			//timescheme.Advance(i, tn, test1);
+			ns.Advance(i, tn);
+			if((i%nDisplay)==0) {
+				var=(i/nDisplay < 10 ? "0" : "");
+				var2=(i/nDisplay < 100 ? "0" : "");
+				ns.WriteVtk("vtk2/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
+			}
+
+		}
+}
+
 void testrotateDC()
 {
 
