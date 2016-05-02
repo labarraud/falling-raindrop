@@ -28,4 +28,4 @@
 *.app
 
 # vtk
-.vtk
+*.vtk
