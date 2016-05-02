@@ -22,8 +22,9 @@ public:
 	Density();
 	Density(int Nx,int Ny,precision L,precision H);
 	void InitialSquare(precision Xcenter,precision Ycenter, precision intensite);
-	void InitialCircle(precision Xcenter,precision Ycenter, precision intensite);
+	void InitialCircle(precision Xcenter,precision Ycenter, precision radius, precision intensite);
 	void InitialGauss(precision Xcenter,precision Ycenter, precision intensite);
+	void Set(const Matrix& m);
 };
 
 #define FILE_PARTICLE_HXX

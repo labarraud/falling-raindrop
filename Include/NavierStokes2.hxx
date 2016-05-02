@@ -38,9 +38,10 @@ private:
 	Matrix cond_bord_p;
 	Matrix sec_membre_p;
 	Matrix sec_membre_vx, sec_membre_vy;
+	Matrix zero;
 	int Nx, Ny, Nt;
-	precision L,H,dx,dy,dt,nu,g,rho_mer,p_atm;
-	LowStorageRungeKuttaIterator timescheme_x, timescheme_y;
+	precision L,H,dx,dy,dt,nu,g,rho_mer,p_atm, rho_douce, D_nacl;
+	LowStorageRungeKuttaIterator timescheme_x, timescheme_y, timescheme_n;
 	UpwindDCOrder2 spacescheme;
 };
 
