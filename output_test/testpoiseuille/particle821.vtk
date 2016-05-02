@@ -1,0 +1,306 @@
+# vtk DataFile Version 2.0
+Titre
+ASCII
+DATASET STRUCTURED_POINTS
+DIMENSIONS 41 21 1
+ORIGIN 0.0 0.0 0.0
+SPACING 0.00375 0.00375 0.0
+POINT_DATA 861 
+VECTORS velocity float
+
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+nan nan 0	nan nan 0	nan nan 0	nan nan 0	nan nan 0	
+-nan nan 0	
+SCALARS pressure float
+LOOKUP_TABLE default
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan -nan -nan -nan -nan -nan -nan -nan -nan -nan 
+-nan 

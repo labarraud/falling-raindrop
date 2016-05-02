@@ -1,0 +1,684 @@
+# vtk DataFile Version 2.0
+Titre
+ASCII
+DATASET STRUCTURED_POINTS
+DIMENSIONS 101 21 1
+ORIGIN 0.0 0.0 0.0
+SPACING 0.01 0.005 0.0
+POINT_DATA 2121 
+VECTORS velocity float
+
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	-nan -nan 0	
+-nan -nan 0	
+SCALARS pressure float
+LOOKUP_TABLE default
+-4.60659e+95 -9.58828e+95 -1.53507e+96 -2.23632e+96 -3.11966e+96 -4.25704e+96 -5.74105e+96 -7.69256e+96 -1.02705e+97 -1.36847e+97 
+-1.82132e+97 -2.42248e+97 -3.2209e+97 -4.28159e+97 -5.69092e+97 -7.56366e+97 -1.00523e+98 -1.33595e+98 -1.77545e+98 -2.35952e+98 
+-3.13573e+98 -4.16727e+98 -5.53815e+98 -7.35999e+98 -9.78114e+98 -1.29988e+99 -1.72748e+99 -2.29576e+99 -3.05097e+99 -4.05463e+99 
+-5.38844e+99 -7.16103e+99 -9.51672e+99 -1.26474e+100 -1.68078e+100 -2.2337e+100 -2.96849e+100 -3.94501e+100 -5.24277e+100 -6.96743e+100 
+-9.25945e+100 -1.23054e+101 -1.63535e+101 -2.17331e+101 -2.88824e+101 -3.83836e+101 -5.10104e+101 -6.77908e+101 -9.00914e+101 -1.19728e+102 
+-1.59114e+102 -2.11456e+102 -2.81017e+102 -3.73462e+102 -4.96317e+102 -6.59588e+102 -8.7657e+102 -1.16493e+103 -1.54816e+103 -2.05746e+103 
+-2.73432e+103 -3.63386e+103 -4.82935e+103 -6.41818e+103 -8.52981e+103 -1.13363e+104 -1.50664e+104 -2.00243e+104 -2.66142e+104 -3.53742e+104 
+-4.70195e+104 -6.25021e+104 -8.30893e+104 -1.10469e+105 -1.4689e+105 -1.95354e+105 -2.59869e+105 -3.45797e+105 -4.60326e+105 -6.13118e+105 
+-8.17209e+105 -1.09027e+106 -1.45639e+106 -1.94868e+106 -2.61311e+106 -3.51432e+106 -4.74471e+106 -6.43904e+106 -8.79894e+106 -1.21355e+107 
+-1.69473e+107 -2.40706e+107 -3.49889e+107 -5.25223e+107 -8.25209e+107 -1.38603e+108 -2.5789e+108 -5.66444e+108 -1.63603e+109 -7.04646e+109 
+-3.22192e+110 
+-9.1194e+95 -1.89814e+96 -3.0389e+96 -4.42711e+96 -6.17582e+96 -8.42741e+96 -1.13652e+97 -1.52285e+97 -2.03318e+97 -2.70907e+97 
+-3.60556e+97 -4.79564e+97 -6.37622e+97 -8.47601e+97 -1.1266e+98 -1.49733e+98 -1.98999e+98 -2.6447e+98 -3.51475e+98 -4.67101e+98 
+-6.20762e+98 -8.24971e+98 -1.09636e+99 -1.45702e+99 -1.93632e+99 -2.57329e+99 -3.4198e+99 -4.54478e+99 -6.03984e+99 -8.02671e+99 
+-1.06672e+100 -1.41763e+100 -1.88397e+100 -2.50372e+100 -3.32735e+100 -4.42192e+100 -5.87656e+100 -7.80972e+100 -1.03788e+101 -1.3793e+101 
+-1.83304e+101 -2.43604e+101 -3.2374e+101 -4.30238e+101 -5.71769e+101 -7.59859e+101 -1.00982e+102 -1.34202e+102 -1.78349e+102 -2.37019e+102 
+-3.14989e+102 -4.18608e+102 -5.56314e+102 -7.39321e+102 -9.82531e+102 -1.30575e+103 -1.73529e+103 -2.30615e+103 -3.0648e+103 -4.07304e+103 
+-5.41297e+103 -7.19372e+103 -9.56036e+103 -1.27057e+104 -1.68859e+104 -2.24417e+104 -2.98259e+104 -3.96405e+104 -5.2686e+104 -7.0027e+104 
+-9.30796e+104 -1.23728e+105 -1.64481e+105 -2.18677e+105 -2.9077e+105 -3.86696e+105 -5.14385e+105 -6.84443e+105 -9.11085e+105 -1.21341e+106 
+-1.61718e+106 -2.15727e+106 -2.88123e+106 -3.85432e+106 -5.16702e+106 -6.94635e+106 -9.37343e+106 -1.27117e+107 -1.73537e+107 -2.39022e+107 
+-3.33167e+107 -4.71923e+107 -6.83241e+107 -1.01928e+108 -1.58521e+108 -2.61405e+108 -4.68462e+108 -9.4263e+108 -2.18684e+109 -5.55809e+109 
+-8.42681e+109 
+-1.34466e+96 -2.79881e+96 -4.48086e+96 -6.52778e+96 -9.10625e+96 -1.24262e+97 -1.67581e+97 -2.24545e+97 -2.99793e+97 -3.99453e+97 
+-5.3164e+97 -7.07118e+97 -9.40175e+97 -1.24979e+98 -1.66117e+98 -2.20782e+98 -2.93425e+98 -3.89961e+98 -5.18251e+98 -6.88741e+98 
+-9.15314e+98 -1.21642e+99 -1.61658e+99 -2.14837e+99 -2.8551e+99 -3.79432e+99 -5.0425e+99 -6.70129e+99 -8.90575e+99 -1.18354e+100 
+-1.57288e+100 -2.09029e+100 -2.77792e+100 -3.69174e+100 -4.90618e+100 -6.52013e+100 -8.66499e+100 -1.15154e+101 -1.53036e+101 -2.03378e+101 
+-2.70282e+101 -3.59194e+101 -4.77355e+101 -6.34386e+101 -8.43074e+101 -1.12041e+102 -1.48899e+102 -1.9788e+102 -2.62975e+102 -3.49484e+102 
+-4.64451e+102 -6.17238e+102 -8.20286e+102 -1.09013e+103 -1.44874e+103 -1.92533e+103 -2.55869e+103 -3.40042e+103 -4.51905e+103 -6.00569e+103 
+-7.98141e+103 -1.06071e+104 -1.40967e+104 -1.87344e+104 -2.48981e+104 -3.309e+104 -4.39777e+104 -5.8449e+104 -7.76839e+104 -1.03252e+105 
+-1.37241e+105 -1.82428e+105 -2.42511e+105 -3.22412e+105 -4.28691e+105 -5.70096e+105 -7.58309e+105 -1.00894e+106 -1.34292e+106 -1.78834e+106 
+-2.38306e+106 -3.17831e+106 -4.24379e+106 -5.67506e+106 -7.60427e+106 -1.02164e+107 -1.37744e+107 -1.86584e+107 -2.54319e+107 -3.49524e+107 
+-4.85708e+107 -6.85001e+107 -9.85412e+107 -1.45587e+108 -2.22948e+108 -3.58164e+108 -6.12257e+108 -1.1263e+109 -2.2059e+109 -4.19536e+109 
+-5.04819e+109 
+-1.75e+96 -3.6425e+96 -5.8316e+96 -8.49556e+96 -1.18513e+97 -1.61721e+97 -2.18097e+97 -2.92233e+97 -3.90165e+97 -5.19867e+97 
+-6.91902e+97 -9.20276e+97 -1.22359e+98 -1.62653e+98 -2.16193e+98 -2.87336e+98 -3.81877e+98 -5.07514e+98 -6.74476e+98 -8.9636e+98 
+-1.19123e+99 -1.58311e+99 -2.10389e+99 -2.79599e+99 -3.71577e+99 -4.93811e+99 -6.56255e+99 -8.72138e+99 -1.15904e+100 -1.54031e+100 
+-2.04702e+100 -2.72041e+100 -3.61531e+100 -4.80461e+100 -6.38514e+100 -8.4856e+100 -1.1277e+101 -1.49867e+101 -1.99168e+101 -2.64686e+101 
+-3.51758e+101 -4.67472e+101 -6.21252e+101 -8.2562e+101 -1.09722e+102 -1.45816e+102 -1.93784e+102 -2.57531e+102 -3.42249e+102 -4.54835e+102 
+-6.04459e+102 -8.03302e+102 -1.06756e+103 -1.41875e+103 -1.88546e+103 -2.50571e+103 -3.33e+103 -4.42546e+103 -5.88129e+103 -7.81607e+103 
+-1.03873e+104 -1.38046e+104 -1.8346e+104 -2.43817e+104 -3.24033e+104 -4.30643e+104 -5.72337e+104 -7.60665e+104 -1.01098e+105 -1.34372e+105 
+-1.78602e+105 -2.37404e+105 -3.15586e+105 -4.19551e+105 -5.5783e+105 -7.41795e+105 -9.86626e+105 -1.31261e+106 -1.7469e+106 -2.32595e+106 
+-3.09882e+106 -4.13178e+106 -5.51491e+106 -7.37131e+106 -9.87079e+106 -1.32501e+107 -1.78438e+107 -2.41328e+107 -3.28232e+107 -4.49782e+107 
+-6.22471e+107 -8.72799e+107 -1.24507e+108 -1.81668e+108 -2.72911e+108 -4.25204e+108 -6.91064e+108 -1.16859e+109 -1.99749e+109 -3.11679e+109 
+-3.14482e+109 
+-2.11972e+96 -4.41204e+96 -7.06363e+96 -1.02904e+97 -1.43551e+97 -1.95887e+97 -2.64174e+97 -3.53972e+97 -4.72594e+97 -6.29698e+97 
+-8.38078e+97 -1.1147e+98 -1.48209e+98 -1.97017e+98 -2.61867e+98 -3.48041e+98 -4.62555e+98 -6.14735e+98 -8.16971e+98 -1.08573e+99 
+-1.4429e+99 -1.91757e+99 -2.54838e+99 -3.38669e+99 -4.50079e+99 -5.98137e+99 -7.94901e+99 -1.05639e+100 -1.4039e+100 -1.86573e+100 
+-2.47949e+100 -3.29514e+100 -4.37911e+100 -5.81967e+100 -7.73411e+100 -1.02783e+101 -1.36595e+101 -1.81529e+101 -2.41246e+101 -3.20606e+101 
+-4.26073e+101 -5.66234e+101 -7.52503e+101 -1.00005e+102 -1.32902e+102 -1.76622e+102 -2.34724e+102 -3.11939e+102 -4.14555e+102 -5.50927e+102 
+-7.32161e+102 -9.73014e+102 -1.2931e+103 -1.71848e+103 -2.2838e+103 -3.03508e+103 -4.03352e+103 -5.36041e+103 -7.1238e+103 -9.46732e+103 
+-1.25818e+104 -1.67209e+104 -2.22218e+104 -2.95325e+104 -3.92485e+104 -5.21616e+104 -6.93239e+104 -9.21343e+104 -1.22453e+105 -1.62752e+105 
+-2.16321e+105 -2.87535e+105 -3.82216e+105 -5.08113e+105 -6.75548e+105 -8.98278e+105 -1.19466e+106 -1.5892e+106 -2.11469e+106 -2.81511e+106 
+-3.74954e+106 -4.99772e+106 -6.6677e+106 -8.90679e+106 -1.19174e+107 -1.59801e+107 -2.14893e+107 -2.90068e+107 -3.93485e+107 -5.37255e+107 
+-7.39825e+107 -1.03011e+108 -1.4549e+108 -2.09227e+108 -3.07612e+108 -4.63853e+108 -7.16953e+108 -1.12304e+109 -1.71648e+109 -2.31103e+109 
+-2.03466e+109 
+-2.44629e+96 -5.09177e+96 -8.15187e+96 -1.18758e+97 -1.65667e+97 -2.26066e+97 -3.04873e+97 -4.08506e+97 -5.45403e+97 -7.26711e+97 
+-9.67194e+97 -1.28643e+98 -1.71043e+98 -2.2737e+98 -3.02211e+98 -4.01661e+98 -5.33817e+98 -7.09442e+98 -9.42835e+98 -1.253e+99 
+-1.6652e+99 -2.21299e+99 -2.94098e+99 -3.90845e+99 -5.19418e+99 -6.90287e+99 -9.17364e+99 -1.21914e+100 -1.62019e+100 -2.15317e+100 
+-2.86148e+100 -3.8028e+100 -5.05377e+100 -6.71626e+100 -8.92564e+100 -1.18618e+101 -1.57639e+101 -2.09496e+101 -2.78412e+101 -3.69999e+101 
+-4.91714e+101 -6.53469e+101 -8.68435e+101 -1.15412e+102 -1.53377e+102 -2.03833e+102 -2.70886e+102 -3.59997e+102 -4.78421e+102 -6.35804e+102 
+-8.44958e+102 -1.12292e+103 -1.49231e+103 -1.98323e+103 -2.63564e+103 -3.50267e+103 -4.65492e+103 -6.18622e+103 -8.22129e+103 -1.09258e+104 
+-1.45201e+104 -1.92968e+104 -2.56451e+104 -3.40819e+104 -4.52946e+104 -6.01965e+104 -8.0002e+104 -1.06325e+105 -1.41312e+105 -1.87815e+105 
+-2.49629e+105 -3.318e+105 -4.41042e+105 -5.8629e+105 -7.79442e+105 -1.03635e+106 -1.37815e+106 -1.83304e+106 -2.43875e+106 -3.24576e+106 
+-4.32183e+106 -5.75821e+106 -7.67822e+106 -1.02494e+107 -1.37009e+107 -1.83486e+107 -2.46328e+107 -3.31747e+107 -4.48649e+107 -6.10029e+107 
+-8.35249e+107 -1.1538e+108 -1.61157e+108 -2.28125e+108 -3.27849e+108 -4.78286e+108 -7.04596e+108 -1.03064e+109 -1.4352e+109 -1.72301e+109 
+-1.36407e+109 
+-2.72305e+96 -5.66784e+96 -9.07415e+96 -1.32194e+97 -1.8441e+97 -2.51643e+97 -3.39366e+97 -4.54723e+97 -6.07108e+97 -8.08929e+97 
+-1.07662e+98 -1.43198e+98 -1.90394e+98 -2.53094e+98 -3.36402e+98 -4.47104e+98 -5.94212e+98 -7.89707e+98 -1.04951e+99 -1.39476e+99 
+-1.8536e+99 -2.46336e+99 -3.27372e+99 -4.35065e+99 -5.78184e+99 -7.68385e+99 -1.02115e+100 -1.35707e+100 -1.8035e+100 -2.39678e+100 
+-3.18522e+100 -4.23304e+100 -5.62554e+100 -7.47612e+100 -9.93547e+100 -1.32039e+101 -1.75474e+101 -2.33198e+101 -3.09911e+101 -4.1186e+101 
+-5.47346e+101 -7.27401e+101 -9.66687e+101 -1.28469e+102 -1.7073e+102 -2.26894e+102 -3.01533e+102 -4.00726e+102 -5.32549e+102 -7.07737e+102 
+-9.40555e+102 -1.24996e+103 -1.66115e+103 -2.20761e+103 -2.93383e+103 -3.89895e+103 -5.18156e+103 -6.88611e+103 -9.1514e+103 -1.21619e+104 
+-1.61628e+104 -2.14799e+104 -2.85463e+104 -3.79374e+104 -5.04183e+104 -6.70056e+104 -8.90507e+104 -1.1835e+105 -1.57292e+105 -2.0905e+105 
+-2.77847e+105 -3.69297e+105 -4.90866e+105 -6.52491e+105 -8.67397e+105 -1.1532e+106 -1.53336e+106 -2.03919e+106 -2.71249e+106 -3.60914e+106 
+-4.80405e+106 -6.3978e+106 -8.52595e+106 -1.13719e+107 -1.51853e+107 -2.03079e+107 -2.72118e+107 -3.65556e+107 -4.92693e+107 -6.66842e+107 
+-9.07341e+107 -1.24268e+108 -1.71527e+108 -2.38833e+108 -3.35408e+108 -4.73751e+108 -6.67305e+108 -9.18616e+108 -1.18311e+109 -1.29666e+109 
+-9.44763e+108 
+-2.94439e+96 -6.12853e+96 -9.81171e+96 -1.42938e+97 -1.99399e+97 -2.72096e+97 -3.6695e+97 -4.91684e+97 -6.56455e+97 -8.7468e+97 
+-1.16413e+98 -1.54837e+98 -2.0587e+98 -2.73666e+98 -3.63746e+98 -4.83445e+98 -6.42511e+98 -8.53895e+98 -1.13481e+99 -1.50813e+99 
+-2.00426e+99 -2.66359e+99 -3.53981e+99 -4.70428e+99 -6.2518e+99 -8.3084e+99 -1.10415e+100 -1.46738e+100 -1.95009e+100 -2.59159e+100 
+-3.44412e+100 -4.5771e+100 -6.08279e+100 -8.08379e+100 -1.0743e+101 -1.42771e+101 -1.89737e+101 -2.52153e+101 -3.35101e+101 -4.45336e+101 
+-5.91835e+101 -7.86525e+101 -1.04526e+102 -1.38911e+102 -1.84607e+102 -2.45336e+102 -3.26042e+102 -4.33297e+102 -5.75835e+102 -7.65263e+102 
+-1.017e+103 -1.35156e+103 -1.79617e+103 -2.38704e+103 -3.17229e+103 -4.21585e+103 -5.60271e+103 -7.4458e+103 -9.8952e+103 -1.31504e+104 
+-1.74764e+104 -2.32256e+104 -3.08662e+104 -4.10205e+104 -5.45154e+104 -7.24502e+104 -9.62859e+104 -1.27964e+105 -1.70067e+105 -2.26026e+105 
+-3.00402e+105 -3.99263e+105 -5.30676e+105 -7.05372e+105 -9.37629e+105 -1.24645e+106 -1.65716e+106 -2.20347e+106 -2.93038e+106 -3.89796e+106 
+-5.18655e+106 -6.90378e+106 -9.19421e+106 -1.22526e+107 -1.63425e+107 -2.1822e+107 -2.91809e+107 -3.9094e+107 -5.24985e+107 -7.07068e+107 
+-9.55723e+107 -1.29725e+108 -1.76886e+108 -2.42225e+108 -3.32524e+108 -4.55414e+108 -6.15576e+108 -8.03295e+108 -9.68752e+108 -9.86688e+108 
+-6.73672e+108 
+-3.10578e+96 -6.46446e+96 -1.03495e+97 -1.50774e+97 -2.10329e+97 -2.87011e+97 -3.87064e+97 -5.18636e+97 -6.92438e+97 -9.22625e+97 
+-1.22794e+98 -1.63324e+98 -2.17154e+98 -2.88666e+98 -3.83684e+98 -5.09945e+98 -6.7773e+98 -9.00701e+98 -1.19701e+99 -1.5908e+99 
+-2.11412e+99 -2.80959e+99 -3.73384e+99 -4.96214e+99 -6.59449e+99 -8.76382e+99 -1.16468e+100 -1.54781e+100 -2.05698e+100 -2.73365e+100 
+-3.63291e+100 -4.828e+100 -6.41622e+100 -8.5269e+100 -1.13319e+101 -1.50597e+101 -2.00137e+101 -2.65974e+101 -3.5347e+101 -4.69747e+101 
+-6.24276e+101 -8.29638e+101 -1.10256e+102 -1.46525e+102 -1.94727e+102 -2.58784e+102 -3.43914e+102 -4.57048e+102 -6.07399e+102 -8.0721e+102 
+-1.07275e+103 -1.42564e+103 -1.89463e+103 -2.51788e+103 -3.34617e+103 -4.44693e+103 -5.90981e+103 -7.85392e+103 -1.04376e+104 -1.38712e+104 
+-1.84343e+104 -2.44985e+104 -3.25578e+104 -4.32683e+104 -5.75025e+104 -7.64195e+104 -1.0156e+105 -1.34973e+105 -1.79379e+105 -2.38397e+105 
+-3.16837e+105 -4.21092e+105 -5.59666e+105 -7.43862e+105 -9.88719e+105 -1.31424e+106 -1.74705e+106 -2.3226e+106 -3.08811e+106 -4.10653e+106 
+-5.4619e+106 -7.26646e+106 -9.67048e+106 -1.28754e+107 -1.71522e+107 -2.28661e+107 -3.05114e+107 -4.07596e+107 -5.45267e+107 -7.30651e+107 
+-9.80888e+107 -1.31929e+108 -1.777e+108 -2.39376e+108 -3.21493e+108 -4.27758e+108 -5.56957e+108 -6.9354e+108 -7.91274e+108 -7.5945e+108 
+-4.92745e+108 
+-3.20395e+96 -6.6688e+96 -1.06767e+97 -1.55539e+97 -2.16977e+97 -2.96083e+97 -3.99299e+97 -5.35029e+97 -7.14326e+97 -9.51789e+97 
+-1.26675e+98 -1.68487e+98 -2.24018e+98 -2.97791e+98 -3.95812e+98 -5.26064e+98 -6.99152e+98 -9.29171e+98 -1.23485e+99 -1.64108e+99 
+-2.18095e+99 -2.8984e+99 -3.85187e+99 -5.11899e+99 -6.80293e+99 -9.04084e+99 -1.20149e+100 -1.59674e+100 -2.122e+100 -2.82005e+100 
+-3.74774e+100 -4.9806e+100 -6.61903e+100 -8.79643e+100 -1.16901e+101 -1.55357e+101 -2.06463e+101 -2.74382e+101 -3.64642e+101 -4.84596e+101 
+-6.44008e+101 -8.55862e+101 -1.13741e+102 -1.51157e+102 -2.00882e+102 -2.66964e+102 -3.54785e+102 -4.71495e+102 -6.26598e+102 -8.32725e+102 
+-1.10666e+103 -1.47071e+103 -1.95451e+103 -2.59747e+103 -3.45194e+103 -4.58749e+103 -6.0966e+103 -8.10215e+103 -1.07674e+104 -1.43095e+104 
+-1.90168e+104 -2.52727e+104 -3.35865e+104 -4.46353e+104 -5.93189e+104 -7.8833e+104 -1.04767e+105 -1.39233e+105 -1.85038e+105 -2.45913e+105 
+-3.26817e+105 -4.34342e+105 -5.77249e+105 -7.67188e+105 -1.01964e+106 -1.35521e+106 -1.80126e+106 -2.39424e+106 -3.1826e+106 -4.23087e+106 
+-5.62494e+106 -7.47928e+106 -9.94652e+106 -1.32303e+107 -1.76027e+107 -2.34274e+107 -3.11912e+107 -4.15455e+107 -5.5362e+107 -7.38021e+107 
+-9.84011e+107 -1.31151e+108 -1.74539e+108 -2.31416e+108 -3.04425e+108 -3.94369e+108 -4.96492e+108 -5.93496e+108 -6.46186e+108 -5.90932e+108 
+-3.68329e+108 
+-3.2369e+96 -6.73737e+96 -1.07865e+97 -1.57139e+97 -2.19209e+97 -2.99128e+97 -4.03405e+97 -5.40531e+97 -7.21671e+97 -9.61576e+97 
+-1.27978e+98 -1.7022e+98 -2.26322e+98 -3.00853e+98 -3.99882e+98 -5.31473e+98 -7.06342e+98 -9.38726e+98 -1.24755e+99 -1.65796e+99 
+-2.20337e+99 -2.92821e+99 -3.89148e+99 -5.17162e+99 -6.87289e+99 -9.1338e+99 -1.21385e+100 -1.61316e+100 -2.14382e+100 -2.84905e+100 
+-3.78628e+100 -5.03182e+100 -6.68709e+100 -8.88688e+100 -1.18103e+101 -1.56954e+101 -2.08586e+101 -2.77203e+101 -3.68392e+101 -4.89579e+101 
+-6.50631e+101 -8.64663e+101 -1.1491e+102 -1.52711e+102 -2.02947e+102 -2.69709e+102 -3.58433e+102 -4.76343e+102 -6.33042e+102 -8.41287e+102 
+-1.11804e+103 -1.48583e+103 -1.97461e+103 -2.62418e+103 -3.48743e+103 -4.63466e+103 -6.15928e+103 -8.18544e+103 -1.08781e+104 -1.44566e+104 
+-1.92123e+104 -2.55323e+104 -3.39315e+104 -4.50936e+104 -5.99276e+104 -7.96415e+104 -1.0584e+105 -1.40658e+105 -1.86929e+105 -2.48421e+105 
+-3.30142e+105 -4.38745e+105 -5.83075e+105 -7.74884e+105 -1.02979e+106 -1.36855e+106 -1.81874e+106 -2.41703e+106 -3.21212e+106 -4.26875e+106 
+-5.67291e+106 -7.53888e+106 -1.00184e+107 -1.3313e+107 -1.76901e+107 -2.35039e+107 -3.12233e+107 -4.14659e+107 -5.50414e+107 -7.29993e+107 
+-9.66757e+107 -1.27714e+108 -1.68004e+108 -2.19424e+108 -2.83124e+108 -3.57935e+108 -4.37306e+108 -5.04532e+108 -5.28084e+108 -4.64251e+108 
+-2.80344e+108 
+-3.20395e+96 -6.6688e+96 -1.06767e+97 -1.55539e+97 -2.16977e+97 -2.96083e+97 -3.99299e+97 -5.35029e+97 -7.14326e+97 -9.51789e+97 
+-1.26675e+98 -1.68487e+98 -2.24018e+98 -2.97791e+98 -3.95812e+98 -5.26064e+98 -6.99152e+98 -9.29171e+98 -1.23485e+99 -1.64108e+99 
+-2.18095e+99 -2.8984e+99 -3.85187e+99 -5.11899e+99 -6.80293e+99 -9.04084e+99 -1.20149e+100 -1.59674e+100 -2.122e+100 -2.82005e+100 
+-3.74774e+100 -4.9806e+100 -6.61903e+100 -8.79643e+100 -1.16901e+101 -1.55357e+101 -2.06463e+101 -2.74382e+101 -3.64642e+101 -4.84595e+101 
+-6.44008e+101 -8.55862e+101 -1.13741e+102 -1.51157e+102 -2.00882e+102 -2.66964e+102 -3.54784e+102 -4.71495e+102 -6.26598e+102 -8.32724e+102 
+-1.10666e+103 -1.4707e+103 -1.95451e+103 -2.59746e+103 -3.45193e+103 -4.58747e+103 -6.09657e+103 -8.1021e+103 -1.07674e+104 -1.43094e+104 
+-1.90166e+104 -2.52722e+104 -3.35857e+104 -4.46339e+104 -5.93165e+104 -7.88287e+104 -1.04759e+105 -1.3922e+105 -1.85015e+105 -2.45872e+105 
+-3.26746e+105 -4.34217e+105 -5.77031e+105 -7.66806e+105 -1.01897e+106 -1.35403e+106 -1.7992e+106 -2.39062e+106 -3.17626e+106 -4.21975e+106 
+-5.60544e+106 -7.44508e+106 -9.88654e+106 -1.31251e+107 -1.74183e+107 -2.31041e+107 -3.06246e+107 -4.05531e+107 -5.36252e+107 -7.07669e+107 
+-9.31098e+107 -1.21963e+108 -1.58688e+108 -2.04362e+108 -2.59044e+108 -3.2036e+108 -3.81157e+108 -4.26486e+108 -4.31827e+108 -3.67589e+108 
+-2.16468e+108 
+-3.10578e+96 -6.46446e+96 -1.03495e+97 -1.50774e+97 -2.10329e+97 -2.87011e+97 -3.87064e+97 -5.18636e+97 -6.92438e+97 -9.22625e+97 
+-1.22794e+98 -1.63324e+98 -2.17154e+98 -2.88666e+98 -3.83684e+98 -5.09945e+98 -6.7773e+98 -9.00701e+98 -1.19701e+99 -1.5908e+99 
+-2.11412e+99 -2.80959e+99 -3.73384e+99 -4.96214e+99 -6.59449e+99 -8.76382e+99 -1.16468e+100 -1.54781e+100 -2.05698e+100 -2.73365e+100 
+-3.63291e+100 -4.82799e+100 -6.41622e+100 -8.5269e+100 -1.13319e+101 -1.50597e+101 -2.00137e+101 -2.65974e+101 -3.5347e+101 -4.69747e+101 
+-6.24276e+101 -8.29638e+101 -1.10256e+102 -1.46525e+102 -1.94727e+102 -2.58784e+102 -3.43914e+102 -4.57048e+102 -6.07399e+102 -8.07209e+102 
+-1.07275e+103 -1.42564e+103 -1.89462e+103 -2.51787e+103 -3.34615e+103 -4.44691e+103 -5.90976e+103 -7.85382e+103 -1.04374e+104 -1.38709e+104 
+-1.84338e+104 -2.44977e+104 -3.25563e+104 -4.32657e+104 -5.74978e+104 -7.64114e+104 -1.01546e+105 -1.34948e+105 -1.79335e+105 -2.38319e+105 
+-3.16701e+105 -4.20854e+105 -5.59248e+105 -7.43129e+105 -9.87433e+105 -1.31199e+106 -1.7431e+106 -2.31566e+106 -3.07594e+106 -4.08519e+106 
+-5.42447e+106 -7.20083e+106 -9.55538e+106 -1.26736e+107 -1.67983e+107 -2.22456e+107 -2.94239e+107 -3.88544e+107 -5.11915e+107 -6.72343e+107 
+-8.79163e+107 -1.14245e+108 -1.47134e+108 -1.87047e+108 -2.33306e+108 -2.82916e+108 -3.28876e+108 -3.58437e+108 -3.52966e+108 -2.92648e+108 
+-1.68928e+108 
+-2.94439e+96 -6.12853e+96 -9.81171e+96 -1.42938e+97 -1.99399e+97 -2.72096e+97 -3.6695e+97 -4.91684e+97 -6.56455e+97 -8.7468e+97 
+-1.16413e+98 -1.54837e+98 -2.0587e+98 -2.73666e+98 -3.63746e+98 -4.83445e+98 -6.42511e+98 -8.53895e+98 -1.13481e+99 -1.50813e+99 
+-2.00426e+99 -2.66359e+99 -3.53981e+99 -4.70428e+99 -6.2518e+99 -8.3084e+99 -1.10415e+100 -1.46738e+100 -1.95009e+100 -2.59159e+100 
+-3.44412e+100 -4.5771e+100 -6.08279e+100 -8.08379e+100 -1.0743e+101 -1.42771e+101 -1.89737e+101 -2.52153e+101 -3.35101e+101 -4.45336e+101 
+-5.91835e+101 -7.86525e+101 -1.04526e+102 -1.38911e+102 -1.84607e+102 -2.45336e+102 -3.26042e+102 -4.33297e+102 -5.75834e+102 -7.65261e+102 
+-1.017e+103 -1.35156e+103 -1.79616e+103 -2.38703e+103 -3.17226e+103 -4.21581e+103 -5.60264e+103 -7.44567e+103 -9.89498e+103 -1.315e+104 
+-1.74757e+104 -2.32244e+104 -3.08641e+104 -4.10167e+104 -5.45088e+104 -7.24387e+104 -9.62658e+104 -1.27929e+105 -1.70005e+105 -2.25917e+105 
+-3.00212e+105 -3.9893e+105 -5.30092e+105 -7.04347e+105 -9.35832e+105 -1.2433e+106 -1.65163e+106 -2.19377e+106 -2.91337e+106 -3.86814e+106 
+-5.13424e+106 -6.81203e+106 -9.03331e+106 -1.19704e+107 -1.58477e+107 -2.09544e+107 -2.76601e+107 -3.64291e+107 -4.78314e+107 -6.25418e+107 
+-8.13113e+107 -1.04886e+108 -1.33824e+108 -1.68147e+108 -2.0673e+108 -2.46384e+108 -2.80693e+108 -2.99147e+108 -2.87816e+108 -2.33558e+108 
+-1.3269e+108 
+-2.72305e+96 -5.66784e+96 -9.07415e+96 -1.32194e+97 -1.8441e+97 -2.51643e+97 -3.39366e+97 -4.54723e+97 -6.07108e+97 -8.08929e+97 
+-1.07662e+98 -1.43198e+98 -1.90394e+98 -2.53094e+98 -3.36402e+98 -4.47104e+98 -5.94212e+98 -7.89707e+98 -1.04951e+99 -1.39476e+99 
+-1.8536e+99 -2.46336e+99 -3.27372e+99 -4.35065e+99 -5.78184e+99 -7.68385e+99 -1.02115e+100 -1.35707e+100 -1.8035e+100 -2.39678e+100 
+-3.18522e+100 -4.23304e+100 -5.62554e+100 -7.47612e+100 -9.93547e+100 -1.32039e+101 -1.75474e+101 -2.33198e+101 -3.09911e+101 -4.1186e+101 
+-5.47346e+101 -7.27401e+101 -9.66687e+101 -1.28469e+102 -1.7073e+102 -2.26894e+102 -3.01533e+102 -4.00725e+102 -5.32548e+102 -7.07735e+102 
+-9.40552e+102 -1.24996e+103 -1.66114e+103 -2.20759e+103 -2.9338e+103 -3.8989e+103 -5.18147e+103 -6.88595e+103 -9.15113e+103 -1.21614e+104 
+-1.6162e+104 -2.14784e+104 -2.85437e+104 -3.79329e+104 -5.04104e+104 -6.69918e+104 -8.90266e+104 -1.18308e+105 -1.57217e+105 -2.0892e+105 
+-2.77619e+105 -3.68896e+105 -4.90163e+105 -6.51258e+105 -8.65234e+105 -1.1494e+106 -1.52671e+106 -2.02752e+106 -2.69202e+106 -3.57324e+106 
+-4.74108e+106 -6.28736e+106 -8.33227e+106 -1.10323e+107 -1.45897e+107 -1.92634e+107 -2.53805e+107 -3.33454e+107 -4.36444e+107 -5.68345e+107 
+-7.3505e+107 -9.41863e+107 -1.19168e+108 -1.48181e+108 -1.79887e+108 -2.11188e+108 -2.36475e+108 -2.47302e+108 -2.33398e+108 -1.8612e+108 
+-1.04408e+108 
+-2.44629e+96 -5.09177e+96 -8.15187e+96 -1.18758e+97 -1.65667e+97 -2.26066e+97 -3.04873e+97 -4.08506e+97 -5.45403e+97 -7.26711e+97 
+-9.67194e+97 -1.28643e+98 -1.71043e+98 -2.2737e+98 -3.02211e+98 -4.01661e+98 -5.33817e+98 -7.09442e+98 -9.42835e+98 -1.253e+99 
+-1.6652e+99 -2.21299e+99 -2.94098e+99 -3.90845e+99 -5.19418e+99 -6.90287e+99 -9.17364e+99 -1.21914e+100 -1.62019e+100 -2.15317e+100 
+-2.86148e+100 -3.8028e+100 -5.05377e+100 -6.71626e+100 -8.92564e+100 -1.18618e+101 -1.57639e+101 -2.09496e+101 -2.78412e+101 -3.69999e+101 
+-4.91714e+101 -6.53469e+101 -8.68434e+101 -1.15411e+102 -1.53377e+102 -2.03832e+102 -2.70885e+102 -3.59996e+102 -4.7842e+102 -6.35802e+102 
+-8.44955e+102 -1.12291e+103 -1.4923e+103 -1.98321e+103 -2.63561e+103 -3.50261e+103 -4.65482e+103 -6.18606e+103 -8.22099e+103 -1.09253e+104 
+-1.45192e+104 -1.92953e+104 -2.56423e+104 -3.4077e+104 -4.5286e+104 -6.01815e+104 -7.99757e+104 -1.06279e+105 -1.41231e+105 -1.87673e+105 
+-2.4938e+105 -3.31364e+105 -4.40277e+105 -5.84948e+105 -7.77088e+105 -1.03222e+106 -1.3709e+106 -1.82034e+106 -2.41648e+106 -3.20669e+106 
+-4.25332e+106 -5.63804e+106 -7.46745e+106 -9.87975e+106 -1.30526e+107 -1.72116e+107 -2.26389e+107 -2.96783e+107 -3.87346e+107 -5.0257e+107 
+-6.46961e+107 -8.24115e+107 -1.03504e+108 -1.27541e+108 -1.53146e+108 -1.77496e+108 -1.95871e+108 -2.01641e+108 -1.87323e+108 -1.4729e+108 
+-8.18e+107 
+-2.11972e+96 -4.41204e+96 -7.06363e+96 -1.02904e+97 -1.43551e+97 -1.95887e+97 -2.64174e+97 -3.53972e+97 -4.72594e+97 -6.29698e+97 
+-8.38078e+97 -1.1147e+98 -1.48209e+98 -1.97017e+98 -2.61867e+98 -3.48041e+98 -4.62555e+98 -6.14735e+98 -8.16971e+98 -1.08573e+99 
+-1.4429e+99 -1.91757e+99 -2.54838e+99 -3.38669e+99 -4.50079e+99 -5.98137e+99 -7.94901e+99 -1.05639e+100 -1.4039e+100 -1.86573e+100 
+-2.47949e+100 -3.29514e+100 -4.37911e+100 -5.81967e+100 -7.73411e+100 -1.02783e+101 -1.36595e+101 -1.81529e+101 -2.41246e+101 -3.20606e+101 
+-4.26073e+101 -5.66234e+101 -7.52502e+101 -1.00005e+102 -1.32902e+102 -1.76622e+102 -2.34723e+102 -3.11938e+102 -4.14554e+102 -5.50925e+102 
+-7.32158e+102 -9.73008e+102 -1.29309e+103 -1.71846e+103 -2.28376e+103 -3.03503e+103 -4.03342e+103 -5.36024e+103 -7.12351e+103 -9.4668e+103 
+-1.25809e+104 -1.67193e+104 -2.2219e+104 -2.95276e+104 -3.924e+104 -5.21466e+104 -6.92976e+104 -9.20882e+104 -1.22372e+105 -1.6261e+105 
+-2.16072e+105 -2.87099e+105 -3.81451e+105 -5.06771e+105 -6.73194e+105 -8.9415e+105 -1.18742e+106 -1.5765e+106 -2.09242e+106 -2.77604e+106 
+-3.68102e+106 -4.87755e+106 -6.45692e+106 -8.53709e+106 -1.12689e+107 -1.48428e+107 -1.94942e+107 -2.55069e+107 -3.32082e+107 -4.29504e+107 
+-5.50681e+107 -6.97923e+107 -8.71049e+107 -1.06509e+108 -1.26718e+108 -1.45297e+108 -1.58418e+108 -1.61002e+108 -1.47677e+108 -1.14825e+108 
+-6.32696e+107 
+-1.75e+96 -3.6425e+96 -5.8316e+96 -8.49556e+96 -1.18513e+97 -1.61721e+97 -2.18097e+97 -2.92233e+97 -3.90165e+97 -5.19867e+97 
+-6.91902e+97 -9.20276e+97 -1.22359e+98 -1.62653e+98 -2.16193e+98 -2.87336e+98 -3.81877e+98 -5.07514e+98 -6.74476e+98 -8.9636e+98 
+-1.19123e+99 -1.58311e+99 -2.10389e+99 -2.79599e+99 -3.71577e+99 -4.93811e+99 -6.56255e+99 -8.72138e+99 -1.15904e+100 -1.54031e+100 
+-2.04702e+100 -2.72041e+100 -3.61531e+100 -4.80461e+100 -6.38514e+100 -8.4856e+100 -1.1277e+101 -1.49867e+101 -1.99168e+101 -2.64686e+101 
+-3.51758e+101 -4.67472e+101 -6.21252e+101 -8.2562e+101 -1.09722e+102 -1.45816e+102 -1.93783e+102 -2.5753e+102 -3.42248e+102 -4.54833e+102 
+-6.04456e+102 -8.03297e+102 -1.06755e+103 -1.41873e+103 -1.88543e+103 -2.50566e+103 -3.32991e+103 -4.4253e+103 -5.88102e+103 -7.81559e+103 
+-1.03865e+104 -1.38031e+104 -1.83435e+104 -2.43772e+104 -3.23954e+104 -4.30506e+104 -5.72096e+104 -7.60242e+104 -1.01024e+105 -1.34241e+105 
+-1.78374e+105 -2.37003e+105 -3.14883e+105 -4.18318e+105 -5.55667e+105 -7.38001e+105 -9.79972e+105 -1.30094e+106 -1.72643e+106 -2.29005e+106 
+-3.03585e+106 -4.02134e+106 -5.32119e+106 -7.03152e+106 -9.27476e+106 -1.22045e+107 -1.60093e+107 -2.09134e+107 -2.71715e+107 -3.505e+107 
+-4.47884e+107 -5.65261e+107 -7.01823e+107 -8.52766e+107 -1.00697e+108 -1.14463e+108 -1.23599e+108 -1.24339e+108 -1.12914e+108 -8.70346e+107 
+-4.76677e+107 
+-1.34466e+96 -2.79881e+96 -4.48086e+96 -6.52778e+96 -9.10625e+96 -1.24262e+97 -1.67581e+97 -2.24545e+97 -2.99793e+97 -3.99453e+97 
+-5.3164e+97 -7.07118e+97 -9.40175e+97 -1.24979e+98 -1.66117e+98 -2.20782e+98 -2.93425e+98 -3.89961e+98 -5.18251e+98 -6.88741e+98 
+-9.15314e+98 -1.21642e+99 -1.61658e+99 -2.14837e+99 -2.8551e+99 -3.79432e+99 -5.0425e+99 -6.70129e+99 -8.90575e+99 -1.18354e+100 
+-1.57288e+100 -2.09029e+100 -2.77792e+100 -3.69174e+100 -4.90618e+100 -6.52013e+100 -8.66499e+100 -1.15154e+101 -1.53036e+101 -2.03378e+101 
+-2.70282e+101 -3.59194e+101 -4.77355e+101 -6.34386e+101 -8.43073e+101 -1.12041e+102 -1.48898e+102 -1.9788e+102 -2.62975e+102 -3.49483e+102 
+-4.64449e+102 -6.17233e+102 -8.20278e+102 -1.09012e+103 -1.44872e+103 -1.92529e+103 -2.55862e+103 -3.40029e+103 -4.51882e+103 -6.00529e+103 
+-7.98072e+103 -1.06059e+104 -1.40946e+104 -1.87307e+104 -2.48916e+104 -3.30786e+104 -4.39577e+104 -5.84138e+104 -7.76221e+104 -1.03144e+105 
+-1.37051e+105 -1.82095e+105 -2.41926e+105 -3.21387e+105 -4.26893e+105 -5.66944e+105 -7.5278e+105 -9.99247e+105 -1.32592e+106 -1.75851e+106 
+-2.33074e+106 -3.08654e+106 -4.08283e+106 -5.39272e+106 -7.10899e+106 -9.34747e+106 -1.22495e+107 -1.59815e+107 -2.07298e+107 -2.66847e+107 
+-3.40089e+107 -4.27803e+107 -5.29002e+107 -6.39623e+107 -7.50905e+107 -8.4787e+107 -9.088e+107 -9.07179e+107 -8.1764e+107 -6.26165e+107 
+-3.41411e+107 
+-9.1194e+95 -1.89814e+96 -3.0389e+96 -4.42711e+96 -6.17582e+96 -8.42741e+96 -1.13652e+97 -1.52285e+97 -2.03318e+97 -2.70907e+97 
+-3.60556e+97 -4.79564e+97 -6.37622e+97 -8.47601e+97 -1.1266e+98 -1.49733e+98 -1.98999e+98 -2.6447e+98 -3.51475e+98 -4.67101e+98 
+-6.20762e+98 -8.24971e+98 -1.09636e+99 -1.45702e+99 -1.93632e+99 -2.57329e+99 -3.4198e+99 -4.54478e+99 -6.03984e+99 -8.02671e+99 
+-1.06672e+100 -1.41763e+100 -1.88397e+100 -2.50372e+100 -3.32735e+100 -4.42192e+100 -5.87656e+100 -7.80971e+100 -1.03788e+101 -1.3793e+101 
+-1.83304e+101 -2.43604e+101 -3.2374e+101 -4.30237e+101 -5.71769e+101 -7.59858e+101 -1.00982e+102 -1.34201e+102 -1.78348e+102 -2.37018e+102 
+-3.14987e+102 -4.18605e+102 -5.56309e+102 -7.39311e+102 -9.82514e+102 -1.30572e+103 -1.73524e+103 -2.30606e+103 -3.06464e+103 -4.07276e+103 
+-5.41247e+103 -7.19286e+103 -9.55884e+103 -1.2703e+104 -1.68812e+104 -2.24335e+104 -2.98115e+104 -3.96153e+104 -5.26418e+104 -6.99495e+104 
+-9.29438e+104 -1.2349e+105 -1.64063e+105 -2.17944e+105 -2.89484e+105 -3.84441e+105 -5.1043e+105 -6.77507e+105 -8.98919e+105 -1.19207e+106 
+-1.57975e+106 -2.09162e+106 -2.76608e+106 -3.65233e+106 -4.81266e+106 -6.32457e+106 -8.28215e+106 -1.07955e+107 -1.39863e+107 -1.79769e+107 
+-2.28676e+107 -2.86973e+107 -3.53826e+107 -4.26314e+107 -4.98416e+107 -5.60115e+107 -5.97244e+107 -5.92946e+107 -5.31624e+107 -4.05303e+107 
+-2.20308e+107 
+-4.60659e+95 -9.58828e+95 -1.53507e+96 -2.23632e+96 -3.11966e+96 -4.25704e+96 -5.74105e+96 -7.69256e+96 -1.02705e+97 -1.36847e+97 
+-1.82132e+97 -2.42248e+97 -3.2209e+97 -4.28159e+97 -5.69092e+97 -7.56366e+97 -1.00523e+98 -1.33595e+98 -1.77545e+98 -2.35952e+98 
+-3.13573e+98 -4.16727e+98 -5.53815e+98 -7.35999e+98 -9.78114e+98 -1.29988e+99 -1.72748e+99 -2.29576e+99 -3.05097e+99 -4.05463e+99 
+-5.38844e+99 -7.16102e+99 -9.51672e+99 -1.26474e+100 -1.68078e+100 -2.2337e+100 -2.96849e+100 -3.94501e+100 -5.24277e+100 -6.96743e+100 
+-9.25944e+100 -1.23054e+101 -1.63534e+101 -2.17331e+101 -2.88824e+101 -3.83836e+101 -5.10103e+101 -6.77906e+101 -9.00911e+101 -1.19727e+102 
+-1.59113e+102 -2.11455e+102 -2.81015e+102 -3.73457e+102 -4.96308e+102 -6.59573e+102 -8.76543e+102 -1.16489e+103 -1.54808e+103 -2.05732e+103 
+-2.73406e+103 -3.63341e+103 -4.82856e+103 -6.4168e+103 -8.52738e+103 -1.1332e+104 -1.50589e+104 -2.00111e+104 -2.65912e+104 -3.53338e+104 
+-4.69487e+104 -6.23779e+104 -8.28715e+104 -1.10087e+105 -1.4622e+105 -1.94179e+105 -2.57808e+105 -3.42182e+105 -4.53985e+105 -6.01998e+105 
+-7.97705e+105 -1.05606e+106 -1.39638e+106 -1.84341e+106 -2.42843e+106 -3.19026e+106 -4.17589e+106 -5.44007e+106 -7.04296e+106 -9.04422e+106 
+-1.14915e+107 -1.44005e+107 -1.77241e+107 -2.13103e+107 -2.48527e+107 -2.78503e+107 -2.96045e+107 -2.92968e+107 -2.61857e+107 -1.9911e+107 
+-1.08034e+107 
