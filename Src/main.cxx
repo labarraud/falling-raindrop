@@ -38,14 +38,12 @@ void testNS2()
 
 
 		Density n(Nx,Ny,L,H);
-		precision rho_mer(1032.0), rho_douce(1000.0), p_atm(1015000.0), y, g(9.81);
+		precision rho_mer(1032.0), p_atm(1015000.0), y, g(9.81);
 		
 		v.GetAllVX().SetBoundaryCondition(neumann,0,neumann,0,neumann,0,neumann,0);
 		v.GetAllVY().SetBoundaryCondition(neumann,0,neumann,0,neumann,0,neumann,0);
 		Matrix p(Ny+1,Nx+1);
-//		p.SetBoundaryCondition(neumann,0,neumann,0,dirichlet,p_atm+rho_mer*g*(H+dy),dirichlet,p_atm-rho_mer*g*dy);
-		p.SetBoundaryCondition(neumann,0,neumann,0,neumann,0.0,neumann,0.0);
-		n.SetBoundaryCondition(neumann,0,neumann,0,dirichlet,rho_mer,dirichlet,rho_mer);
+		p.SetBoundaryCondition(neumann,0,neumann,0,dirichlet,p_atm+rho_mer*g*(H+dy),dirichlet,p_atm-rho_mer*g*dy);
 		for(int i(0); i < Ny+1; ++i) {
 			y = H-i*dy;
 			for(int j(0); j < Nx+1; ++j) {
@@ -53,7 +51,6 @@ void testNS2()
 				p(i,j) = p_atm + rho_mer*g*y;
 			}
 		}
-		n.InitialCircle(Xcenter,Ycenter,radius,rho_douce);
 		NavierStokes2 ns(Nx,Ny,Nt,L,H,tfinal,v,n,p);
 		int nDisplay(50);
 		string var,var2;
@@ -65,7 +62,7 @@ void testNS2()
 			if((i%nDisplay)==0) {
 				var=(i/nDisplay < 10 ? "0" : "");
 				var2=(i/nDisplay < 100 ? "0" : "");
-				ns.WriteVtk("output_test/testNS2_diff/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
+				ns.WriteVtk("output_test/testNS2/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
 			}
 
 		}
@@ -165,7 +162,7 @@ void testrotateDC()
 
 			Density n(Nx,Ny,L,H);
 			//n.InitialSquare(L/3.0,H/3.0,0.5);
-			n.InitialCircle(L/3.0,H/3.0,0.5, 1.0);
+			n.InitialCircle(L/3.0,H/3.0,0.5,1.0);
 			//n.InitialGauss(L/3.0,H/3.0,0.5);
 			cout << "Particule initialise" << endl;
 			n.WriteGnuPlot("particleinit.dat");
@@ -243,7 +240,7 @@ void testrotatedirDC()
 
 			Density n(Nx,Ny,L,H);
 			//n.InitialSquare(L/3.0,H/3.0,0.5);
-			n.InitialCircle(L/3.0,H/3.0,0.5, 1.0);
+			n.InitialCircle(L/3.0,H/3.0,0.5,1.0);
 			n.SetBoundaryCondition(dirichlet,0,dirichlet,0,periodic,0,periodic,0);
 			//n.InitialGauss(L/3.0,H/3.0,0.5);
 			cout << "Particule initialise" << endl;
