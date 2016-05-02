@@ -20,7 +20,7 @@ public:
   virtual void SetInitialCondition(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n)=0;
 
   // fonction pour calculer y = y + alpha f(t, rho)
-  virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y, const vector<precision>& sec_membre) = 0;
+  virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y, const Matrix& sec_membre) = 0;
   
 };
 
@@ -41,12 +41,14 @@ public:
 	void SetInitialCondition(int Nx,int Ny,int Nt,precision L,precision H,precision tfinal,Velocity& V,Density& n);
 	virtual ~DiffusionConvectionProblem();
 	//void Init(int Nx, int Ny,double D);
-	virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y, const vector<precision>& sec_membre) = 0;
+	virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y, const Matrix& sec_membre) = 0;
 	void WriteGnuPlot(const Matrix& M,const string& nom);
 	double GetX(int i) const;
 	double GetY(int i) const;
 	Density& GetP();
 	Velocity & GetV();
+	void SetVelocity(const Velocity& v);
+	void SetD(precision _D);
 	virtual precision computedt(precision cfl)=0;
 };
 

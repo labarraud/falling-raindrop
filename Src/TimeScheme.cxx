@@ -48,7 +48,7 @@ SetInitialCondition(double t0, double dt_, Matrix& rho0, VirtualOdeSystem& sys)
 
 
 //! fonction principale qui avance le schema en temps
-void ExplicitEulerIterator::Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre)
+void ExplicitEulerIterator::Advance(int n, double tn, VirtualOdeSystem& sys, const Matrix& sec_membre)
 {
   // Euler explicite : rho^n+1 = rho^n + dt f(t^n, rho^n)
   sys.AddFunction(dt, rho, tn, rho_next, sec_membre);
@@ -99,7 +99,7 @@ void LowStorageRungeKuttaIterator
 
 
 // fonction principale qui avance le schema en temps
-void LowStorageRungeKuttaIterator::Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre)
+void LowStorageRungeKuttaIterator::Advance(int n, double tn, VirtualOdeSystem& sys, const Matrix& sec_membre)
 {
   rho_next.Zero();
   sys.AddFunction(dt, rho, tn, rho_next, sec_membre);
@@ -145,7 +145,7 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 
 	ofstream file_out(fileout.data());
 	file_out.precision(15);
-	vector<precision> vec;
+	Matrix vec;
 
 
 	for(precision dxy=mindxy; dxy<maxdxy ; dxy=dxy+hdxy)
@@ -200,59 +200,6 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 }
 
 
-
-/********************************
- * RK2Iterator *
- ********************************/
-
-
-//! default constructor
-RK2Iterator::RK2Iterator()
-{
-  dt = 0;
-}
-
-//! libere la memoire utilisee
-void RK2Iterator::Clear()
-{
-  rho.Clear();
-  rho_next.Clear();
-}
-
-
-//! retourne l'itere rho^n
-Matrix& RK2Iterator::GetIterate()
-{
-  return rho;
-}
-
-
-const Matrix& RK2Iterator::GetIterate() const
-{
-  return rho;
-}
-
-
-// fonction pour initialiser le schema en temps
-void RK2Iterator
-::SetInitialCondition(double t0, double dt_, Matrix& rho0, VirtualOdeSystem& sys)
-{
-  dt = dt_;
-  rho = rho0;
-  rho_next = rho;
-}
-
-
-// fonction principale qui avance le schema en temps
-void RK2Iterator::Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre)
-{
-	sys.AddFunction(dt, rho, tn, rho_next, sec_membre);
-	rho = rho_next;
-
-	sys.AddFunction(dt, rho, tn+0.5*dt, rho_next, sec_membre);
-	rho = 0.5*(rho+rho_next);
-	rho_next = rho;
-}
 
 
 #endif

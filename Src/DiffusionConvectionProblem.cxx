@@ -113,5 +113,15 @@ DiffusionConvectionProblem::DiffusionConvectionProblem(){ }
 
 	}
 
+	void DiffusionConvectionProblem::SetVelocity(const Velocity& v)
+	{
+		velocity = v;
+	}
+
+	void DiffusionConvectionProblem::SetD(precision _D)
+	{
+		D = _D;
+	}
+
 #define DIFFUSION_CONVECTION_PROBLEM_CXX
 #endif

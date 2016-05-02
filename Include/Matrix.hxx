@@ -41,6 +41,7 @@ class Matrix
 		const precision getY0()const;
 		const precision getYn() const;
 		void SetBoundaryCondition(BoundaryCondition bcX0,precision X0,BoundaryCondition bcXn,precision Xn, BoundaryCondition bcY0, precision Y0,BoundaryCondition bcYn, precision Yn);
+		void CopyBoundaryCondition(const Matrix& m);
 		precision norme2();
 		precision& operator()(int i, int j);
 		precision& operator()(int n);
@@ -70,6 +71,7 @@ ostream& operator<<(ostream& out, const Matrix& m);
 Matrix operator*(precision,const Matrix&);
 precision VecNorme(const vector<precision>& v);
 precision VecNorme(const Matrix& v);
+precision DotProduct(const Matrix& v1, const Matrix& v2);
 precision DotProduct(const vector<precision>& v1, const vector<precision>& v2);
 precision DotProduct(const Matrix& v1, const vector<precision>& v2);
 unsigned int Bij(int i, int j, int M);

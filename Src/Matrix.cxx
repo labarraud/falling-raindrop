@@ -92,6 +92,19 @@ void Matrix::SetBoundaryCondition(BoundaryCondition bcX0,precision X0,BoundaryCo
 
 }
 
+void Matrix::CopyBoundaryCondition(const Matrix& m)
+{
+	this->X0=m.X0;
+	this->Xn=m.Xn;
+	this->Y0=m.Y0;
+	this->Yn=m.Yn;
+
+	this->bcX0=m.bcX0;
+	this->bcXn=m.bcXn;
+	this->bcY0=m.bcY0;
+	this->bcYn=m.bcYn;
+}
+
 BoundaryCondition const Matrix::getbcX0() const { return bcX0; }
 BoundaryCondition const Matrix::getbcXn() const { return bcXn; }
 BoundaryCondition const Matrix::getbcY0() const { return bcY0; }
@@ -179,16 +192,14 @@ const precision Matrix::bottom(int i, int j) const
 			return this->Y0;
 			break;
 		case neumann:
-			if(i == -1 && (j<M) && (j>=0)) {
-				return 8.0*((*this)(0,j)-(*this)(2,j))+(*this)(3,j);
-			} else if( i == -2 && (j<M) && (j>=0)) {
-				return 8.0*(*this)(1,j)-(*this)(2,j);
-			} else {
-				return 0.0;
+			if(i == -1) {
+				return (*this)(1,(M+j)%M);
+			} else if(i == -2) {
+				return (*this)(0,(M+j)%M);
 			}
 			break;
 	}
-	return 0;
+	return 0.0;
 }
 
 const precision Matrix::top(int i, int j) const
@@ -209,17 +220,14 @@ const precision Matrix::top(int i, int j) const
 			return this->Yn;
 			break;
 		case neumann:
-			if(i == N && (j<M) && (j>=0)) {
-				return 8.0*((*this)(N-1,j)-(*this)(N-3,j))+(*this)(N-4,j);
-			} else if( (j == N+1) && (j<M) && (j>=0)) {
-				return 8.0*(*this)(N-2,j)-(*this)(N-3,j);
-			} else {
-				return 0.0;
+			if(i == N) {
+				return (*this)(N-2,(M+j)%M);
+			} else if(i == N+1) {
+				return (*this)(N-1,(M+j)%M);
 			}
-			return 0;
 			break;
 	}
-	return 0;
+	return 0.0;
 }
 
 
@@ -238,17 +246,16 @@ const precision Matrix::left(int i, int j) const
 			return this->X0;
 			break;
 		case neumann:
-			if(j == -1) {
-				return 8.0*((*this)(i,0)-(*this)(i,2))+(*this)(i,3);
-			} else if( j == -2) {
-				return 8.0*(*this)(i,1)-(*this)(i,2);
-			} else {
-				return 0.0;
+			if(i<N && i>=0) {
+				if(j == -1) {
+					return (*this)(i,1);
+				} else if(j == -2) {
+					return (*this)(i,0);
+				}
 			}
-			return 0;
 			break;
 	}
-	return 0;
+	return 0.0;
 }
 
 const precision Matrix::right(int i, int j) const
@@ -266,17 +273,16 @@ const precision Matrix::right(int i, int j) const
 			return this->Xn;
 			break;
 		case neumann:
-			if(j == M) {
-				return 8.0*((*this)(i,M-1)-(*this)(i,M-3))+(*this)(i,M-4);
-			} else if( j == M+1) {
-				return 8.0*(*this)(i,M-2)-(*this)(i,M-3);
-			} else {
-				return 0.0;
+			if(i<N && i>=0) {
+				if(j == M) {
+					return (*this)(i,M-2);
+				} else if(j == M+1) {
+					return (*this)(i,M-1);
+				}
 			}
-			return 0;
 			break;
 	}
-	return 0;
+	return 0.0;
 }
 
 
@@ -475,12 +481,27 @@ precision VecNorme(const vector<precision>& v)
 precision VecNorme(const Matrix& v)
 {
 	precision S(0.0);
-	for(unsigned int i(0),l(v.GetN()*v.GetM()); i < l; ++i) {
-		S += v(i)*v(i);
+	int N(v.GetN()), M(v.GetM());
+	for(int i(0); i < N; ++i){
+		for(int j(0); j < M; ++j){
+			S += v(i,j)*v(i,j);
+		}
 	}
 	return sqrt(S);
 }
 
+
+precision DotProduct(const Matrix& v1, const Matrix& v2)
+{
+	precision S(0.0);
+	int N(v1.GetN()), M(v1.GetM());
+	for(int i(0); i < N; ++i){
+		for(int j(0); j < M; ++j){
+			S += v1(i,j)*v2(i,j);
+		}
+	}
+	return S;
+}
 
 precision DotProduct(const Matrix& v1, const vector<precision>& v2)
 {

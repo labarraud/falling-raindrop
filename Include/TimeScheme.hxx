@@ -21,7 +21,7 @@ public:
   virtual void SetInitialCondition(double t0, double dt, Matrix& rho0, VirtualOdeSystem& sys) = 0;
 
   // fonction principale qui avance le schema en temps
-  virtual void Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre) = 0;
+  virtual void Advance(int n, double tn, VirtualOdeSystem& sys, const Matrix& sec_membre) = 0;
 
 };
 
@@ -49,7 +49,7 @@ public:
   virtual void SetInitialCondition(double t0, double dt_, Matrix& rho0, VirtualOdeSystem& sys);
 
   // fonction principale qui avance le schema en temps
-  virtual void Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre);
+  virtual void Advance(int n, double tn, VirtualOdeSystem& sys, const Matrix& sec_membre);
 
 };
 
@@ -73,7 +73,7 @@ public:
   virtual void SetInitialCondition(double t0, double dt_, Matrix& rho0, VirtualOdeSystem& sys);
 
   // fonction principale qui avance le schema en temps
-  virtual void Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre);
+  virtual void Advance(int n, double tn, VirtualOdeSystem& sys, const Matrix& sec_membre);
 
 };
 
@@ -81,31 +81,6 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		,precision cfl ,precision tmaxdemi,precision omega,DiffusionConvectionProblem& ode,
 		VirtualTimeScheme& time, const string& fileout);
 
-
-//! Schema de Runge-Kutta d'ordre 2
-class RK2Iterator : public VirtualTimeScheme
-{
-private:
-  // on stocke le pas de temps
-  double dt;
-  // pour ce schema, on a besoin de ne stocker que deux vecteurs
-  Matrix rho, rho_next;
-
-public:
-  RK2Iterator();
-
-  void Clear();
-
-  virtual Matrix& GetIterate();
-  virtual const Matrix& GetIterate() const;
-
-  // fonction pour initialiser le schema en temps
-  virtual void SetInitialCondition(double t0, double dt_, Matrix& rho0, VirtualOdeSystem& sys);
-
-  // fonction principale qui avance le schema en temps
-  virtual void Advance(int n, double tn, VirtualOdeSystem& sys, const vector<precision>& sec_membre);
-
-};
 
 
 

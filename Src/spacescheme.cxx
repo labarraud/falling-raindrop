@@ -23,7 +23,7 @@ precision UpwindDCtest1 :: SplittingX(precision dt, precision a, precision b, in
 	return (uij - a*sigma*sign_a*(uij-UpwindY(dt, b, i, (j-sign_a), u)));
 }
 
-void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
+void UpwindDCtest1 :: AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const Matrix& sec_membre)
 {
 
 	//alpha = delta_t
@@ -117,15 +117,20 @@ precision UpwindDCOrder2::SplittingX(precision dt, precision a, precision b, int
 	return (uij - a*sigma*sign_a*(3.0*uij-4.0*UpwindY(dt, b, i, (j-sign_a), u)+UpwindY(dt, b, i, (j-2*sign_a), u))/2.0);
 }
 
-void UpwindDCOrder2::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
+void UpwindDCOrder2::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const Matrix& sec_membre)
 {
 
 	//alpha = delta_t
-    for (int i=0; i<Ny; i++) {
-    	for (int j=0; j<Nx; j++) {
-			y(i,j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i,j);
+	int N(Ny+1), M(Nx+1);
+	precision a(dx*dx), b(dy*dy);
+	for (int i=0; i<N; i++) {
+		for (int j=0; j<M; j++) {
+			y(i,j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i,j)
+						+ alpha*D*(u(i,j+1)-2.0*u(i,j)+u(i,j-1))/a
+						+ alpha*D*(u(i+1,j)-2.0*u(i,j)+u(i-1,j))/b
+						+ sec_membre(i,j);
 		}
-    }
+   }
 }
 
 
@@ -158,7 +163,7 @@ precision UpwindDCOrder3::SplittingX(precision dt, precision a, precision b, int
 	return (uij - a*sigma*sign_a*(2.0*UpwindY(dt, b, i, (j+sign_a), u)+3.0*uij-6.0*UpwindY(dt, b, i, (j-sign_a), u)+UpwindY(dt, b, i, (j-2*sign_a), u))/6.0);
 }
 
-void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
+void UpwindDCOrder3::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const Matrix& sec_membre)
 {
 
 	//alpha = delta_t
@@ -199,7 +204,7 @@ precision UpwindDCOrder4::SplittingX(precision dt, precision a, precision b, int
 	return (uij - a*sigma*sign_a*(3.0*UpwindY(dt, b, i, (j+sign_a), u)+10.0*uij-18.0*UpwindY(dt, b, i, (j-sign_a), u)+6.0*UpwindY(dt, b, i, (j-2*sign_a), u)-UpwindY(dt, b, i, (j-3*sign_a), u))/12.0);
 }
 
-void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
+void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const Matrix& sec_membre)
 {
 
 	//alpha = delta_t
@@ -207,7 +212,8 @@ void UpwindDCOrder4::AddFunction(precision alpha, const Matrix& u, precision t, 
     	for (int j=0; j<Nx; j++) {
 			y(i,j) += SplittingX(alpha, velocity.GetVX(i,j), velocity.GetVY(i,j), i, j, u) - u(i,j)
 						+ alpha*D*(16.0*u((i+1),j)-u((i+2),j)-30.0*u(i,j)-u((i-2),j)+16.0*u((i-1),j))/(dx*dx)
-						+ alpha*D*(16.0*u(i,(j+1))-u(i,(j+2))-30.0*u(i,j)-u(i,(j-2))+16.0*u(i,(j-1)))/(dy*dy);
+						+ alpha*D*(16.0*u(i,(j+1))-u(i,(j+2))-30.0*u(i,j)-u(i,(j-2))+16.0*u(i,(j-1)))/(dy*dy)
+						+ sec_membre(i,j);
 		}
    }
 }
@@ -226,7 +232,7 @@ LaxWendroff::LaxWendroff(int Nx,int Ny,int Nt,double L,double H,double tfinal,Ve
 	:	DiffusionConvectionProblem(Nx,Ny,Nt,L,H,tfinal,V,n)
 { }
 
-void LaxWendroff::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const vector<precision>& sec_membre)
+void LaxWendroff::AddFunction(precision alpha, const Matrix& u, precision t, Matrix& y, const Matrix& sec_membre)
 {
 
 	//alpha = delta_t

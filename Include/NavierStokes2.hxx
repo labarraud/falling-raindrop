@@ -11,6 +11,7 @@
 #include "Matrix.hxx"
 #include "velocity.hxx"
 #include "DiffusionConvectionProblem.hxx"
+#include "spacescheme.hxx"
 #include "TimeScheme.hxx"
 #include <iostream>
 #include <fstream>
@@ -18,7 +19,7 @@
 #include <vector>
 #include <iomanip>
 
-class NavierStokes2 : public VirtualOdeSystem
+class NavierStokes2
 {
 public:
 	NavierStokes2();
@@ -28,32 +29,26 @@ public:
 	void WriteVtk(const string& nom) const;
 	void SolveLaplacianP();
 	void Advance(int n, double tn);
-	virtual void AddFunction(precision alpha, const Matrix& rho, precision t, Matrix& y, const vector<precision>& sec_membre);
-	precision UpwindY(precision dt, precision a, int i, int j, const Matrix& u);
-	precision SplittingX(precision dt, precision a, precision b, int i, int j, const Matrix& u);
 
 private:
 	bool firstIter;
 	Velocity v;
 	Density rho; // masse volumique
 	Matrix p; // pression
-	vector<precision> cond_bord_p;
-	vector<precision> cond_bord_gradx_p;
-	vector<precision> cond_bord_grady_p;
-	vector<precision> cond_bord_div_v;
-	vector<precision> cond_bord_v;
-	vector<precision> sec_membre_p;
-	vector<precision> sec_membre_vx, sec_membre_vy;
+	Matrix cond_bord_p;
+	Matrix sec_membre_p;
+	Matrix sec_membre_vx, sec_membre_vy;
 	int Nx, Ny, Nt;
 	precision L,H,dx,dy,dt,nu,g,rho_mer,p_atm;
 	LowStorageRungeKuttaIterator timescheme_x, timescheme_y;
+	UpwindDCOrder2 spacescheme;
 };
 
-void GradConjLaplacian2(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, Matrix& x, const vector<precision>& b);
-void Laplacian2thOrder(precision dx, precision dy, int N, int M, const Matrix& v, vector<precision>& out);
-void Div2thOrder(const Velocity& v, precision dx, precision dy, int N, int M, vector<precision>& out);
-void Gradx2thOrder(precision dx, int N, int M, const Matrix& v, vector<precision>& out);
-void Grady2thOrder(precision dy, int N, int M, const Matrix& v, vector<precision>& out);
+void GradConjLaplacian2(precision dx, precision dy, int N, int M, precision epsilon, int Nmax, Matrix& x, Matrix& b);
+void Laplacian2thOrder(precision dx, precision dy, int N, int M, const Matrix& v, Matrix& out);
+void Div2thOrder(const Velocity& v, precision dx, precision dy, int N, int M, Matrix& out);
+void Gradx2thOrder(precision dx, int N, int M, const Matrix& v, Matrix& out);
+void Grady2thOrder(precision dy, int N, int M, const Matrix& v, Matrix& out);
 
 
 #endif /* INCLUDE_NAVIERSTOKES2_HXX_ */
