@@ -31,6 +31,8 @@ void NavierStokes2::SetInitialCondition(int _Nx,int _Ny,int _Nt,precision _L,pre
 	dt = tfinal/Nt;
 	//nu = 1.007e-6; // viscosité cinématique de l'eau douce à 20°C
 	nu = 2.8e-6; // viscosité cinématique de l'eau salée à 20°C, 50 kg/m^3 de NaCl
+	rho_douce = 1000.0;
+	D_nacl = 2.0e-7;
 	rho_mer = 1032.0;
 	p_atm = 1015000.0;
 	g = 9.81;
@@ -39,10 +41,12 @@ void NavierStokes2::SetInitialCondition(int _Nx,int _Ny,int _Nt,precision _L,pre
 	sec_membre_p.Reallocate(N,M);
 	sec_membre_vx.Reallocate(N,M);
 	sec_membre_vy.Reallocate(N,M);
+	zero.Reallocate(N,M);
+	zero.Zero();
 	spacescheme.SetInitialCondition(Nx,Ny,Nt,L,H,tfinal,v,rho);
 	timescheme_x.SetInitialCondition(0,dt,v.GetAllVX(),spacescheme);
 	timescheme_y.SetInitialCondition(0,dt,v.GetAllVY(),spacescheme);
-	spacescheme.SetD(nu);
+	timescheme_n.SetInitialCondition(0,dt,rho,spacescheme);
 }
 
 void NavierStokes2::SetPressure(const Matrix& _p)
@@ -114,6 +118,7 @@ void NavierStokes2::Advance(int n, double tn)
 	if(firstIter) {
 		firstIter = false;
 	} else {
+		spacescheme.SetVelocity(v);
 		for(int i(0); i < N; ++i) {
 			for(int j(0); j < M; ++j) {
 				cond_bord_p(i,j) = 0.0; // initialisation
@@ -127,6 +132,9 @@ void NavierStokes2::Advance(int n, double tn)
 			cond_bord_p(0,j) += -p.bottom(-1,j)/b;
 			cond_bord_p(Ny,j) += -p.top(N,j)/b;
 		}
+		spacescheme.SetD(D_nacl);
+		timescheme_n.Advance(n, tn, spacescheme, zero);
+		rho.Set(timescheme_n.GetIterate());
 		SolveLaplacianP();
 	}
 	for(int i(0); i < N; ++i) {
@@ -144,7 +152,7 @@ void NavierStokes2::Advance(int n, double tn)
 			sec_membre_vy(i,j) = -(dt*gradpy(i,j))/rho(i,j);
 		}
 	}
-	spacescheme.SetVelocity(v);
+	spacescheme.SetD(nu);
 	timescheme_x.Advance(n, tn, spacescheme, sec_membre_vx);
 	timescheme_y.Advance(n, tn, spacescheme, sec_membre_vy);
 	v.SetAllVX(timescheme_x.GetIterate());

@@ -156,7 +156,7 @@ void error_orderxy_circle(precision mindxy,precision hdxy,precision maxdxy
 		Velocity v(Nx,Ny,L,H);
 		v.ChampsCirculaire(L/2.0,H/2.0, omega);
 		Density n(Nx,Ny,L,H);
-		n.InitialCircle(L/3.0,H/3.0,0.5);
+		n.InitialCircle(L/3.0,H/3.0,0.5, 1.0);
 		Matrix init(n);
 
 

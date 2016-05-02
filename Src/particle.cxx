@@ -51,7 +51,7 @@ void Density::InitialGauss(precision Xcenter,precision Ycenter, precision intens
 		}
 	}
 
-void Density::InitialCircle(precision Xcenter,precision Ycenter, precision intensite)
+void Density::InitialCircle(precision Xcenter,precision Ycenter, precision radius, precision intensite)
 	{
 		precision var;
 		for (int i=0; i<N;i++)
@@ -60,12 +60,22 @@ void Density::InitialCircle(precision Xcenter,precision Ycenter, precision inten
 			{
 				var=(Xcenter-(j * Delta_x))*(Xcenter-(j * Delta_x))+(Ycenter - (i * Delta_y))*(Ycenter - (i * Delta_y));
 
-				if(var<(intensite*intensite))
-					(*this)(i,j)=1;
+				if(var<(radius*radius))
+					(*this)(i,j)=intensite;
 
 			}
 		}
 	}
+
+
+void Density::Set(const Matrix& m)
+{
+	for (int i=0; i<N;i++) {
+		for (int j=0; j<M;j++) {
+			(*this)(i,j)=m(i,j);
+		}
+	}
+}
 
 #define FILE_PARTICLE_CXX
 #endif

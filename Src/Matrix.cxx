@@ -193,9 +193,9 @@ const precision Matrix::bottom(int i, int j) const
 			break;
 		case neumann:
 			if(i == -1) {
-				return (*this)(1,(M+j)%M);
+				return (*this)(1,(M+j)%M)-this->Y0;
 			} else if(i == -2) {
-				return (*this)(0,(M+j)%M);
+				return (*this)(0,(M+j)%M)-this->Y0;
 			}
 			break;
 	}
@@ -221,9 +221,9 @@ const precision Matrix::top(int i, int j) const
 			break;
 		case neumann:
 			if(i == N) {
-				return (*this)(N-2,(M+j)%M);
+				return (*this)(N-2,(M+j)%M)+this->Yn;
 			} else if(i == N+1) {
-				return (*this)(N-1,(M+j)%M);
+				return (*this)(N-1,(M+j)%M)+this->Yn;
 			}
 			break;
 	}
@@ -248,9 +248,9 @@ const precision Matrix::left(int i, int j) const
 		case neumann:
 			if(i<N && i>=0) {
 				if(j == -1) {
-					return (*this)(i,1);
+					return (*this)(i,1)-this->X0;
 				} else if(j == -2) {
-					return (*this)(i,0);
+					return (*this)(i,0)-this->X0;
 				}
 			}
 			break;
@@ -275,9 +275,9 @@ const precision Matrix::right(int i, int j) const
 		case neumann:
 			if(i<N && i>=0) {
 				if(j == M) {
-					return (*this)(i,M-2);
+					return (*this)(i,M-2)+this->Xn;
 				} else if(j == M+1) {
-					return (*this)(i,M-1);
+					return (*this)(i,M-1)+this->Xn;
 				}
 			}
 			break;
