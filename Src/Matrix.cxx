@@ -150,7 +150,8 @@ precision& Matrix::operator()(int i, int j)
 precision& Matrix::operator()(int n)
 {
 	int i = n/M;
-	int j = n%N;
+	int j =n%M;
+
 
 	if(i>N || j>M) {
 		cout << "i=" << i << "; N=" << N << "; j=" << j << "; M=" << M << endl;
@@ -170,7 +171,7 @@ const precision Matrix::bottom(int i, int j) const
 			ivar=N+i;
 			if (j<0)
 				jvar=M+j;
-			else if (j>N)
+			else if (j>M)
 				jvar=j%M;
 			return val[(unsigned)ivar][(unsigned)jvar];
 			break;
@@ -200,7 +201,7 @@ const precision Matrix::top(int i, int j) const
 			ivar=i%N;
 			if (j<0)
 				jvar=M+j;
-			else if (j>N)
+			else if (j>M)
 				jvar=j%M;
 			return val[(unsigned)ivar][(unsigned)jvar];
 			break;
@@ -294,14 +295,12 @@ const precision Matrix::operator()(int i, int j) const
 			return val[(unsigned)i][(unsigned)j];
 		}
 
-
-
 }
 
 const precision Matrix::operator()(int n) const
 {
 	int i = n/M;
-	int j = n%N;
+	int j = (n)%M;
 
 	return (*this)(i,j);
 }
@@ -472,6 +471,26 @@ precision VecNorme(const vector<precision>& v)
 	}
 	return sqrt(S);
 }
+
+precision VecNorme(const Matrix& v)
+{
+	precision S(0.0);
+	for(unsigned int i(0),l(v.GetN()*v.GetM()); i < l; ++i) {
+		S += v(i)*v(i);
+	}
+	return sqrt(S);
+}
+
+
+precision DotProduct(const Matrix& v1, const vector<precision>& v2)
+{
+	precision S(0.0);
+	for(unsigned int i(0),l(v1.GetN()*v1.GetM()); i < l; ++i){
+		S += v1(i)*v2[i];
+	}
+	return S;
+}
+
 
 precision DotProduct(const vector<precision>& v1, const vector<precision>& v2)
 {

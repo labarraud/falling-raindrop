@@ -69,7 +69,9 @@ class Matrix
 ostream& operator<<(ostream& out, const Matrix& m);
 Matrix operator*(precision,const Matrix&);
 precision VecNorme(const vector<precision>& v);
+precision VecNorme(const Matrix& v);
 precision DotProduct(const vector<precision>& v1, const vector<precision>& v2);
+precision DotProduct(const Matrix& v1, const vector<precision>& v2);
 unsigned int Bij(int i, int j, int M);
 
 

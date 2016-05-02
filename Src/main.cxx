@@ -40,11 +40,13 @@ void testNS2()
 		Density n(Nx+1,Ny+1,L,H);
 		precision rho_mer(1032.0), p_atm(1015000.0), y, g(9.81);
 		
+		v.GetAllVX().SetBoundaryCondition(neumann,0,neumann,0,neumann,0,neumann,0);
+		v.GetAllVY().SetBoundaryCondition(neumann,0,neumann,0,neumann,0,neumann,0);
 		Matrix p(Ny+1,Nx+1);
+		p.SetBoundaryCondition(dirichlet,p_atm+rho_mer*g*H,dirichlet,p_atm,neumann,0,neumann,0);
 		for(int i(0); i < Ny+1; ++i) {
 			y = H-i*dy;
 			for(int j(0); j < Nx+1; ++j) {
-			  cout << i << " " << j << endl;
 				n(i,j) = rho_mer;
 				p(i,j) = p_atm + rho_mer*g*y;
 			}
@@ -61,7 +63,68 @@ void testNS2()
 			if((i%nDisplay)==0) {
 				var=(i/nDisplay < 10 ? "0" : "");
 				var2=(i/nDisplay < 100 ? "0" : "");
-				ns.WriteVtk("vtk2/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
+				ns.WriteVtk("output_test/testNS2/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
+			}
+
+		}
+}
+
+void testpoiseuille()
+{
+		precision dx,dy,dt,L,H,tn,tfinal,cfl;
+		int Nx,Ny,Nt;
+
+		L=0.1; // tailles en m
+		H=1;
+		Nx=20;
+		Ny=100;
+		Nt=50000;
+		cfl=0.1;
+
+		dx=L/(Nx+1);
+		dy=H/(Ny+1);
+
+
+		Velocity v(Nx,Ny,L,H);
+		//CFL
+		//dt=(max(dx,dy)*(max(dx,dy)*cfl))/v.max();
+		dt = 0.005;
+		//(Vx*dt/dx+Vy*dt/dy) <= 1
+		//dt=cfl/(dx/v.max()+dy/v.max());
+		//cout << "dt = " << dt << endl;
+		tfinal=Nt*dt;
+		//cout << "Vmax = " << v.max() << endl;
+
+		for(int i(1); i < Ny; ++i)
+			v.GetAllVX()(i,0)=0;
+
+		Density n(Nx+1,Ny+1,L,H);
+		precision rho_mer(1032.0), p_atm(1015000.0), y, g(0);
+
+		v.GetAllVX().SetBoundaryCondition(dirichlet,0,dirichlet,0,dirichlet,1,neumann,0);
+		v.GetAllVY().SetBoundaryCondition(dirichlet,0,dirichlet,0,dirichlet,0,neumann,0);
+		Matrix p(Ny+1,Nx+1);
+		p.SetBoundaryCondition(neumann,0,neumann,0,dirichlet,p_atm,dirichlet,p_atm);
+		for(int i(0); i < Ny+1; ++i) {
+			y = H-i*dy;
+			for(int j(0); j < Nx+1; ++j) {
+				n(i,j) = rho_mer;
+				p(i,j) = p_atm + rho_mer*g*y;
+			}
+		}
+		NavierStokes2 ns(Nx,Ny,Nt,L,H,tfinal,v,n,p);
+		int nDisplay(1);
+		string var,var2;
+		for(int i=0; i<Nt ; i++)
+		{
+			cout << "iteration " << i << "  -  p residu = ";
+			tn=i*dt;
+			//timescheme.Advance(i, tn, test1);
+			ns.Advance(i, tn);
+			if((i%nDisplay)==0) {
+				var=(i/nDisplay < 10 ? "0" : "");
+				var2=(i/nDisplay < 100 ? "0" : "");
+				ns.WriteVtk("output_test/testpoiseuille/particle" + var + var2 + to_string(i/nDisplay) + ".vtk");
 			}
 
 		}
@@ -138,7 +201,7 @@ void testrotateDC()
 
 					//n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 
-					timescheme.GetIterate().WriteVtk("vtk/vtk" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
+					timescheme.GetIterate().WriteVtk("output_test/testrotateDC/testrotateDC" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
 				}
 
 			}
@@ -217,7 +280,7 @@ vector<precision> nule;
 
 					//n.WriteGnuPlot("animate/particle" + to_string(i/nDisplay) + ".dat");
 
-					timescheme.GetIterate().WriteVtk("vtkdirichlet/vtk" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
+					timescheme.GetIterate().WriteVtk("output_test/testboundary/dirichlet" + var + var2 + to_string(i/nDisplay) + ".vtk", dx, dy);
 				}
 
 			}
@@ -246,9 +309,9 @@ int main()
 
 
 
-  //testrotateDC();
+//  testrotateDC();
 	//testrotatedirDC();
-	testNS2();
-
+	//testNS2();
+	testpoiseuille();
 		return 0;
 }
